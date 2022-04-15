@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Phant\DataStructure\Web;
 
-final class EmailAddressAndName extends \Phant\DataStructure\Abstract\Aggregate
+class EmailAddressAndName extends \Phant\DataStructure\Abstract\Aggregate
 {
 	protected EmailAddress $emailAddress;
 	protected ?string $name;

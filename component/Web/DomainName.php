@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Phant\DataStructure\Web;
 
-final class DomainName extends \Phant\DataStructure\Abstract\Value\Varchar
+class DomainName extends \Phant\DataStructure\Abstract\Value\Varchar
 {
 	public const PATTERN = '/^([a-zA-Z0-9][a-zA-Z0-9-\.]{1,61}[a-zA-Z0-9]\.[a-zA-Z]{2,}|localhost)$/';
 	
