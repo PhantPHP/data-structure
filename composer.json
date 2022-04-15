@@ -1,0 +1,33 @@
+{
+    "name": "phant/data-structure",
+    "description": "Manage data structure easily",
+    "license": "MIT",
+    "keywords": ["data structure", "entity", "value object", "aggregate", "collection", "enum", "value"],
+    "authors": [
+        {
+            "name": "Lenny ROUANET",
+            "email": "lennyrouanet@users.noreply.github.com"
+        }
+    ],
+    "require": {
+        "php": "^8.0",
+        "phant/error": "1.*",
+        "ramsey/uuid": "^4.3",
+        "firebase/php-jwt": "^5.2"
+    },
+    "require-dev": {
+        "phpstan/phpstan": "^1.4",
+        "phpunit/phpunit": "^9.5"
+    },
+    "scripts": {
+        "analyse": "vendor/bin/phpstan analyse component test --memory-limit=4G",
+        "test": "vendor/bin/phpunit test --testdox",
+        "code-coverage": "XDEBUG_MODE=coverage vendor/bin/phpunit --coverage-html test/coverage/html"
+    },
+    "autoload": {
+        "psr-4": {
+            "Phant\\DataStructure\\": "component/",
+            "Test\\": "test/"
+        }
+    }
+}
