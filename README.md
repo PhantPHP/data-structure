@@ -23,6 +23,17 @@ PHP >= 8.0
 	- Varchar
 
 
+## Company
+
+- Name
+
+### Fr
+
+- CodeActivite
+- Siren
+- Siret
+
+
 ## Geography
 
 - GpsCoordinates
@@ -41,6 +52,7 @@ PHP >= 8.0
 
 ## Number
 
+- Note
 - Rate
 
 
