@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Test\Id;
+namespace Test\Number;
 
 use Phant\DataStructure\Number\Rate;
 

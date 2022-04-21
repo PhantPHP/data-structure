@@ -3,14 +3,33 @@ declare(strict_types=1);
 
 namespace Phant\DataStructure\Company\Fr;
 
-final class Siren extends \Phant\DataStructure\Abstract\Value\Varchar
+use Phant\Error\NotCompliant;
+
+class Siren extends \Phant\DataStructure\Abstract\Value\Varchar
 {
 	const PATTERN = '/^(\d{9})$/';
 	
-	public function __construct(string $siren)
+	public function __construct(string $siren, bool $check = true)
 	{
 		$siren = preg_replace('/\D/', '', $siren);
 		
+		if ($check && !self::luhnCheck($siren)) {
+			throw new NotCompliant('Siren : ' . $siren);
+		}
+		
 		parent::__construct($siren);
+	}
+	
+	public static function luhnCheck(string $value): bool
+	{
+		$sum = 0;
+		$flag = 0;
+		
+		for ($i = strlen($value) - 1; $i >= 0; $i--) {
+			$add = $flag++ & 1 ? $value[$i] * 2 : $value[$i];
+			$sum += $add > 9 ? $add - 9 : $add;
+		}
+		
+		return $sum % 10 === 0;
 	}
 }
