@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Phant\DataStructure\Company\Fr;
 
-final class CodeActivite extends \Phant\DataStructure\Abstract\Value\Varchar
+class CodeActivite extends \Phant\DataStructure\Abstract\Value\Varchar
 {
 	const PATTERN = '/^(\d{2})(\.)?(\d{1,2})?(\w{1})?$/';
 	
