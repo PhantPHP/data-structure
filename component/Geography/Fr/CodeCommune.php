@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Phant\DataStructure\Geography\Fr;
 
-final class CodeCommune extends \Phant\DataStructure\Abstract\Value\Varchar
+class CodeCommune extends \Phant\DataStructure\Abstract\Value\Varchar
 {
 	const PATTERN = '/^([0-9])([0-9AB])([0-9]{3})$/';
 	

@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Phant\DataStructure\Geography\Fr;
 
-final class CodePostal extends \Phant\DataStructure\Abstract\Value\Varchar
+class CodePostal extends \Phant\DataStructure\Abstract\Value\Varchar
 {
 	const PATTERN = '/^(\d{5})$/';
 	

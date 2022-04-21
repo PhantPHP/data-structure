@@ -5,6 +5,8 @@ namespace Test\Company;
 
 use Phant\DataStructure\Company\Name;
 
+use Phant\Error\NotCompliant;
+
 final class NameTest extends \PHPUnit\Framework\TestCase
 {
 	public function testInterface(): void
@@ -18,5 +20,12 @@ final class NameTest extends \PHPUnit\Framework\TestCase
 		
 		$this->assertIsString($name->serialize());
 		$this->assertEquals('Acme', $name->serialize());
+	}
+	
+	public function testNotCompliant(): void
+	{
+		$this->expectException(NotCompliant::class);
+		
+		new Name('');
 	}
 }
