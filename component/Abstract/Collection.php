@@ -12,7 +12,7 @@ abstract class Collection implements \Phant\DataStructure\Abstract\Interface\Dat
 		$this->items = $items;
 	}
 
-	protected function addItem(mixed $item)
+	protected function addItem(mixed $item): self
 	{
 		if (array_search($item, $this->items) == false) {
 			$this->items[] = $item;
@@ -21,7 +21,7 @@ abstract class Collection implements \Phant\DataStructure\Abstract\Interface\Dat
 		return $this;
 	}
 
-	protected function removeItem(mixed $item)
+	protected function removeItem(mixed $item): self
 	{
 		if (($key = array_search($item, $this->items)) !== false) {
 			unset($this->items[ $key ]);
@@ -30,7 +30,7 @@ abstract class Collection implements \Phant\DataStructure\Abstract\Interface\Dat
 		return $this;
 	}
 
-	public function itemsIterator()
+	public function itemsIterator(): \Generator
 	{
 		foreach ($this->items as $item) {
 			yield $item;
