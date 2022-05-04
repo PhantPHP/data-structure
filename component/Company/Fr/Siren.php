@@ -32,4 +32,15 @@ class Siren extends \Phant\DataStructure\Abstract\Value\Varchar
 		
 		return $sum % 10 === 0;
 	}
+	
+	public function getFormatted(bool $espaceInsecable = true): string
+	{
+		$siren = $this->value;
+		$siren = preg_replace('/^(\d{3})(\d{3})(\d{3})$/', '$1 $2 $3', $siren);
+		if ($espaceInsecable) {
+			$siren = str_replace(' ', "\xC2\xA0", $siren); // Espace insécable
+		}
+		
+		return $siren;
+	}
 }

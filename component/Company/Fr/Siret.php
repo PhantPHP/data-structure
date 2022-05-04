@@ -39,4 +39,15 @@ class Siret extends \Phant\DataStructure\Abstract\Value\Varchar
 		
 		return $sum % 10 === 0;
 	}
+	
+	public function getFormatted(bool $espaceInsecable = true): string
+	{
+		$siret = $this->value;
+		$siret = preg_replace('/^(\d{3})(\d{3})(\d{3})(\d{5})$/', '$1 $2 $3 $4', $siret);
+		if ($espaceInsecable) {
+			$siret = str_replace(' ', "\xC2\xA0", $siret); // Espace insécable
+		}
+		
+		return $siret;
+	}
 }

@@ -21,6 +21,9 @@ final class SiretTest extends \PHPUnit\Framework\TestCase
 		$this->assertIsObject($siret->getSiren());
 		$this->assertEquals('512747395', (string)$siret->getSiren());
 		
+		$this->assertIsString($siret->getFormatted());
+		$this->assertEquals('512 747 395 00022', $siret->getFormatted());
+		
 		$this->assertIsString($siret->serialize());
 		$this->assertEquals('51274739500022', $siret->serialize());
 	}
