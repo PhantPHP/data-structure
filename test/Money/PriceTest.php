@@ -12,9 +12,9 @@ final class PriceTest extends \PHPUnit\Framework\TestCase
 {
 	public function testInterface(): void
 	{
-		$price = new Price(1234.56, new Currency(Currency::EUR));
+		$price = new Price(1234.56, new Currency(Currency::EUR), 'kg');
 		
-		$this->assertEquals('1234.56 €', (string)$price);
+		$this->assertEquals('1 234,56 €/kg', (string)$price);
 		
 		$this->assertIsFloat($price->get());
 		$this->assertEquals(1234.56, $price->get());
@@ -22,13 +22,17 @@ final class PriceTest extends \PHPUnit\Framework\TestCase
 		$this->assertIsObject($price->getCurrency());
 		$this->assertEquals('€', (string)$price->getCurrency());
 		
+		$this->assertIsString($price->getUnit());
+		$this->assertEquals('kg', (string)$price->getUnit());
+		
 		$this->assertIsArray($price->serialize());
 		$this->assertEquals([
 			'price' => 1234.56,
 			'currency' => [
-				'value' => 'EUR',
-				'label' => '€',
+				'code' => 'EUR',
+				'sign' => '€',
 			],
+			'unit' => 'kg',
 		], $price->serialize());
 	}
 }

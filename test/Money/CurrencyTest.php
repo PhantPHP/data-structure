@@ -23,8 +23,8 @@ final class CurrencyTest extends \PHPUnit\Framework\TestCase
 		
 		$this->assertIsArray($currency->serialize());
 		$this->assertEquals([
-			'value' => 'EUR',
-			'label' => '€',
+			'code' => 'EUR',
+			'sign' => '€',
 		], $currency->serialize());
 	}
 	

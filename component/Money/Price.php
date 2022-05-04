@@ -7,11 +7,17 @@ class Price extends \Phant\DataStructure\Abstract\Aggregate
 {
 	protected float $price;
 	protected ?Currency $currency;
+	protected ?string $unit;
 	
-	public function __construct(float $price, ?Currency $currency = null)
+	public function __construct(
+		float $price,
+		?Currency $currency = null,
+		?string $unit = null
+	)
 	{
 		$this->price = $price;
 		$this->currency = $currency;
+		$this->unit = $unit;
 	}
 	
 	public function get(): float
@@ -24,16 +30,46 @@ class Price extends \Phant\DataStructure\Abstract\Aggregate
 		return $this->currency;
 	}
 	
+	public function getUnit(): ?string
+	{
+		return $this->unit;
+	}
+	
 	public function __toString(): string
 	{
-		return ((string) $this->price) . ' ' . ((string)$this->currency);
+		return $this->getFormatted();
+	}
+	
+	public function getFormatted(bool $espaceInsecable = true): string
+	{
+		$price = number_format($this->price, 2, ',', ' ');
+		
+		if (!is_null($this->currency)) {
+			$price.= ' ' . ((string)$this->currency);
+		}
+		
+		if (!is_null($this->unit)) {
+			$price.= '/' . ((string)$this->unit);
+		}
+		
+		if ($espaceInsecable) {
+			$price = str_replace(' ', "\xC2\xA0", $price); // Espace insécable
+		}
+		
+		return $price;
 	}
 	
 	public function serialize(): array
 	{
-		return [
+		$array = [
 			'price'	=> $this->price,
 			'currency'	=> $this->currency ? $this->currency->serialize() : null,
 		];
+		
+		if (!is_null($this->unit)) {
+			$array['unit'] = $this->unit;
+		}
+		
+		return $array;
 	}
 }

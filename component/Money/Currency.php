@@ -5,6 +5,9 @@ namespace Phant\DataStructure\Money;
 
 class Currency extends \Phant\DataStructure\Abstract\Enum
 {
+	public const VALUE_KEY = 'code';
+	public const LABEL_KEY = 'sign';
+	
 	const AUD = 'AUD';
 	const CAD = 'CAD';
 	const CHF = 'CHF';
