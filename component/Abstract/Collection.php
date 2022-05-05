@@ -63,6 +63,4 @@ abstract class Collection implements \Phant\DataStructure\Abstract\Interface\Dat
 
 		return $items;
 	}
-	
-	abstract public static function unserialize(array $array): self;
 }
