@@ -38,9 +38,4 @@ class Jwt extends \Phant\DataStructure\Abstract\Value\Varchar
 		
 		return new static(FirebaseJwt::encode($payload, $privateKey, self::ALGORITHM));
 	}
-	
-	public function serialize(): string
-	{
-		return $this->value;
-	}
 }
