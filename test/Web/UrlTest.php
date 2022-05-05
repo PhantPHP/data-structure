@@ -61,8 +61,14 @@ final class UrlTest extends \PHPUnit\Framework\TestCase
 		
 		$this->assertEquals('https://john.doe:qwerty@acme:8080/home?foo=bar#title', (string)$url);
 		
-		$this->assertIsString($url->serialize());
-		$this->assertEquals('https://john.doe:qwerty@acme:8080/home?foo=bar#title', $url->serialize());
+		$serialized = $url->serialize();
+		
+		$this->assertIsString($serialized);
+		$this->assertEquals('https://john.doe:qwerty@acme:8080/home?foo=bar#title', $serialized);
+		
+		$unserialized = Url::unserialize($serialized);
+		
+		$this->assertEquals($url, $unserialized);
 		
 	}
 	

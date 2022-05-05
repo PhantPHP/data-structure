@@ -8,11 +8,13 @@ use Phant\DataStructure\Money\{
 	Price,
 };
 
+use Phant\Error\NotCompliant;
+
 final class PriceTest extends \PHPUnit\Framework\TestCase
 {
 	public function testInterface(): void
 	{
-		$price = new Price(1234.56, new Currency(Currency::EUR), 'kg');
+		$price = new Price(1234.56, Currency::EUR, 'kg');
 		
 		$this->assertEquals('1 234,56 €/kg', (string)$price);
 		
@@ -24,8 +26,10 @@ final class PriceTest extends \PHPUnit\Framework\TestCase
 		
 		$this->assertIsString($price->getUnit());
 		$this->assertEquals('kg', (string)$price->getUnit());
+			
+		$serialized = $price->serialize();
 		
-		$this->assertIsArray($price->serialize());
+		$this->assertIsArray($serialized);
 		$this->assertEquals([
 			'price' => 1234.56,
 			'currency' => [
@@ -33,6 +37,17 @@ final class PriceTest extends \PHPUnit\Framework\TestCase
 				'sign' => '€',
 			],
 			'unit' => 'kg',
-		], $price->serialize());
+		], $serialized);
+		
+		$unserialized = Price::unserialize($serialized);
+		
+		$this->assertEquals($price, $unserialized);
+	}
+	
+	public function testUnserializeNotCompliant(): void
+	{
+		$this->expectException(NotCompliant::class);
+		
+		Price::unserialize([ 'foo' => 'bar' ]);
 	}
 }

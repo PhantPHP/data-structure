@@ -18,8 +18,14 @@ final class NameTest extends \PHPUnit\Framework\TestCase
 		$this->assertIsString($name->get());
 		$this->assertEquals('Acme', $name->get());
 		
-		$this->assertIsString($name->serialize());
-		$this->assertEquals('Acme', $name->serialize());
+		$serialized = $name->serialize();
+		
+		$this->assertIsString($serialized);
+		$this->assertEquals('Acme', $serialized);
+		
+		$unserialized = Name::unserialize($serialized);
+		
+		$this->assertEquals($name, $unserialized);
 	}
 	
 	public function testNotCompliant(): void

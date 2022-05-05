@@ -3,17 +3,16 @@ declare(strict_types=1);
 
 namespace Test\Web;
 
-use Phant\DataStructure\Web\{
-	EmailAddressAndName,
-	EmailAddress,
-};
+use Phant\DataStructure\Web\EmailAddressAndName;
+
+use Phant\Error\NotCompliant;
 
 final class EmailAddressAndNameTest extends \PHPUnit\Framework\TestCase
 {
 	public function testInterface(): void
 	{
 		$emailAddressAndName = new EmailAddressAndName(
-			new EmailAddress('john.doe@domain.ext'),
+			'john.doe@domain.ext',
 			'John DOE'
 		);
 		
@@ -23,10 +22,23 @@ final class EmailAddressAndNameTest extends \PHPUnit\Framework\TestCase
 		$this->assertIsString($emailAddressAndName->getName());
 		$this->assertEquals('John DOE', $emailAddressAndName->getName());
 		
-		$this->assertIsArray($emailAddressAndName->serialize());
+		$serialized = $emailAddressAndName->serialize();
+		
+		$this->assertIsArray($serialized);
 		$this->assertEquals([
 				'email_address' => 'john.doe@domain.ext',
 				'name' => 'John DOE',
-			], $emailAddressAndName->serialize());
+			], $serialized);
+		
+		$unserialized = EmailAddressAndName::unserialize($serialized);
+		
+		$this->assertEquals($emailAddressAndName, $unserialized);
+	}
+	
+	public function testUnserializeNotCompliant(): void
+	{
+		$this->expectException(NotCompliant::class);
+		
+		EmailAddressAndName::unserialize([ 'foo' => 'bar' ]);
 	}
 }

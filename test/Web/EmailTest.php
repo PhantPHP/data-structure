@@ -9,6 +9,8 @@ use Phant\DataStructure\Web\{
 	EmailAddressAndName,
 };
 
+use Phant\Error\NotCompliant;
+
 final class EmailTest extends \PHPUnit\Framework\TestCase
 {
 	public function testInterface(): void
@@ -28,7 +30,7 @@ final class EmailTest extends \PHPUnit\Framework\TestCase
 			new EmailAddressAndName(
 				new EmailAddress('no-reply@acme.ext'),
 				'No reply'
-			),
+			)
 		);
 		
 		$this->assertIsString($email->subject);
@@ -53,6 +55,7 @@ final class EmailTest extends \PHPUnit\Framework\TestCase
 		$this->assertEquals('No reply', $email->replyTo->getName());
 		
 		$serialized = $email->serialize();
+		
 		$this->assertIsArray($serialized);
 		$this->assertArrayHasKey('subject', $serialized);
 		$this->assertArrayHasKey('message', $serialized);
@@ -61,5 +64,40 @@ final class EmailTest extends \PHPUnit\Framework\TestCase
 		$this->assertArrayHasKey('from', $serialized);
 		$this->assertArrayHasKey('to', $serialized);
 		$this->assertArrayHasKey('reply_to', $serialized);
+		
+		$unserialized = Email::unserialize($serialized);
+		
+		$this->assertEquals($email, $unserialized);
+	}
+	
+	public function testConstructAlt(): void
+	{
+		$email = new Email(
+			'Subject',
+			'Message',
+			'<p>Message</p>',
+			'contact@acme.ext',
+			'john.doe@domain.ext',
+			'no-reply@acme.ext'
+		);
+		
+		$this->assertIsObject($email->from);
+		$this->assertEquals('contact@acme.ext', (string)$email->from->getEmailAddress());
+		$this->assertEquals(null, $email->from->getName());
+		
+		$this->assertIsObject($email->to);
+		$this->assertEquals('john.doe@domain.ext', (string)$email->to->getEmailAddress());
+		$this->assertEquals(null, $email->to->getName());
+		
+		$this->assertIsObject($email->replyTo);
+		$this->assertEquals('no-reply@acme.ext', (string)$email->replyTo->getEmailAddress());
+		$this->assertEquals(null, $email->replyTo->getName());
+	}
+	
+	public function testUnserializeNotCompliant(): void
+	{
+		$this->expectException(NotCompliant::class);
+		
+		Email::unserialize([ 'foo' => 'bar' ]);
 	}
 }

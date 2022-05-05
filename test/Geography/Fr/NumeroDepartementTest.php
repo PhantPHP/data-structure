@@ -17,9 +17,15 @@ final class NumeroDepartementTest extends \PHPUnit\Framework\TestCase
 		
 		$this->assertIsString($numeroDepartement->get());
 		$this->assertEquals('01', $numeroDepartement->get());
+			
+		$serialized = $numeroDepartement->serialize();
 		
-		$this->assertIsString($numeroDepartement->serialize());
-		$this->assertEquals('01', $numeroDepartement->serialize());
+		$this->assertIsString($serialized);
+		$this->assertEquals('01', $serialized);
+		
+		$unserialized = NumeroDepartement::unserialize($serialized);
+		
+		$this->assertEquals($numeroDepartement, $unserialized);
 	}
 	
 	public function testNotCompliant(): void

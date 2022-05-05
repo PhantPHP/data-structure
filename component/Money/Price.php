@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace Phant\DataStructure\Money;
 
+use Phant\Error\NotCompliant;
+
 class Price extends \Phant\DataStructure\Abstract\Aggregate
 {
 	protected float $price;
@@ -11,10 +13,14 @@ class Price extends \Phant\DataStructure\Abstract\Aggregate
 	
 	public function __construct(
 		float $price,
-		?Currency $currency = null,
+		null|string|Currency $currency = null,
 		?string $unit = null
 	)
 	{
+		if (is_string($currency)) {
+			$currency = new Currency($currency);
+		}
+		
 		$this->price = $price;
 		$this->currency = $currency;
 		$this->unit = $unit;
@@ -71,5 +77,21 @@ class Price extends \Phant\DataStructure\Abstract\Aggregate
 		}
 		
 		return $array;
+	}
+	
+	public static function unserialize(array $array): self
+	{
+		if (!isset(
+			$array[ 'price' ],
+			$array[ 'currency' ]
+		)) {
+			throw new NotCompliant();
+		}
+		
+		return new self(
+			$array[ 'price' ],
+			!is_null($array[ 'currency' ]) ? Currency::unserialize($array[ 'currency' ]) : null,
+			$array[ 'unit' ] ?? null
+		);
 	}
 }

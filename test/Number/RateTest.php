@@ -15,8 +15,14 @@ final class RateTest extends \PHPUnit\Framework\TestCase
 		
 		$this->assertIsFloat($rate->get());
 		$this->assertEquals(1234.4567, $rate->get());
+			
+		$serialized = $rate->serialize();
 		
-		$this->assertIsFloat($rate->serialize());
-		$this->assertEquals(1234.4567, $rate->serialize());
+		$this->assertIsFloat($serialized);
+		$this->assertEquals(1234.4567, $serialized);
+		
+		$unserialized = Rate::unserialize($serialized);
+		
+		$this->assertEquals($rate, $unserialized);
 	}
 }

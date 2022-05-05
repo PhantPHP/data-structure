@@ -20,9 +20,15 @@ final class CodeCommuneTest extends \PHPUnit\Framework\TestCase
 		
 		$this->assertIsObject($codeCommune->getNumeroDepartement());
 		$this->assertEquals('974', (string)$codeCommune->getNumeroDepartement());
+			
+		$serialized = $codeCommune->serialize();
 		
-		$this->assertIsString($codeCommune->serialize());
-		$this->assertEquals('97421', $codeCommune->serialize());
+		$this->assertIsString($serialized);
+		$this->assertEquals('97421', $serialized);
+		
+		$unserialized = CodeCommune::unserialize($serialized);
+		
+		$this->assertEquals($codeCommune, $unserialized);
 	}
 	
 	public function testNotCompliant(): void

@@ -9,6 +9,8 @@ use Test\Abstract\Fixture\{
 	Value,
 };
 
+use Phant\Error\NotCompliant;
+
 final class EntityTest extends \PHPUnit\Framework\TestCase
 {
 	public function testInterface(): void
@@ -21,8 +23,21 @@ final class EntityTest extends \PHPUnit\Framework\TestCase
 		$this->assertIsObject($entity->foo);
 		$this->assertIsObject($entity->bar);
 		
-		$this->assertIsArray($entity->serialize());
-		$this->assertArrayHasKey('foo', $entity->serialize());
-		$this->assertArrayHasKey('bar', $entity->serialize());
+		$serialized = $entity->serialize();
+		
+		$this->assertIsArray($serialized);
+		$this->assertArrayHasKey('foo', $serialized);
+		$this->assertArrayHasKey('bar', $serialized);
+		
+		$unserialized = Entity::unserialize($serialized);
+		
+		$this->assertEquals($entity, $unserialized);
+	}
+	
+	public function testUnserializeNotCompliant(): void
+	{
+		$this->expectException(NotCompliant::class);
+		
+		Entity::unserialize([ 'foo' => 'bar' ]);
 	}
 }

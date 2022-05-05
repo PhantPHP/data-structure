@@ -22,10 +22,23 @@ final class DurationTest extends \PHPUnit\Framework\TestCase
 		$this->assertIsString($duration->getLabel());
 		$this->assertEquals('1 year, 1 month, 1 day, 1 h, 1 min, 1 s', $duration->getLabel());
 		
-		$this->assertIsArray($duration->serialize());
+		$serialized = $duration->serialize();
+		
+		$this->assertIsArray($serialized);
 		$this->assertEquals([
 				'value' => $time,
 				'label' => '1 year, 1 month, 1 day, 1 h, 1 min, 1 s',
-			], $duration->serialize());
+			], $serialized);
+		
+		$unserialized = Duration::unserialize($serialized);
+		
+		$this->assertEquals($duration, $unserialized);
+	}
+	
+	public function testUnserializeNotCompliant(): void
+	{
+		$this->expectException(NotCompliant::class);
+		
+		Duration::unserialize([ 'foo' => 'bar' ]);
 	}
 }

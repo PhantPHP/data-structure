@@ -21,8 +21,14 @@ final class DateTest extends \PHPUnit\Framework\TestCase
 		$this->assertIsInt($date->getTime());
 		$this->assertEquals(-491356800, $date->getTime());
 		
-		$this->assertIsString($date->serialize());
-		$this->assertEquals('1954-06-07', $date->serialize());
+		$serialized = $date->serialize();
+		
+		$this->assertIsString($serialized);
+		$this->assertEquals('1954-06-07', $serialized);
+		
+		$unserialized = Date::unserialize($serialized);
+		
+		$this->assertEquals($date, $unserialized);
 	}
 	
 	public function testBuild(): void

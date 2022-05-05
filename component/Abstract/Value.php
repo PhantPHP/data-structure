@@ -14,19 +14,24 @@ abstract class Value implements \Phant\DataStructure\Abstract\Interface\DataStru
 		}
 	}
 
-	public function __toString()
+	public function __toString(): string
 	{
 		return (string) $this->get();
 	}
 
-	public function get()
+	public function get(): mixed
 	{
 		return property_exists($this, 'value') ? $this->value : null;
 	}
 
-	public function serialize()
+	public function serialize(): mixed
 	{
 		return $this->get();
+	}
+	
+	public static function unserialize(mixed $value): self
+	{
+		return new static($value);
 	}
 	
 	protected static function addNonBreakingSpace(string $value): string

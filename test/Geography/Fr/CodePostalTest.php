@@ -17,9 +17,15 @@ final class CodePostalTest extends \PHPUnit\Framework\TestCase
 		
 		$this->assertIsString($codePostal->get());
 		$this->assertEquals('69001', $codePostal->get());
+			
+		$serialized = $codePostal->serialize();
 		
-		$this->assertIsString($codePostal->serialize());
-		$this->assertEquals('69001', $codePostal->serialize());
+		$this->assertIsString($serialized);
+		$this->assertEquals('69001', $serialized);
+		
+		$unserialized = CodePostal::unserialize($serialized);
+		
+		$this->assertEquals($codePostal, $unserialized);
 	}
 	
 	public function testNotCompliant(): void

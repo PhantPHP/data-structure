@@ -20,10 +20,21 @@ class DateInterval extends \Phant\DataStructure\Abstract\Aggregate
 	protected ?Date $to;
 	protected ?Duration $duration;
 	
-	public function __construct(?Date $from, ?Date $to)
+	public function __construct(
+		null|string|Date $from,
+		null|string|Date $to
+	)
 	{
 		if (!$from && !$to) {
 			throw new NotCompliant('Date intervals: from ' . $from . ' to' . $to);
+		}
+		
+		if (is_string($from)) {
+			$from = new Date($from);
+		}
+		
+		if (is_string($to)) {
+			$to = new Date($to);
 		}
 		
 		$this->from = $from;
@@ -53,5 +64,17 @@ class DateInterval extends \Phant\DataStructure\Abstract\Aggregate
 			static::TO_KEY			=> $this->to ? $this->to->serialize() : null,
 			static::DURATION_KEY	=> $this->duration ? $this->duration->serialize() : null,
 		];
+	}
+	
+	public static function unserialize(array $array): self
+	{
+		if (!isset(
+			$array[static::FROM_KEY],
+			$array[static::TO_KEY]
+		)) {
+			throw new NotCompliant();
+		}
+		
+		return new self($array[ static::FROM_KEY ], $array[ static::TO_KEY ]);
 	}
 }

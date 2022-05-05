@@ -7,6 +7,8 @@ use Phant\DataStructure\Web\{
 	EmailAddressAndName,
 };
 
+use Phant\Error\NotCompliant;
+
 class Email extends \Phant\DataStructure\Abstract\Entity
 {
 	public string $subject;
@@ -20,11 +22,23 @@ class Email extends \Phant\DataStructure\Abstract\Entity
 		string $subject,
 		string $messageTxt,
 		string $messageHtml,
-		EmailAddressAndName $from,
-		EmailAddressAndName $to,
-		?EmailAddressAndName $replyTo = null
+		string|EmailAddressAndName $from,
+		string|EmailAddressAndName $to,
+		null|string|EmailAddressAndName $replyTo = null
 	)
 	{
+		if (is_string($from)) {
+			$from = new EmailAddressAndName($from);
+		}
+		
+		if (is_string($to)) {
+			$to = new EmailAddressAndName($to);
+		}
+		
+		if (is_string($replyTo)) {
+			$replyTo = new EmailAddressAndName($replyTo);
+		}
+		
 		$this->subject = $subject;
 		$this->messageTxt = $messageTxt;
 		$this->messageHtml = $messageHtml;
@@ -45,5 +59,28 @@ class Email extends \Phant\DataStructure\Abstract\Entity
 			'to'		=> $this->to->serialize(),
 			'reply_to'	=> $this->replyTo ? $this->replyTo->serialize() : null,
 		];
+	}
+	
+	public static function unserialize(array $array): self
+	{
+		if (!isset(
+			$array[ 'subject' ],
+			$array[ 'message' ][ 'txt' ],
+			$array[ 'message' ][ 'html' ],
+			$array[ 'from' ],
+			$array[ 'to' ],
+			$array[ 'reply_to' ]
+		)) {
+			throw new NotCompliant();
+		}
+		
+		return new self(
+			$array[ 'subject' ],
+			$array[ 'message' ][ 'txt' ],
+			$array[ 'message' ][ 'html' ],
+			$array[ 'from' ] ? EmailAddressAndName::unserialize($array[ 'from' ]) : null,
+			$array[ 'to' ] ? EmailAddressAndName::unserialize($array[ 'to' ]) : null,
+			$array[ 'reply_to' ] ? EmailAddressAndName::unserialize($array[ 'reply_to' ]) : null
+		);
 	}
 }

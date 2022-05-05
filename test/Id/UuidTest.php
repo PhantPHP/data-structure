@@ -17,9 +17,15 @@ final class UuidTest extends \PHPUnit\Framework\TestCase
 		
 		$this->assertIsString($uuid->get());
 		$this->assertEquals('1a55e96e-7a47-465b-887b-2f517068065c', $uuid->get());
+			
+		$serialized = $uuid->serialize();
 		
-		$this->assertIsString($uuid->serialize());
-		$this->assertEquals('1a55e96e-7a47-465b-887b-2f517068065c', $uuid->serialize());
+		$this->assertIsString($serialized);
+		$this->assertEquals('1a55e96e-7a47-465b-887b-2f517068065c', $serialized);
+		
+		$unserialized = Uuid::unserialize($serialized);
+		
+		$this->assertEquals($uuid, $unserialized);
 	}
 	
 	public function testGenerate(): void

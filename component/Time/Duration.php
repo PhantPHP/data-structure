@@ -3,7 +3,9 @@ declare(strict_types=1);
 
 namespace Phant\DataStructure\Time;
 
-class Duration extends \Phant\DataStructure\Abstract\Value\Integer
+use Phant\Error\NotCompliant;
+
+class Duration extends \Phant\DataStructure\Abstract\Aggregate
 {
 	// Duration in secondes
 	const MINUTE	= 60;
@@ -25,17 +27,23 @@ class Duration extends \Phant\DataStructure\Abstract\Value\Integer
 	const YEAR_LABEL = 'year';
 	const YEAR_LABEL_PLURAL = 'years';
 	
+	protected int $time;
 	protected string $label;
 	
-	public function __construct(int $duration)
+	public function __construct(int $time)
 	{
-		parent::__construct($duration);
+		$this->time = $time;
 		$this->label = $this->buildLabel();
 	}
 	
 	public function __toString()
 	{
 		return (string) $this->getLabel();
+	}
+	
+	public function get(): int
+	{
+		return $this->time;
 	}
 	
 	public function getLabel(): string
@@ -45,7 +53,7 @@ class Duration extends \Phant\DataStructure\Abstract\Value\Integer
 	
 	protected function buildLabel(): string
 	{
-		$remainingTime = $this->value;
+		$remainingTime = $this->time;
 		
 		$labels = [];
 		
@@ -102,8 +110,17 @@ class Duration extends \Phant\DataStructure\Abstract\Value\Integer
 	public function serialize(): array
 	{
 		return [
-			'value'	=> $this->value,
+			'value'	=> $this->time,
 			'label'	=> $this->label
 		];
+	}
+	
+	public static function unserialize(array $array): self
+	{
+		if (!isset($array[ 'value' ])) {
+			throw new NotCompliant();
+		}
+		
+		return new self($array[ 'value' ]);
 	}
 }
