@@ -41,15 +41,15 @@ class EmailAddressAndName extends \Phant\DataStructure\Abstract\Aggregate
 		];
 	}
 	
-	public static function unserialize(array $array): self
+	public static function unserialize(array $serialized): self
 	{
 		if (!isset(
-			$array[ 'email_address' ],
-			$array[ 'name' ]
+			$serialized[ 'email_address' ],
+			$serialized[ 'name' ]
 		)) {
 			throw new NotCompliant();
 		}
 		
-		return new self($array[ 'email_address' ], $array[ 'name' ]);
+		return new self($serialized[ 'email_address' ], $serialized[ 'name' ]);
 	}
 }

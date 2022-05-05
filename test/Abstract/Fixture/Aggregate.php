@@ -43,18 +43,18 @@ class Aggregate extends \Phant\DataStructure\Abstract\Aggregate
 		];
 	}
 	
-	public static function unserialize(array $array): self
+	public static function unserialize(array $serialized): self
 	{
 		if (!isset(
-			$array[ 'foo' ],
-			$array[ 'bar' ]
+			$serialized[ 'foo' ],
+			$serialized[ 'bar' ]
 		)) {
 			throw new NotCompliant();
 		}
 		
 		return new self(
-			$array[ 'foo' ],
-			$array[ 'bar' ]
+			$serialized[ 'foo' ],
+			$serialized[ 'bar' ]
 		);
 	}
 }

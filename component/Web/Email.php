@@ -61,26 +61,26 @@ class Email extends \Phant\DataStructure\Abstract\Entity
 		];
 	}
 	
-	public static function unserialize(array $array): self
+	public static function unserialize(array $serialized): self
 	{
 		if (!isset(
-			$array[ 'subject' ],
-			$array[ 'message' ][ 'txt' ],
-			$array[ 'message' ][ 'html' ],
-			$array[ 'from' ],
-			$array[ 'to' ],
-			$array[ 'reply_to' ]
+			$serialized[ 'subject' ],
+			$serialized[ 'message' ][ 'txt' ],
+			$serialized[ 'message' ][ 'html' ],
+			$serialized[ 'from' ],
+			$serialized[ 'to' ],
+			$serialized[ 'reply_to' ]
 		)) {
 			throw new NotCompliant();
 		}
 		
 		return new self(
-			$array[ 'subject' ],
-			$array[ 'message' ][ 'txt' ],
-			$array[ 'message' ][ 'html' ],
-			$array[ 'from' ] ? EmailAddressAndName::unserialize($array[ 'from' ]) : null,
-			$array[ 'to' ] ? EmailAddressAndName::unserialize($array[ 'to' ]) : null,
-			$array[ 'reply_to' ] ? EmailAddressAndName::unserialize($array[ 'reply_to' ]) : null
+			$serialized[ 'subject' ],
+			$serialized[ 'message' ][ 'txt' ],
+			$serialized[ 'message' ][ 'html' ],
+			$serialized[ 'from' ] ? EmailAddressAndName::unserialize($serialized[ 'from' ]) : null,
+			$serialized[ 'to' ] ? EmailAddressAndName::unserialize($serialized[ 'to' ]) : null,
+			$serialized[ 'reply_to' ] ? EmailAddressAndName::unserialize($serialized[ 'reply_to' ]) : null
 		);
 	}
 }
