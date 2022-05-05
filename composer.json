@@ -20,9 +20,9 @@
         "phpunit/phpunit": "^9.5"
     },
     "scripts": {
-        "analyse": "vendor/bin/phpstan analyse component test --memory-limit=4G",
+        "analyse": "vendor/bin/phpstan analyse component test -c phpstan.neon --memory-limit=4G",
         "test": "vendor/bin/phpunit test --testdox",
-        "code-coverage": "XDEBUG_MODE=coverage vendor/bin/phpunit --coverage-html test/coverage/html"
+        "code-coverage": "XDEBUG_MODE=coverage vendor/bin/phpunit --coverage-html public/code-coverage"
     },
     "autoload": {
         "psr-4": {
