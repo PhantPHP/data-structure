@@ -8,6 +8,8 @@ use Test\Abstract\Fixture\{
 	Value,
 };
 
+use Phant\Error\NotCompliant;
+
 class Entity extends \Phant\DataStructure\Abstract\Entity
 {
 	public Value $foo;
@@ -25,5 +27,20 @@ class Entity extends \Phant\DataStructure\Abstract\Entity
 			'foo'	=> $this->foo->serialize(),
 			'bar'	=> $this->bar ? $this->bar->serialize() : null,
 		];
+	}
+	
+	public static function unserialize(array $array): self
+	{
+		if (!isset(
+			$array[ 'foo' ],
+			$array[ 'bar' ]
+		)) {
+			throw new NotCompliant();
+		}
+		
+		return new self(
+			Value::unserialize($array[ 'foo' ]),
+			!is_null($array[ 'bar' ]) ? Enum::unserialize($array[ 'bar' ]) : null
+		);
 	}
 }

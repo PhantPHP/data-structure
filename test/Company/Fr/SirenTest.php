@@ -21,8 +21,14 @@ final class SirenTest extends \PHPUnit\Framework\TestCase
 		$this->assertIsString($siren->getFormatted());
 		$this->assertEquals('512 747 395', $siren->getFormatted());
 		
-		$this->assertIsString($siren->serialize());
-		$this->assertEquals('512747395', $siren->serialize());
+		$serialized = $siren->serialize();
+		
+		$this->assertIsString($serialized);
+		$this->assertEquals('512747395', $serialized);
+		
+		$unserialized = Siren::unserialize($serialized);
+		
+		$this->assertEquals($siren, $unserialized);
 	}
 	
 	public function testNotCompliant(): void

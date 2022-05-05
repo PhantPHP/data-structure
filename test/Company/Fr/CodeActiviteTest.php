@@ -18,8 +18,14 @@ final class CodeActiviteTest extends \PHPUnit\Framework\TestCase
 		$this->assertIsString($codeActivite->get());
 		$this->assertEquals('62.01Z', $codeActivite->get());
 		
-		$this->assertIsString($codeActivite->serialize());
-		$this->assertEquals('62.01Z', $codeActivite->serialize());
+		$serialized = $codeActivite->serialize();
+		
+		$this->assertIsString($serialized);
+		$this->assertEquals('62.01Z', $serialized);
+		
+		$unserialized = CodeActivite::unserialize($serialized);
+		
+		$this->assertEquals($codeActivite, $unserialized);
 	}
 	
 	public function testNotCompliant(): void

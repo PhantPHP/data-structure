@@ -21,11 +21,17 @@ final class EnumTest extends \PHPUnit\Framework\TestCase
 		$this->assertIsString($enum->getLabel());
 		$this->assertEquals(Enum::VALUES[ Enum::BAR ], $enum->getLabel());
 		
-		$this->assertIsArray($enum->serialize());
+		$serialized = $enum->serialize();
+		
+		$this->assertIsArray($serialized);
 		$this->assertEquals([
 				'value'	=> Enum::BAR,
 				'label'	=> Enum::VALUES[ Enum::BAR ],
-			], $enum->serialize());
+			], $serialized);
+		
+		$unserialized = Enum::unserialize($serialized);
+		
+		$this->assertEquals($enum, $unserialized);
 	}
 	
 	public function testNotCompliant(): void
@@ -33,5 +39,12 @@ final class EnumTest extends \PHPUnit\Framework\TestCase
 		$this->expectException(NotCompliant::class);
 		
 		new Enum('unknown');
+	}
+	
+	public function testUnserializeNotCompliant(): void
+	{
+		$this->expectException(NotCompliant::class);
+		
+		Enum::unserialize([ 'foo' => 'bar' ]);
 	}
 }

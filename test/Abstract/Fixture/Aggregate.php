@@ -42,4 +42,19 @@ class Aggregate extends \Phant\DataStructure\Abstract\Aggregate
 			'bar'	=> $this->bar,
 		];
 	}
+	
+	public static function unserialize(array $array): self
+	{
+		if (!isset(
+			$array[ 'foo' ],
+			$array[ 'bar' ]
+		)) {
+			throw new NotCompliant();
+		}
+		
+		return new self(
+			$array[ 'foo' ],
+			$array[ 'bar' ]
+		);
+	}
 }

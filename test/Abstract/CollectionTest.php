@@ -44,9 +44,15 @@ final class CollectionTest extends \PHPUnit\Framework\TestCase
 			new Value('Bar')
 		);
 		
-		$this->assertIsArray($collection->serialize());
+		$serialized = $collection->serialize();
+		
+		$this->assertIsArray($serialized);
 		$this->assertEquals([
-				'Bar',
-			], $collection->serialize());
+			'Bar',
+			], $serialized);
+		
+		$unserialized = Collection::unserialize($serialized);
+		
+		$this->assertEquals($collection, $unserialized);
 	}
 }

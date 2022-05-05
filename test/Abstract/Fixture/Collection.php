@@ -16,4 +16,17 @@ class Collection extends \Phant\DataStructure\Abstract\Collection
 	{
 		return parent::removeItem($item);
 	}
+	
+	public static function unserialize(array $array): self
+	{
+		$collection = new self();
+		
+		foreach ($array as $item) {
+			$collection->addValue(
+				Value::unserialize($item)
+			);
+		}
+		
+		return $collection;
+	}
 }

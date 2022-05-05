@@ -24,8 +24,14 @@ final class SiretTest extends \PHPUnit\Framework\TestCase
 		$this->assertIsString($siret->getFormatted());
 		$this->assertEquals('512 747 395 00022', $siret->getFormatted());
 		
-		$this->assertIsString($siret->serialize());
-		$this->assertEquals('51274739500022', $siret->serialize());
+		$serialized = $siret->serialize();
+		
+		$this->assertIsString($serialized);
+		$this->assertEquals('51274739500022', $serialized);
+		
+		$unserialized = Siret::unserialize($serialized);
+		
+		$this->assertEquals($siret, $unserialized);
 	}
 	
 	public function testNotCompliant(): void
