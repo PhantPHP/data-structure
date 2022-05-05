@@ -67,31 +67,31 @@ class Price extends \Phant\DataStructure\Abstract\Aggregate
 	
 	public function serialize(): array
 	{
-		$array = [
+		$serialized = [
 			'price'	=> $this->price,
 			'currency'	=> $this->currency ? $this->currency->serialize() : null,
 		];
 		
 		if (!is_null($this->unit)) {
-			$array['unit'] = $this->unit;
+			$serialized['unit'] = $this->unit;
 		}
 		
-		return $array;
+		return $serialized;
 	}
 	
-	public static function unserialize(array $array): self
+	public static function unserialize(array $serialized): self
 	{
 		if (!isset(
-			$array[ 'price' ],
-			$array[ 'currency' ]
+			$serialized[ 'price' ],
+			$serialized[ 'currency' ]
 		)) {
 			throw new NotCompliant();
 		}
 		
 		return new self(
-			$array[ 'price' ],
-			!is_null($array[ 'currency' ]) ? Currency::unserialize($array[ 'currency' ]) : null,
-			$array[ 'unit' ] ?? null
+			$serialized[ 'price' ],
+			!is_null($serialized[ 'currency' ]) ? Currency::unserialize($serialized[ 'currency' ]) : null,
+			$serialized[ 'unit' ] ?? null
 		);
 	}
 }

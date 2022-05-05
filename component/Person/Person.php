@@ -62,22 +62,22 @@ class Person extends \Phant\DataStructure\Abstract\Entity
 		];
 	}
 	
-	public static function unserialize(array $array): self
+	public static function unserialize(array $serialized): self
 	{
 		if (!isset(
-			$array[ 'lastname' ],
-			$array[ 'firstname' ],
-			$array[ 'gender' ],
-			$array[ 'birthday' ]
+			$serialized[ 'lastname' ],
+			$serialized[ 'firstname' ],
+			$serialized[ 'gender' ],
+			$serialized[ 'birthday' ]
 		)) {
 			throw new NotCompliant();
 		}
 		
 		return new self(
-			!is_null($array[ 'lastname' ]) ? Lastname::unserialize($array[ 'lastname' ]) : null,
-			!is_null($array[ 'firstname' ]) ? Firstname::unserialize($array[ 'firstname' ]) : null,
-			!is_null($array[ 'gender' ]) ? Gender::unserialize($array[ 'gender' ]) : null,
-			!is_null($array[ 'birthday' ]) ? Date::unserialize($array[ 'birthday' ]) : null
+			!is_null($serialized[ 'lastname' ]) ? Lastname::unserialize($serialized[ 'lastname' ]) : null,
+			!is_null($serialized[ 'firstname' ]) ? Firstname::unserialize($serialized[ 'firstname' ]) : null,
+			!is_null($serialized[ 'gender' ]) ? Gender::unserialize($serialized[ 'gender' ]) : null,
+			!is_null($serialized[ 'birthday' ]) ? Date::unserialize($serialized[ 'birthday' ]) : null
 		);
 	}
 }

@@ -47,12 +47,12 @@ abstract class Enum implements \Phant\DataStructure\Abstract\Interface\DataStruc
 		];
 	}
 	
-	public static function unserialize(array $array): self
+	public static function unserialize(array $serialized): self
 	{
-		if (!isset($array[ static::VALUE_KEY ])) {
+		if (!isset($serialized[ static::VALUE_KEY ])) {
 			throw new NotCompliant();
 		}
 		
-		return new static($array[ static::VALUE_KEY ]);
+		return new static($serialized[ static::VALUE_KEY ]);
 	}
 }

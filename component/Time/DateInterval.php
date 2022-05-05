@@ -66,15 +66,15 @@ class DateInterval extends \Phant\DataStructure\Abstract\Aggregate
 		];
 	}
 	
-	public static function unserialize(array $array): self
+	public static function unserialize(array $serialized): self
 	{
 		if (!isset(
-			$array[static::FROM_KEY],
-			$array[static::TO_KEY]
+			$serialized[static::FROM_KEY],
+			$serialized[static::TO_KEY]
 		)) {
 			throw new NotCompliant();
 		}
 		
-		return new self($array[ static::FROM_KEY ], $array[ static::TO_KEY ]);
+		return new self($serialized[ static::FROM_KEY ], $serialized[ static::TO_KEY ]);
 	}
 }

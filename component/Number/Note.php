@@ -47,15 +47,15 @@ class Note extends \Phant\DataStructure\Abstract\Aggregate
 		];
 	}
 	
-	public static function unserialize(array $array): self
+	public static function unserialize(array $serialized): self
 	{
 		if (!isset(
-			$array[ 'note' ],
-			$array[ 'unit' ]
+			$serialized[ 'note' ],
+			$serialized[ 'unit' ]
 		)) {
 			throw new NotCompliant();
 		}
 		
-		return new self($array[ 'note' ], $array[ 'unit' ]);
+		return new self($serialized[ 'note' ], $serialized[ 'unit' ]);
 	}
 }

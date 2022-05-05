@@ -29,9 +29,9 @@ abstract class Value implements \Phant\DataStructure\Abstract\Interface\DataStru
 		return $this->get();
 	}
 	
-	public static function unserialize(mixed $value): self
+	public static function unserialize(mixed $serialized): self
 	{
-		return new static($value);
+		return new static($serialized);
 	}
 	
 	protected static function addNonBreakingSpace(string $value): string

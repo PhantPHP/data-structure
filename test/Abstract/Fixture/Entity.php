@@ -29,18 +29,18 @@ class Entity extends \Phant\DataStructure\Abstract\Entity
 		];
 	}
 	
-	public static function unserialize(array $array): self
+	public static function unserialize(array $serialized): self
 	{
 		if (!isset(
-			$array[ 'foo' ],
-			$array[ 'bar' ]
+			$serialized[ 'foo' ],
+			$serialized[ 'bar' ]
 		)) {
 			throw new NotCompliant();
 		}
 		
 		return new self(
-			Value::unserialize($array[ 'foo' ]),
-			!is_null($array[ 'bar' ]) ? Enum::unserialize($array[ 'bar' ]) : null
+			Value::unserialize($serialized[ 'foo' ]),
+			!is_null($serialized[ 'bar' ]) ? Enum::unserialize($serialized[ 'bar' ]) : null
 		);
 	}
 }

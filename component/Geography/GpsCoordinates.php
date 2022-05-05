@@ -44,16 +44,16 @@ class GpsCoordinates extends \Phant\DataStructure\Abstract\Aggregate
 		];
 	}
 	
-	public static function unserialize(array $array): self
+	public static function unserialize(array $serialized): self
 	{
 		if (!isset(
-			$array[ 'latitude' ],
-			$array[ 'longitude' ]
+			$serialized[ 'latitude' ],
+			$serialized[ 'longitude' ]
 		)) {
 			throw new NotCompliant();
 		}
 		
-		return new self($array[ 'latitude' ], $array[ 'longitude' ]);
+		return new self($serialized[ 'latitude' ], $serialized[ 'longitude' ]);
 	}
 	
 	public static function createFromLambert93(float $x, float $y): static

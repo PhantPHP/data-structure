@@ -115,12 +115,12 @@ class Duration extends \Phant\DataStructure\Abstract\Aggregate
 		];
 	}
 	
-	public static function unserialize(array $array): self
+	public static function unserialize(array $serialized): self
 	{
-		if (!isset($array[ 'value' ])) {
+		if (!isset($serialized[ 'value' ])) {
 			throw new NotCompliant();
 		}
 		
-		return new self($array[ 'value' ]);
+		return new self($serialized[ 'value' ]);
 	}
 }
