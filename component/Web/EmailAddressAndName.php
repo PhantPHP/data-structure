@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace Phant\DataStructure\Web;
 
+use Phant\Error\NotCompliant;
+
 class EmailAddressAndName extends \Phant\DataStructure\Abstract\Aggregate
 {
 	protected EmailAddress $emailAddress;
@@ -33,5 +35,17 @@ class EmailAddressAndName extends \Phant\DataStructure\Abstract\Aggregate
 			'email_address' => $this->emailAddress->serialize(),
 			'name' => $this->name,
 		];
+	}
+	
+	public static function unserialize(array $array): self
+	{
+		if (!isset(
+			$array[ 'email_address' ],
+			$array[ 'name' ]
+		)) {
+			throw new NotCompliant();
+		}
+		
+		return new self($array[ 'email_address' ], $array[ 'name' ]);
 	}
 }

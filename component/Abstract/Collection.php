@@ -25,6 +25,7 @@ abstract class Collection implements \Phant\DataStructure\Abstract\Interface\Dat
 	{
 		if (($key = array_search($item, $this->items)) !== false) {
 			unset($this->items[ $key ]);
+			$this->items = array_values($this->items);
 		}
 
 		return $this;
@@ -62,4 +63,6 @@ abstract class Collection implements \Phant\DataStructure\Abstract\Interface\Dat
 
 		return $items;
 	}
+	
+	abstract public static function unserialize(array $array): self;
 }

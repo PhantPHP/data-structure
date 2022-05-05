@@ -44,6 +44,18 @@ class GpsCoordinates extends \Phant\DataStructure\Abstract\Aggregate
 		];
 	}
 	
+	public static function unserialize(array $array): self
+	{
+		if (!isset(
+			$array[ 'latitude' ],
+			$array[ 'longitude' ]
+		)) {
+			throw new NotCompliant();
+		}
+		
+		return new self($array[ 'latitude' ], $array[ 'longitude' ]);
+	}
+	
 	public static function createFromLambert93(float $x, float $y): static
 	{
 		$x = number_format($x, 10, '.', '');

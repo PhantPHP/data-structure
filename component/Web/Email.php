@@ -7,6 +7,8 @@ use Phant\DataStructure\Web\{
 	EmailAddressAndName,
 };
 
+use Phant\Error\NotCompliant;
+
 class Email extends \Phant\DataStructure\Abstract\Entity
 {
 	public string $subject;
@@ -45,5 +47,28 @@ class Email extends \Phant\DataStructure\Abstract\Entity
 			'to'		=> $this->to->serialize(),
 			'reply_to'	=> $this->replyTo ? $this->replyTo->serialize() : null,
 		];
+	}
+	
+	public static function unserialize(array $array): self
+	{
+		if (!isset(
+			$array[ 'subject' ],
+			$array[ 'message' ][ 'txt' ],
+			$array[ 'message' ][ 'html' ],
+			$array[ 'from' ],
+			$array[ 'to' ],
+			$array[ 'reply_to' ]
+		)) {
+			throw new NotCompliant();
+		}
+		
+		return new self(
+			$array[ 'subject' ],
+			$array[ 'message' ][ 'txt' ],
+			$array[ 'message' ][ 'html' ],
+			$array[ 'from' ] ? EmailAddressAndName::unserialize($array[ 'from' ]) : null,
+			$array[ 'to' ] ? EmailAddressAndName::unserialize($array[ 'to' ]) : null,
+			$array[ 'reply_to' ] ? EmailAddressAndName::unserialize($array[ 'reply_to' ]) : null
+		);
 	}
 }

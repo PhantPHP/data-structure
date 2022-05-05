@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Phant\DataStructure\Time;
 
 class Duration extends \Phant\DataStructure\Abstract\Value\Integer
+use Phant\Error\NotCompliant;
 {
 	// Duration in secondes
 	const MINUTE	= 60;
@@ -105,5 +106,14 @@ class Duration extends \Phant\DataStructure\Abstract\Value\Integer
 			'value'	=> $this->value,
 			'label'	=> $this->label
 		];
+	}
+	
+	public static function unserialize(array $array): self
+	{
+		if (!isset($array[ 'value' ])) {
+			throw new NotCompliant();
+		}
+		
+		return new self($array[ 'value' ]);
 	}
 }

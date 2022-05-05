@@ -54,4 +54,16 @@ class DateTimeInterval extends \Phant\DataStructure\Abstract\Aggregate
 			static::DURATION_KEY	=> $this->duration ? $this->duration->serialize() : null,
 		];
 	}
+	
+	public static function unserialize(array $array): self
+	{
+		if (!isset(
+			$array[ static::FROM_KEY ],
+			$array[ static::TO_KEY ]
+		)) {
+			throw new NotCompliant();
+		}
+		
+		return new self($array[ static::FROM_KEY ], $array[ static::TO_KEY ]);
+	}
 }

@@ -46,4 +46,13 @@ abstract class Enum implements \Phant\DataStructure\Abstract\Interface\DataStruc
 			static::LABEL_KEY => (string) $this->label,
 		];
 	}
+	
+	public static function unserialize(array $array): self
+	{
+		if (!isset($array[ static::VALUE_KEY ])) {
+			throw new NotCompliant();
+		}
+		
+		return new static($array[ static::VALUE_KEY ]);
+	}
 }

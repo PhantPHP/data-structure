@@ -28,8 +28,14 @@ final class EmailAddressTest extends \PHPUnit\Framework\TestCase
 		$this->assertIsObject($emailAddress->getDomainName());
 		$this->assertEquals('domain.ext', (string)$emailAddress->getDomainName());
 		
-		$this->assertIsString($emailAddress->serialize());
-		$this->assertEquals('username@domain.ext', $emailAddress->serialize());
+		$serialized = $emailAddress->serialize();
+		
+		$this->assertIsString($serialized);
+		$this->assertEquals('username@domain.ext', $serialized);
+		
+		$unserialized = EmailAddress::unserialize($serialized);
+		
+		$this->assertEquals($emailAddress, $unserialized);
 	}
 	
 	public function testBuild(): void

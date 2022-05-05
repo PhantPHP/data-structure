@@ -55,8 +55,14 @@ EOD;
 		$this->assertArrayHasKey('foo', $payload);
 		$this->assertEquals('bar', $payload['foo']);
 		
-		$this->assertIsString($jwt->serialize());
-		$this->assertEquals($jwt->get(), $jwt->serialize());
+		$serialized = $jwt->serialize();
+		
+		$this->assertIsString($serialized);
+		$this->assertEquals($jwt->get(), $serialized);
+		
+		$unserialized = Jwt::unserialize($serialized);
+		
+		$this->assertEquals($jwt, $unserialized);
 	}
 	
 	public function testNotCompliantExpiration(): void

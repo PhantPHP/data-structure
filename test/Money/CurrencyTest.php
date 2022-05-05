@@ -20,12 +20,18 @@ final class CurrencyTest extends \PHPUnit\Framework\TestCase
 		
 		$this->assertIsString($currency->getLabel());
 		$this->assertEquals('€', $currency->getLabel());
+			
+		$serialized = $currency->serialize();
 		
-		$this->assertIsArray($currency->serialize());
+		$this->assertIsArray($serialized);
 		$this->assertEquals([
 			'code' => 'EUR',
 			'sign' => '€',
-		], $currency->serialize());
+		], $serialized);
+		
+		$unserialized = Currency::unserialize($serialized);
+		
+		$this->assertEquals($currency, $unserialized);
 	}
 	
 	public function testNotCompliant(): void

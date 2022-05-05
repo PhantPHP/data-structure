@@ -5,5 +5,6 @@ namespace Phant\DataStructure\Abstract\Interface;
 
 interface DataStructure
 {
-	public function serialize();
+	public function serialize(): mixed;
+	public static function unserialize(array $array): self;
 }
