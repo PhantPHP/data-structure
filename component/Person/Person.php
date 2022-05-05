@@ -64,11 +64,10 @@ class Person extends \Phant\DataStructure\Abstract\Entity
 	
 	public static function unserialize(array $serialized): self
 	{
-		if (!isset(
-			$serialized[ 'lastname' ],
-			$serialized[ 'firstname' ],
-			$serialized[ 'gender' ],
-			$serialized[ 'birthday' ]
+		if (!( array_key_exists('lastname', $serialized)
+			&& array_key_exists('firstname', $serialized)
+			&& array_key_exists('gender', $serialized)
+			&& array_key_exists('birthday', $serialized)
 		)) {
 			throw new NotCompliant();
 		}

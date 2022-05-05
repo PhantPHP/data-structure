@@ -63,13 +63,13 @@ class Email extends \Phant\DataStructure\Abstract\Entity
 	
 	public static function unserialize(array $serialized): self
 	{
-		if (!isset(
-			$serialized[ 'subject' ],
-			$serialized[ 'message' ][ 'txt' ],
-			$serialized[ 'message' ][ 'html' ],
-			$serialized[ 'from' ],
-			$serialized[ 'to' ],
-			$serialized[ 'reply_to' ]
+		if (!( array_key_exists('subject', $serialized)
+			&& array_key_exists('message', $serialized)
+			&& array_key_exists('txt', $serialized[ 'message' ])
+			&& array_key_exists('html', $serialized[ 'message' ])
+			&& array_key_exists('from', $serialized)
+			&& array_key_exists('to', $serialized)
+			&& array_key_exists('reply_to', $serialized)
 		)) {
 			throw new NotCompliant();
 		}

@@ -68,9 +68,8 @@ class DateInterval extends \Phant\DataStructure\Abstract\Aggregate
 	
 	public static function unserialize(array $serialized): self
 	{
-		if (!isset(
-			$serialized[ static::FROM_KEY ],
-			$serialized[ static::TO_KEY ]
+		if (!( array_key_exists(static::FROM_KEY, $serialized)
+			&& array_key_exists(static::TO_KEY, $serialized)
 		)) {
 			throw new NotCompliant();
 		}

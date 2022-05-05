@@ -46,9 +46,8 @@ class GpsCoordinates extends \Phant\DataStructure\Abstract\Aggregate
 	
 	public static function unserialize(array $serialized): self
 	{
-		if (!isset(
-			$serialized[ 'latitude' ],
-			$serialized[ 'longitude' ]
+		if (!( array_key_exists('latitude', $serialized)
+			&& array_key_exists('longitude', $serialized)
 		)) {
 			throw new NotCompliant();
 		}

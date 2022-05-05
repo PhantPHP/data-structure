@@ -49,7 +49,7 @@ abstract class Enum implements \Phant\DataStructure\Abstract\Interface\DataStruc
 	
 	public static function unserialize(array $serialized): self
 	{
-		if (!isset($serialized[ static::VALUE_KEY ])) {
+		if (!( array_key_exists(static::VALUE_KEY, $serialized))) {
 			throw new NotCompliant();
 		}
 		

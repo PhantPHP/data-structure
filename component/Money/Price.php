@@ -81,9 +81,8 @@ class Price extends \Phant\DataStructure\Abstract\Aggregate
 	
 	public static function unserialize(array $serialized): self
 	{
-		if (!isset(
-			$serialized[ 'price' ],
-			$serialized[ 'currency' ]
+		if (!( array_key_exists('price', $serialized)
+			&& array_key_exists('currency', $serialized)
 		)) {
 			throw new NotCompliant();
 		}

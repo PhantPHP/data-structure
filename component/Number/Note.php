@@ -49,9 +49,8 @@ class Note extends \Phant\DataStructure\Abstract\Aggregate
 	
 	public static function unserialize(array $serialized): self
 	{
-		if (!isset(
-			$serialized[ 'note' ],
-			$serialized[ 'unit' ]
+		if (!( array_key_exists('note', $serialized)
+			&& array_key_exists('unit', $serialized)
 		)) {
 			throw new NotCompliant();
 		}

@@ -43,9 +43,8 @@ class EmailAddressAndName extends \Phant\DataStructure\Abstract\Aggregate
 	
 	public static function unserialize(array $serialized): self
 	{
-		if (!isset(
-			$serialized[ 'email_address' ],
-			$serialized[ 'name' ]
+		if (!( array_key_exists('email_address', $serialized)
+			&& array_key_exists('name', $serialized)
 		)) {
 			throw new NotCompliant();
 		}
