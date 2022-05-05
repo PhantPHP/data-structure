@@ -75,6 +75,9 @@ class DateTimeInterval extends \Phant\DataStructure\Abstract\Aggregate
 			throw new NotCompliant();
 		}
 		
-		return new static($serialized[ static::FROM_KEY ], $serialized[ static::TO_KEY ]);
+		return new static(
+			$serialized[ static::FROM_KEY ],
+			$serialized[ static::TO_KEY ]
+		);
 	}
 }
