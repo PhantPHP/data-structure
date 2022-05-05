@@ -73,7 +73,7 @@ class Person extends \Phant\DataStructure\Abstract\Entity
 			throw new NotCompliant();
 		}
 		
-		return new self(
+		return new static(
 			!is_null($serialized[ 'lastname' ]) ? Lastname::unserialize($serialized[ 'lastname' ]) : null,
 			!is_null($serialized[ 'firstname' ]) ? Firstname::unserialize($serialized[ 'firstname' ]) : null,
 			!is_null($serialized[ 'gender' ]) ? Gender::unserialize($serialized[ 'gender' ]) : null,

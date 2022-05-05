@@ -121,6 +121,6 @@ class Duration extends \Phant\DataStructure\Abstract\Aggregate
 			throw new NotCompliant();
 		}
 		
-		return new self($serialized[ 'value' ]);
+		return new static($serialized[ 'value' ]);
 	}
 }

@@ -53,7 +53,7 @@ class GpsCoordinates extends \Phant\DataStructure\Abstract\Aggregate
 			throw new NotCompliant();
 		}
 		
-		return new self($serialized[ 'latitude' ], $serialized[ 'longitude' ]);
+		return new static($serialized[ 'latitude' ], $serialized[ 'longitude' ]);
 	}
 	
 	public static function createFromLambert93(float $x, float $y): static

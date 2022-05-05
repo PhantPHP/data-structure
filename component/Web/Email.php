@@ -74,7 +74,7 @@ class Email extends \Phant\DataStructure\Abstract\Entity
 			throw new NotCompliant();
 		}
 		
-		return new self(
+		return new static(
 			$serialized[ 'subject' ],
 			$serialized[ 'message' ][ 'txt' ],
 			$serialized[ 'message' ][ 'html' ],

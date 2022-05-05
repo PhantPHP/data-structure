@@ -88,7 +88,7 @@ class Price extends \Phant\DataStructure\Abstract\Aggregate
 			throw new NotCompliant();
 		}
 		
-		return new self(
+		return new static(
 			$serialized[ 'price' ],
 			!is_null($serialized[ 'currency' ]) ? Currency::unserialize($serialized[ 'currency' ]) : null,
 			$serialized[ 'unit' ] ?? null

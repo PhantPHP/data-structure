@@ -50,6 +50,6 @@ class EmailAddressAndName extends \Phant\DataStructure\Abstract\Aggregate
 			throw new NotCompliant();
 		}
 		
-		return new self($serialized[ 'email_address' ], $serialized[ 'name' ]);
+		return new static($serialized[ 'email_address' ], $serialized[ 'name' ]);
 	}
 }

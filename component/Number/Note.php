@@ -56,6 +56,6 @@ class Note extends \Phant\DataStructure\Abstract\Aggregate
 			throw new NotCompliant();
 		}
 		
-		return new self($serialized[ 'note' ], $serialized[ 'unit' ]);
+		return new static($serialized[ 'note' ], $serialized[ 'unit' ]);
 	}
 }
