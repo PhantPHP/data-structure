@@ -20,10 +20,21 @@ class DateInterval extends \Phant\DataStructure\Abstract\Aggregate
 	protected ?Date $to;
 	protected ?Duration $duration;
 	
-	public function __construct(?Date $from, ?Date $to)
+	public function __construct(
+		null|string|Date $from,
+		null|string|Date $to
+	)
 	{
 		if (!$from && !$to) {
 			throw new NotCompliant('Date intervals: from ' . $from . ' to' . $to);
+		}
+		
+		if (is_string($from)) {
+			$from = new Date($from);
+		}
+		
+		if (is_string($to)) {
+			$to = new Date($to);
 		}
 		
 		$this->from = $from;

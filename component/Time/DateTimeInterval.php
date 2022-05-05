@@ -20,10 +20,21 @@ class DateTimeInterval extends \Phant\DataStructure\Abstract\Aggregate
 	protected ?DateTime $to;
 	protected ?Duration $duration;
 	
-	public function __construct(?DateTime $from, ?DateTime $to)
+	public function __construct(
+		null|string|DateTime $from,
+		null|string|DateTime $to
+	)
 	{
 		if (!$from && !$to) {
 			throw new NotCompliant('Date time intervals: from ' . $from . ' to' . $to);
+		}
+		
+		if (is_string($from)) {
+			$from = new DateTime($from);
+		}
+		
+		if (is_string($to)) {
+			$to = new DateTime($to);
 		}
 		
 		$this->from = $from;

@@ -13,10 +13,14 @@ class Price extends \Phant\DataStructure\Abstract\Aggregate
 	
 	public function __construct(
 		float $price,
-		?Currency $currency = null,
+		null|string|Currency $currency = null,
 		?string $unit = null
 	)
 	{
+		if (is_string($currency)) {
+			$currency = new Currency($currency);
+		}
+		
 		$this->price = $price;
 		$this->currency = $currency;
 		$this->unit = $unit;

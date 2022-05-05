@@ -22,11 +22,23 @@ class Email extends \Phant\DataStructure\Abstract\Entity
 		string $subject,
 		string $messageTxt,
 		string $messageHtml,
-		EmailAddressAndName $from,
-		EmailAddressAndName $to,
-		?EmailAddressAndName $replyTo = null
+		string|EmailAddressAndName $from,
+		string|EmailAddressAndName $to,
+		null|string|EmailAddressAndName $replyTo = null
 	)
 	{
+		if (is_string($from)) {
+			$from = new EmailAddressAndName($from);
+		}
+		
+		if (is_string($to)) {
+			$to = new EmailAddressAndName($to);
+		}
+		
+		if (is_string($replyTo)) {
+			$replyTo = new EmailAddressAndName($replyTo);
+		}
+		
 		$this->subject = $subject;
 		$this->messageTxt = $messageTxt;
 		$this->messageHtml = $messageHtml;

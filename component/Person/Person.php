@@ -24,12 +24,28 @@ class Person extends \Phant\DataStructure\Abstract\Entity
 	public ?Date $birthday;
 	
 	public function __construct(
-		?Lastname $lastname,
-		?Firstname $firstname,
-		?Gender $gender = null,
-		?Date $birthday = null
+		null|string|Lastname $lastname,
+		null|string|Firstname $firstname,
+		null|string|Gender $gender = null,
+		null|string|Date $birthday = null
 	)
 	{
+		if (is_string($lastname)) {
+			$lastname = new Lastname($lastname);
+		}
+		
+		if (is_string($firstname)) {
+			$firstname = new Firstname($firstname);
+		}
+		
+		if (is_string($gender)) {
+			$gender = new Gender($gender);
+		}
+		
+		if (is_string($birthday)) {
+			$birthday = new Date($birthday);
+		}
+		
 		$this->lastname = $lastname;
 		$this->firstname = $firstname;
 		$this->gender = $gender;

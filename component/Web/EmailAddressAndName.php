@@ -11,12 +11,16 @@ class EmailAddressAndName extends \Phant\DataStructure\Abstract\Aggregate
 	protected ?string $name;
 	
 	public function __construct(
-		EmailAddress $emailAddress,
+		string|EmailAddress $emailAddress,
 		?string $name = null
 	)
 	{
+		if (is_string($emailAddress)) {
+			$emailAddress = new EmailAddress($emailAddress);
+		}
+		
 		$this->emailAddress = $emailAddress;
-		$this->name = trim($name) ?? null;
+		$this->name = !is_null($name) ? trim($name) : null;
 	}
 	
 	public function getEmailAddress(): EmailAddress
