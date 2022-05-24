@@ -42,6 +42,29 @@ final class DateIntervalTest extends \PHPUnit\Framework\TestCase
 		$this->assertEquals($dateInterval, $unserialized);
 	}
 	
+	public function testIsDuring(): void
+	{
+		$dateInterval = new DateInterval(
+			'1954-06-07',
+			'1970-01-01'
+		);
+		
+		// Before
+		$result = $dateInterval->isDuring('1954-05-6');
+		$this->assertIsBool($result);
+		$this->assertEquals(false, $result);
+		
+		// After
+		$result = $dateInterval->isDuring('1970-01-03');
+		$this->assertIsBool($result);
+		$this->assertEquals(false, $result);
+		
+		// During
+		$result = $dateInterval->isDuring('1960-02-23');
+		$this->assertIsBool($result);
+		$this->assertEquals(true, $result);
+	}
+	
 	public function testNotCompliant(): void
 	{
 		$this->expectException(NotCompliant::class);
