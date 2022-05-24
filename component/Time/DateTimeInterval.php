@@ -63,11 +63,11 @@ class DateTimeInterval extends \Phant\DataStructure\Abstract\Aggregate
 			$dateTime = new DateTime($dateTime);
 		}
 		
-		if ($dateTime->getTime() < $this->from->getTime()) {
+		if ($this->from && $dateTime->getTime() < $this->from->getTime()) {
 			return false;
 		}
 		
-		if ($dateTime->getTime() > $this->to->getTime()) {
+		if ($this->to && $dateTime->getTime() > $this->to->getTime()) {
 			return false;
 		}
 		
