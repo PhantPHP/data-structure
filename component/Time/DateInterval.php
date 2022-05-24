@@ -57,6 +57,23 @@ class DateInterval extends \Phant\DataStructure\Abstract\Aggregate
 		return $this->duration;
 	}
 	
+	public function isDuring(string|Date $date): bool
+	{
+		if (is_string($date)) {
+			$date = new Date($date);
+		}
+		
+		if ($date->getTime() < $this->from->getTime()) {
+			return false;
+		}
+		
+		if ($date->getTime() > $this->to->getTime()) {
+			return false;
+		}
+		
+		return true;
+	}
+	
 	public function serialize(): array
 	{
 		return [
