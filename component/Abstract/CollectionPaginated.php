@@ -5,29 +5,29 @@ namespace Phant\DataStructure\Abstract;
 
 abstract class CollectionPaginated extends Collection
 {
-	private int $itemPage;
-	private int $itemByPage;
-	private int $itemTotal;
+	private ?int $itemPage;
+	private ?int $itemByPage;
+	private ?int $itemTotal;
 	
-	private int $pageCurrent;
-	private int $pageTotal;
+	private ?int $pageCurrent;
+	private ?int $pageTotal;
 	
 	public function __construct(
-		int $pageCurrent,
-		int $itemByPage,
-		int $itemTotal
+		?int $pageCurrent = null,
+		?int $itemByPage = null,
+		?int $itemTotal = null
 	)
 	{
 		$this->itemByPage = $itemByPage;
 		$this->itemTotal = $itemTotal;
-		$this->itemPage = 0;
+		$this->itemPage = null;
 		
 		$this->pageCurrent = $pageCurrent;
-		$this->pageTotal = 0;
+		$this->pageTotal = null;
 		
 		parent::__construct();
 	}
-
+	
 	protected function addItem(mixed $item): self
 	{
 		parent::addItem($item);
