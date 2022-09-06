@@ -63,4 +63,19 @@ abstract class Collection implements \Phant\DataStructure\Abstract\Interface\Dat
 
 		return $items;
 	}
+	
+	public static function unserialize(array $serialized): self
+	{
+		$collection = new static();
+		
+		foreach ($serialized as $item) {
+			$collection->addValue(
+				static::unserializeItem($item)
+			);
+		}
+		
+		return $collection;
+	}
+	
+	abstract protected static function unserializeItem(mixed $item): mixed;
 }
