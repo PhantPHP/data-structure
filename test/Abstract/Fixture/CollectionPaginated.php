@@ -5,7 +5,7 @@ namespace Test\Abstract\Fixture;
 
 use Test\Abstract\Fixture\Value;
 
-class Collection extends \Phant\DataStructure\Abstract\Collection
+class CollectionPaginated extends \Phant\DataStructure\Abstract\CollectionPaginated
 {
 	public function addValue(Value $item)
 	{
