@@ -7,9 +7,9 @@ abstract class Collection implements \Phant\DataStructure\Abstract\Interface\Dat
 {
 	protected array $items;
 
-	public function __construct(array $items = [])
+	public function __construct()
 	{
-		$this->items = $items;
+		$this->items = [];
 	}
 
 	protected function addItem(mixed $item): self
