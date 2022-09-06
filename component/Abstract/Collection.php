@@ -69,7 +69,7 @@ abstract class Collection implements \Phant\DataStructure\Abstract\Interface\Dat
 		$collection = new static();
 		
 		foreach ($serialized as $item) {
-			$collection->addValue(
+			$collection->addItem(
 				static::unserializeItem($item)
 			);
 		}
