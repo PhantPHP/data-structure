@@ -8,6 +8,8 @@ use Test\Abstract\Fixture\{
 	Value,
 };
 
+use Phant\Error\NotCompliant;
+
 final class CollectionPaginatedTest extends \PHPUnit\Framework\TestCase
 {
 	public function testInterface(): void
@@ -82,5 +84,12 @@ final class CollectionPaginatedTest extends \PHPUnit\Framework\TestCase
 		$unserialized = CollectionPaginated::unserialize($serialized);
 		
 		$this->assertEquals($collection, $unserialized);
+	}
+	
+	public function testUnserializeNotCompliant(): void
+	{
+		$this->expectException(NotCompliant::class);
+		
+		CollectionPaginated::unserialize([[]]);
 	}
 }

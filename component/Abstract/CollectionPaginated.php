@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace Phant\DataStructure\Abstract;
 
+use Phant\Error\NotCompliant;
+
 abstract class CollectionPaginated extends Collection
 {
 	private ?int $itemPage;
@@ -86,6 +88,16 @@ abstract class CollectionPaginated extends Collection
 	
 	public static function unserialize(array $serialized): self
 	{
+		if (!( array_key_exists('pagination', $serialized)
+			&& array_key_exists('page', $serialized['pagination'])
+			&& array_key_exists('current', $serialized['pagination']['page'])
+			&& array_key_exists('item', $serialized['pagination'])
+			&& array_key_exists('by_page', $serialized['pagination']['item'])
+			&& array_key_exists('total', $serialized['pagination']['item'])
+		)) {
+			throw new NotCompliant();
+		}
+		
 		$collection = new static(
 			$serialized['pagination']['page']['current'],
 			$serialized['pagination']['item']['by_page'],
