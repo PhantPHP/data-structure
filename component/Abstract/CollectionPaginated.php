@@ -93,7 +93,7 @@ abstract class CollectionPaginated extends Collection
 		);
 		
 		foreach ($serialized['items'] as $item) {
-			$collection->addValue(
+			$collection->addItem(
 				static::unserializeItem($item)
 			);
 		}
