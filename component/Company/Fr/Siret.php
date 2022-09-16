@@ -10,12 +10,13 @@ use Phant\Error\NotCompliant;
 class Siret extends \Phant\DataStructure\Abstract\Value\Varchar
 {
 	const PATTERN = '/^(\d{14})$/';
+	const SIREN_LA_POSTE = '356000000';
 	
 	public function __construct(string $siret, bool $check = true)
 	{
 		$siret = preg_replace('/\D/', '', $siret);
 		
-		if ($check && !self::luhnCheck($siret)) {
+		if ($check && !self::isValid($siret)) {
 			throw new NotCompliant('Siret : ' . $siret);
 		}
 		
@@ -27,7 +28,27 @@ class Siret extends \Phant\DataStructure\Abstract\Value\Varchar
 		return new Siren(substr($this->value, 0, 9));
 	}
 	
-	public static function luhnCheck(string $value): bool
+	public function getFormatted(bool $espaceInsecable = true): string
+	{
+		$siret = $this->value;
+		$siret = preg_replace('/^(\d{3})(\d{3})(\d{3})(\d{5})$/', '$1 $2 $3 $4', $siret);
+		if ($espaceInsecable) {
+			$siret = str_replace(' ', "\xC2\xA0", $siret); // Espace insécable
+		}
+		
+		return $siret;
+	}
+	
+	public static function isValid(string $siret): bool
+	{
+		if (substr($siret, 0, 9) == self::SIREN_LA_POSTE) {
+			return self::checkLaPoste($siret);
+		}
+		
+		return self::luhnCheck($siret);
+	}
+	
+	private static function luhnCheck(string $value): bool
 	{
 		$sum = 0;
 		$flag = 0;
@@ -40,14 +61,14 @@ class Siret extends \Phant\DataStructure\Abstract\Value\Varchar
 		return $sum % 10 === 0;
 	}
 	
-	public function getFormatted(bool $espaceInsecable = true): string
+	private static function checkLaPoste(string $value): bool
 	{
-		$siret = $this->value;
-		$siret = preg_replace('/^(\d{3})(\d{3})(\d{3})(\d{5})$/', '$1 $2 $3 $4', $siret);
-		if ($espaceInsecable) {
-			$siret = str_replace(' ', "\xC2\xA0", $siret); // Espace insécable
+		$sum = 0;
+		
+		for ($i = strlen($value) - 1; $i >= 0; $i--) {
+			$sum += $value[$i];
 		}
 		
-		return $siret;
+		return $sum % 5 === 0;
 	}
 }
