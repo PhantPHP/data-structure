@@ -26,15 +26,6 @@ final class DomainNameTest extends \PHPUnit\Framework\TestCase
 		
 		$this->assertIsString($domainName->getExtension());
 		$this->assertEquals('ext', $domainName->getExtension());
-		
-		$serialized = $domainName->serialize();
-		
-		$this->assertIsString($serialized);
-		$this->assertEquals('www.domain.ext', $serialized);
-		
-		$unserialized = DomainName::unserialize($serialized);
-		
-		$this->assertEquals($domainName, $unserialized);
 	}
 	
 	public function testNotCompliant(): void

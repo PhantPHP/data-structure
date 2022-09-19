@@ -17,18 +17,6 @@ final class VarcharTest extends \PHPUnit\Framework\TestCase
 		
 		$this->assertIsString($varchar->get());
 		$this->assertEquals('Hello world!', $varchar->get());
-		
-		$this->assertIsString($varchar->serialize());
-		$this->assertEquals('Hello world!', $varchar->serialize());
-		
-		$serialized = $varchar->serialize();
-		
-		$this->assertIsString($serialized);
-		$this->assertEquals('Hello world!', $serialized);
-		
-		$unserialized = Varchar::unserialize($serialized);
-		
-		$this->assertEquals($varchar, $unserialized);
 	}
 	
 	public function testNotCompliant(): void

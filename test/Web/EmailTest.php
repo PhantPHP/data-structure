@@ -53,21 +53,6 @@ final class EmailTest extends \PHPUnit\Framework\TestCase
 		$this->assertIsObject($email->replyTo);
 		$this->assertEquals('no-reply@acme.ext', (string)$email->replyTo->getEmailAddress());
 		$this->assertEquals('No reply', $email->replyTo->getName());
-		
-		$serialized = $email->serialize();
-		
-		$this->assertIsArray($serialized);
-		$this->assertArrayHasKey('subject', $serialized);
-		$this->assertArrayHasKey('message', $serialized);
-		$this->assertArrayHasKey('txt', $serialized['message']);
-		$this->assertArrayHasKey('html', $serialized['message']);
-		$this->assertArrayHasKey('from', $serialized);
-		$this->assertArrayHasKey('to', $serialized);
-		$this->assertArrayHasKey('reply_to', $serialized);
-		
-		$unserialized = Email::unserialize($serialized);
-		
-		$this->assertEquals($email, $unserialized);
 	}
 	
 	public function testConstructAlt(): void
@@ -92,12 +77,5 @@ final class EmailTest extends \PHPUnit\Framework\TestCase
 		$this->assertIsObject($email->replyTo);
 		$this->assertEquals('no-reply@acme.ext', (string)$email->replyTo->getEmailAddress());
 		$this->assertEquals(null, $email->replyTo->getName());
-	}
-	
-	public function testUnserializeNotCompliant(): void
-	{
-		$this->expectException(NotCompliant::class);
-		
-		Email::unserialize([ 'foo' => 'bar' ]);
 	}
 }

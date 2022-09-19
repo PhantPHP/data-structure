@@ -24,22 +24,6 @@ final class DateIntervalTest extends \PHPUnit\Framework\TestCase
 		
 		$this->assertIsObject($dateInterval->getDuration());
 		$this->assertEquals('15 years, 6 months, 29 days, 12 h', (string)$dateInterval->getDuration());
-		
-		$serialized = $dateInterval->serialize();
-		
-		$this->assertIsArray($serialized);
-		$this->assertEquals([
-				'from'	=> '1954-06-07',
-				'to'	=> '1970-01-01',
-				'duration'	=> [
-					'value' => 491356800,
-					'label' => '15 years, 6 months, 29 days, 12 h',
-				],
-			], $serialized);
-		
-		$unserialized = DateInterval::unserialize($serialized);
-		
-		$this->assertEquals($dateInterval, $unserialized);
 	}
 	
 	public function testIsDuring(): void
@@ -70,12 +54,5 @@ final class DateIntervalTest extends \PHPUnit\Framework\TestCase
 		$this->expectException(NotCompliant::class);
 		
 		new DateInterval(null, null);
-	}
-	
-	public function testUnserializeNotCompliant(): void
-	{
-		$this->expectException(NotCompliant::class);
-		
-		DateInterval::unserialize([ 'foo' => 'bar' ]);
 	}
 }

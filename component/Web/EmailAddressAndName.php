@@ -32,23 +32,4 @@ class EmailAddressAndName extends \Phant\DataStructure\Abstract\Aggregate
 	{
 		return $this->name;
 	}
-	
-	public function serialize(): array
-	{
-		return [
-			'email_address' => $this->emailAddress->serialize(),
-			'name' => $this->name,
-		];
-	}
-	
-	public static function unserialize(array $serialized): self
-	{
-		if (!( array_key_exists('email_address', $serialized)
-			&& array_key_exists('name', $serialized)
-		)) {
-			throw new NotCompliant();
-		}
-		
-		return new static($serialized[ 'email_address' ], $serialized[ 'name' ]);
-	}
 }

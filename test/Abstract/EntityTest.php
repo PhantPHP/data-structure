@@ -22,22 +22,5 @@ final class EntityTest extends \PHPUnit\Framework\TestCase
 		
 		$this->assertIsObject($entity->foo);
 		$this->assertIsObject($entity->bar);
-		
-		$serialized = $entity->serialize();
-		
-		$this->assertIsArray($serialized);
-		$this->assertArrayHasKey('foo', $serialized);
-		$this->assertArrayHasKey('bar', $serialized);
-		
-		$unserialized = Entity::unserialize($serialized);
-		
-		$this->assertEquals($entity, $unserialized);
-	}
-	
-	public function testUnserializeNotCompliant(): void
-	{
-		$this->expectException(NotCompliant::class);
-		
-		Entity::unserialize([ 'foo' => 'bar' ]);
 	}
 }

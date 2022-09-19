@@ -20,18 +20,6 @@ final class NoteTest extends \PHPUnit\Framework\TestCase
 		
 		$this->assertIsInt($note->getUnit());
 		$this->assertEquals(10, $note->getUnit());
-			
-		$serialized = $note->serialize();
-		
-		$this->assertIsArray($serialized);
-		$this->assertEquals([
-				'note' => 8,
-				'unit' => 10,
-			], $serialized);
-		
-		$unserialized = Note::unserialize($serialized);
-		
-		$this->assertEquals($note, $unserialized);
 	}
 	
 	public function testNotCompliantNote(): void
@@ -46,12 +34,5 @@ final class NoteTest extends \PHPUnit\Framework\TestCase
 		$this->expectException(NotCompliant::class);
 		
 		new Note(2, -3);
-	}
-	
-	public function testUnserializeNotCompliant(): void
-	{
-		$this->expectException(NotCompliant::class);
-		
-		Note::unserialize([ 'foo' => 'bar' ]);
 	}
 }

@@ -51,32 +51,4 @@ class Person extends \Phant\DataStructure\Abstract\Entity
 		$this->gender = $gender;
 		$this->birthday = $birthday;
 	}
-	
-	public function serialize(): array
-	{
-		return [
-			'lastname'	=> $this->lastname ? $this->lastname->serialize() : null,
-			'firstname'	=> $this->firstname ? $this->firstname->serialize() : null,
-			'gender'	=> $this->gender ? $this->gender->serialize() : null,
-			'birthday'	=> $this->birthday ? $this->birthday->serialize() : null,
-		];
-	}
-	
-	public static function unserialize(array $serialized): self
-	{
-		if (!( array_key_exists('lastname', $serialized)
-			&& array_key_exists('firstname', $serialized)
-			&& array_key_exists('gender', $serialized)
-			&& array_key_exists('birthday', $serialized)
-		)) {
-			throw new NotCompliant();
-		}
-		
-		return new static(
-			!is_null($serialized[ 'lastname' ]) ? Lastname::unserialize($serialized[ 'lastname' ]) : null,
-			!is_null($serialized[ 'firstname' ]) ? Firstname::unserialize($serialized[ 'firstname' ]) : null,
-			!is_null($serialized[ 'gender' ]) ? Gender::unserialize($serialized[ 'gender' ]) : null,
-			!is_null($serialized[ 'birthday' ]) ? Date::unserialize($serialized[ 'birthday' ]) : null
-		);
-	}
 }

@@ -20,18 +20,6 @@ final class GpsCoordinatesTest extends \PHPUnit\Framework\TestCase
 		
 		$this->assertIsFloat($gpsCoordinates->getLongitude());
 		$this->assertEquals(-2.2117116, $gpsCoordinates->getLongitude());
-			
-		$serialized = $gpsCoordinates->serialize();
-		
-		$this->assertIsArray($serialized);
-		$this->assertEquals([
-				'latitude'	=> 53.3284723,
-				'longitude'	=> -2.2117116,
-			], $serialized);
-		
-		$unserialized = GpsCoordinates::unserialize($serialized);
-		
-		$this->assertEquals($gpsCoordinates, $unserialized);
 	}
 	
 	public function testCreateFromLambert93(): void
@@ -55,12 +43,5 @@ final class GpsCoordinatesTest extends \PHPUnit\Framework\TestCase
 		$this->expectException(NotCompliant::class);
 		
 		new GpsCoordinates(180, 360);
-	}
-	
-	public function testUnserializeNotCompliant(): void
-	{
-		$this->expectException(NotCompliant::class);
-		
-		GpsCoordinates::unserialize([ 'foo' => 'bar' ]);
 	}
 }

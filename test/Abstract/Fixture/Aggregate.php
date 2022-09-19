@@ -34,27 +34,4 @@ class Aggregate extends \Phant\DataStructure\Abstract\Aggregate
 	{
 		return (string) $this->foo . ' : ' . ($this->bar ? 'OK' : 'KO');
 	}
-	
-	public function serialize(): array
-	{
-		return [
-			'foo'	=> $this->foo,
-			'bar'	=> $this->bar,
-		];
-	}
-	
-	public static function unserialize(array $serialized): self
-	{
-		if (!isset(
-			$serialized[ 'foo' ],
-			$serialized[ 'bar' ]
-		)) {
-			throw new NotCompliant();
-		}
-		
-		return new self(
-			$serialized[ 'foo' ],
-			$serialized[ 'bar' ]
-		);
-	}
 }

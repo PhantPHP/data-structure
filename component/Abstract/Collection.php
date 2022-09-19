@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Phant\DataStructure\Abstract;
 
-abstract class Collection implements \Phant\DataStructure\Abstract\Interface\DataStructure
+abstract class Collection
 {
 	protected array $items;
 
@@ -52,30 +52,4 @@ abstract class Collection implements \Phant\DataStructure\Abstract\Interface\Dat
 	{
 		return $this->items[ $key ] ?? null;
 	}
-
-	public function serialize(): ?array
-	{
-		$items = [];
-		
-		foreach ($this->items as $item) {
-			$items[] = method_exists($item, 'serialize') ? $item->serialize() : $item;
-		}
-
-		return $items;
-	}
-	
-	public static function unserialize(array $serialized): self
-	{
-		$collection = new static();
-		
-		foreach ($serialized as $item) {
-			$collection->addItem(
-				static::unserializeItem($item)
-			);
-		}
-		
-		return $collection;
-	}
-	
-	abstract protected static function unserializeItem(mixed $item): mixed;
 }

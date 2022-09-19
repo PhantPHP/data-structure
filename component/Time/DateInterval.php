@@ -12,10 +12,6 @@ use Phant\Error\NotCompliant;
 
 class DateInterval extends \Phant\DataStructure\Abstract\Aggregate
 {
-	public const FROM_KEY = 'from';
-	public const TO_KEY = 'to';
-	public const DURATION_KEY = 'duration';
-	
 	protected ?Date $from;
 	protected ?Date $to;
 	protected ?Duration $duration;
@@ -72,28 +68,5 @@ class DateInterval extends \Phant\DataStructure\Abstract\Aggregate
 		}
 		
 		return true;
-	}
-	
-	public function serialize(): array
-	{
-		return [
-			static::FROM_KEY		=> $this->from ? $this->from->serialize() : null,
-			static::TO_KEY			=> $this->to ? $this->to->serialize() : null,
-			static::DURATION_KEY	=> $this->duration ? $this->duration->serialize() : null,
-		];
-	}
-	
-	public static function unserialize(array $serialized): self
-	{
-		if (!( array_key_exists(static::FROM_KEY, $serialized)
-			&& array_key_exists(static::TO_KEY, $serialized)
-		)) {
-			throw new NotCompliant();
-		}
-		
-		return new static(
-			$serialized[ static::FROM_KEY ],
-			$serialized[ static::TO_KEY ]
-		);
 	}
 }

@@ -46,41 +46,4 @@ class Email extends \Phant\DataStructure\Abstract\Entity
 		$this->to = $to;
 		$this->replyTo = $replyTo;
 	}
-	
-	public function serialize(): array
-	{
-		return [
-			'subject'	=> $this->subject,
-			'message'	=> [
-				'txt'	=> $this->messageTxt,
-				'html'	=> $this->messageHtml,
-			],
-			'from'		=> $this->from->serialize(),
-			'to'		=> $this->to->serialize(),
-			'reply_to'	=> $this->replyTo ? $this->replyTo->serialize() : null,
-		];
-	}
-	
-	public static function unserialize(array $serialized): self
-	{
-		if (!( array_key_exists('subject', $serialized)
-			&& array_key_exists('message', $serialized)
-			&& array_key_exists('txt', $serialized[ 'message' ])
-			&& array_key_exists('html', $serialized[ 'message' ])
-			&& array_key_exists('from', $serialized)
-			&& array_key_exists('to', $serialized)
-			&& array_key_exists('reply_to', $serialized)
-		)) {
-			throw new NotCompliant();
-		}
-		
-		return new static(
-			$serialized[ 'subject' ],
-			$serialized[ 'message' ][ 'txt' ],
-			$serialized[ 'message' ][ 'html' ],
-			$serialized[ 'from' ] ? EmailAddressAndName::unserialize($serialized[ 'from' ]) : null,
-			$serialized[ 'to' ] ? EmailAddressAndName::unserialize($serialized[ 'to' ]) : null,
-			$serialized[ 'reply_to' ] ? EmailAddressAndName::unserialize($serialized[ 'reply_to' ]) : null
-		);
-	}
 }

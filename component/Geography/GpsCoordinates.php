@@ -36,25 +36,6 @@ class GpsCoordinates extends \Phant\DataStructure\Abstract\Aggregate
 		return (string) $this->latitude . ';' . $this->longitude;
 	}
 	
-	public function serialize(): array
-	{
-		return [
-			'latitude'	=> $this->latitude,
-			'longitude'	=> $this->longitude,
-		];
-	}
-	
-	public static function unserialize(array $serialized): self
-	{
-		if (!( array_key_exists('latitude', $serialized)
-			&& array_key_exists('longitude', $serialized)
-		)) {
-			throw new NotCompliant();
-		}
-		
-		return new static($serialized[ 'latitude' ], $serialized[ 'longitude' ]);
-	}
-	
 	public static function createFromLambert93(float $x, float $y): static
 	{
 		$x = number_format($x, 10, '.', '');

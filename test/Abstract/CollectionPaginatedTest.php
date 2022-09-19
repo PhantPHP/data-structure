@@ -59,37 +59,5 @@ final class CollectionPaginatedTest extends \PHPUnit\Framework\TestCase
 		
 		$this->assertEquals(false, $collection->isEmpty());
 		$this->assertEquals(2, $collection->getNbItems());
-		
-		$serialized = $collection->serialize();
-		
-		$this->assertIsArray($serialized);
-		$this->assertEquals([
-			'items' => [
-				'Bar',
-				'Foo',
-			],
-			'pagination' => [
-				'item' => [
-					'page'		=> 2,
-					'by_page'	=> 2,
-					'total'		=> 3,
-				],
-				'page' => [
-					'current'	=> 1,
-					'total'		=> 2,
-				],
-			]
-		], $serialized);
-		
-		$unserialized = CollectionPaginated::unserialize($serialized);
-		
-		$this->assertEquals($collection, $unserialized);
-	}
-	
-	public function testUnserializeNotCompliant(): void
-	{
-		$this->expectException(NotCompliant::class);
-		
-		CollectionPaginated::unserialize([[]]);
 	}
 }

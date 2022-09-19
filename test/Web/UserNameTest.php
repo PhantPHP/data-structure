@@ -17,15 +17,6 @@ final class UserNameTest extends \PHPUnit\Framework\TestCase
 		
 		$this->assertIsString($userName->get());
 		$this->assertEquals('username', $userName->get());
-		
-		$serialized = $userName->serialize();
-		
-		$this->assertIsString($serialized);
-		$this->assertEquals('username', $serialized);
-		
-		$unserialized = UserName::unserialize($serialized);
-		
-		$this->assertEquals($userName, $unserialized);
 	}
 	
 	public function testNotCompliant(): void

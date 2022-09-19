@@ -15,17 +15,5 @@ final class IntegerTest extends \PHPUnit\Framework\TestCase
 		
 		$this->assertIsInt($integer->get());
 		$this->assertEquals(1234, $integer->get());
-		
-		$this->assertIsInt($integer->serialize());
-		$this->assertEquals(1234, $integer->serialize());
-		
-		$serialized = $integer->serialize();
-		
-		$this->assertIsInt($serialized);
-		$this->assertEquals(1234, $serialized);
-		
-		$unserialized = Integer::unserialize($serialized);
-		
-		$this->assertEquals($integer, $unserialized);
 	}
 }

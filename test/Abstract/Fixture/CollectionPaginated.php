@@ -16,9 +16,4 @@ class CollectionPaginated extends \Phant\DataStructure\Abstract\CollectionPagina
 	{
 		return parent::removeItem($item);
 	}
-	
-	protected static function unserializeItem(mixed $item): Value
-	{
-		return Value::unserialize($item);
-	}
 }
