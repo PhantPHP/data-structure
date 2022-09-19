@@ -20,27 +20,4 @@ class Entity extends \Phant\DataStructure\Abstract\Entity
 		$this->foo = $foo;
 		$this->bar = $bar;
 	}
-	
-	public function serialize(): array
-	{
-		return [
-			'foo'	=> $this->foo->serialize(),
-			'bar'	=> $this->bar ? $this->bar->serialize() : null,
-		];
-	}
-	
-	public static function unserialize(array $serialized): self
-	{
-		if (!isset(
-			$serialized[ 'foo' ],
-			$serialized[ 'bar' ]
-		)) {
-			throw new NotCompliant();
-		}
-		
-		return new self(
-			Value::unserialize($serialized[ 'foo' ]),
-			!is_null($serialized[ 'bar' ]) ? Enum::unserialize($serialized[ 'bar' ]) : null
-		);
-	}
 }

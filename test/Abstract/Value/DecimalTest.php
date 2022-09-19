@@ -15,17 +15,5 @@ final class DecimalTest extends \PHPUnit\Framework\TestCase
 		
 		$this->assertIsFloat($decimal->get());
 		$this->assertEquals(1234.5678, $decimal->get());
-		
-		$this->assertIsFloat($decimal->serialize());
-		$this->assertEquals(1234.5678, $decimal->serialize());
-		
-		$serialized = $decimal->serialize();
-		
-		$this->assertIsFloat($serialized);
-		$this->assertEquals(1234.5678, $serialized);
-		
-		$unserialized = Decimal::unserialize($serialized);
-		
-		$this->assertEquals($decimal, $unserialized);
 	}
 }

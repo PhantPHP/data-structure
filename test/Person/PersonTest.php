@@ -40,24 +40,5 @@ final class PersonTest extends \PHPUnit\Framework\TestCase
 		
 		$this->assertIsObject($person->birthday);
 		$this->assertEquals('1970-01-01', (string)$person->birthday);
-		
-		$serialized = $person->serialize();
-		
-		$this->assertIsArray($serialized);
-		$this->assertArrayHasKey('lastname', $serialized);
-		$this->assertArrayHasKey('firstname', $serialized);
-		$this->assertArrayHasKey('gender', $serialized);
-		$this->assertArrayHasKey('birthday', $serialized);
-		
-		$unserialized = Person::unserialize($serialized);
-		
-		$this->assertEquals($person, $unserialized);
-	}
-	
-	public function testUnserializeNotCompliant(): void
-	{
-		$this->expectException(NotCompliant::class);
-		
-		Person::unserialize([ 'foo' => 'bar' ]);
 	}
 }

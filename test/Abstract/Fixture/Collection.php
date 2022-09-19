@@ -16,9 +16,4 @@ class Collection extends \Phant\DataStructure\Abstract\Collection
 	{
 		return parent::removeItem($item);
 	}
-	
-	protected static function unserializeItem(mixed $item): Value
-	{
-		return Value::unserialize($item);
-	}
 }

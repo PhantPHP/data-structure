@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Phant\DataStructure\Abstract;
 
-abstract class Value implements \Phant\DataStructure\Abstract\Interface\DataStructure
+abstract class Value
 {
 	//protected $value;
 
@@ -22,16 +22,6 @@ abstract class Value implements \Phant\DataStructure\Abstract\Interface\DataStru
 	public function get(): mixed
 	{
 		return property_exists($this, 'value') ? $this->value : null;
-	}
-
-	public function serialize(): mixed
-	{
-		return $this->get();
-	}
-	
-	public static function unserialize(mixed $serialized): self
-	{
-		return new static($serialized);
 	}
 	
 	protected static function addNonBreakingSpace(string $value): string

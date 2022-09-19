@@ -26,28 +26,5 @@ final class PriceTest extends \PHPUnit\Framework\TestCase
 		
 		$this->assertIsString($price->getUnit());
 		$this->assertEquals('kg', (string)$price->getUnit());
-			
-		$serialized = $price->serialize();
-		
-		$this->assertIsArray($serialized);
-		$this->assertEquals([
-			'price' => 1234.56,
-			'currency' => [
-				'code' => 'EUR',
-				'sign' => '€',
-			],
-			'unit' => 'kg',
-		], $serialized);
-		
-		$unserialized = Price::unserialize($serialized);
-		
-		$this->assertEquals($price, $unserialized);
-	}
-	
-	public function testUnserializeNotCompliant(): void
-	{
-		$this->expectException(NotCompliant::class);
-		
-		Price::unserialize([ 'foo' => 'bar' ]);
 	}
 }

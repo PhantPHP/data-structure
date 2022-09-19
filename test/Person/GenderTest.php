@@ -20,18 +20,6 @@ final class GenderTest extends \PHPUnit\Framework\TestCase
 		
 		$this->assertIsString($gender->getLabel());
 		$this->assertEquals('Female', $gender->getLabel());
-			
-		$serialized = $gender->serialize();
-		
-		$this->assertIsArray($serialized);
-		$this->assertEquals([
-				'value' => 'female',
-				'label' => 'Female',
-			], $serialized);
-		
-		$unserialized = Gender::unserialize($serialized);
-		
-		$this->assertEquals($gender, $unserialized);
 	}
 	
 	public function testNotCompliant(): void

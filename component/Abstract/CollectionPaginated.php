@@ -67,49 +67,4 @@ abstract class CollectionPaginated extends Collection
 			$this->pageTotal = (int)ceil($this->itemTotal / $this->itemByPage);
 		}
 	}
-
-	public function serialize(): ?array
-	{
-		return [
-			'items'	=> parent::serialize(),
-			'pagination' => [
-				'item' => [
-					'page'		=> $this->itemPage,
-					'by_page'	=> $this->itemByPage,
-					'total'		=> $this->itemTotal,
-				],
-				'page' => [
-					'current'	=> $this->pageCurrent,
-					'total'		=> $this->pageTotal,
-				],
-			]
-		];
-	}
-	
-	public static function unserialize(array $serialized): self
-	{
-		if (!( array_key_exists('pagination', $serialized)
-			&& array_key_exists('page', $serialized['pagination'])
-			&& array_key_exists('current', $serialized['pagination']['page'])
-			&& array_key_exists('item', $serialized['pagination'])
-			&& array_key_exists('by_page', $serialized['pagination']['item'])
-			&& array_key_exists('total', $serialized['pagination']['item'])
-		)) {
-			throw new NotCompliant();
-		}
-		
-		$collection = new static(
-			$serialized['pagination']['page']['current'],
-			$serialized['pagination']['item']['by_page'],
-			$serialized['pagination']['item']['total']
-		);
-		
-		foreach ($serialized['items'] as $item) {
-			$collection->addItem(
-				static::unserializeItem($item)
-			);
-		}
-		
-		return $collection;
-	}
 }

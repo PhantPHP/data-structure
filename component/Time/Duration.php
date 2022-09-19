@@ -106,21 +106,4 @@ class Duration extends \Phant\DataStructure\Abstract\Aggregate
 		
 		return implode(', ', $labels);
 	}
-	
-	public function serialize(): array
-	{
-		return [
-			'value'	=> $this->time,
-			'label'	=> $this->label
-		];
-	}
-	
-	public static function unserialize(array $serialized): self
-	{
-		if (!isset($serialized[ 'value' ])) {
-			throw new NotCompliant();
-		}
-		
-		return new static($serialized[ 'value' ]);
-	}
 }

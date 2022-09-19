@@ -38,23 +38,4 @@ class Note extends \Phant\DataStructure\Abstract\Aggregate
 	{
 		return $this->unit;
 	}
-	
-	public function serialize(): array
-	{
-		return [
-			'note'	=> $this->note,
-			'unit'	=> $this->unit,
-		];
-	}
-	
-	public static function unserialize(array $serialized): self
-	{
-		if (!( array_key_exists('note', $serialized)
-			&& array_key_exists('unit', $serialized)
-		)) {
-			throw new NotCompliant();
-		}
-		
-		return new static($serialized[ 'note' ], $serialized[ 'unit' ]);
-	}
 }

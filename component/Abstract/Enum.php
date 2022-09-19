@@ -5,11 +5,8 @@ namespace Phant\DataStructure\Abstract;
 
 use Phant\Error\NotCompliant;
 
-abstract class Enum implements \Phant\DataStructure\Abstract\Interface\DataStructure
+abstract class Enum
 {
-	public const VALUE_KEY = 'value';
-	public const LABEL_KEY = 'label';
-	
 	public const VALUES = [];
 
 	protected mixed $value;
@@ -37,22 +34,5 @@ abstract class Enum implements \Phant\DataStructure\Abstract\Interface\DataStruc
 	public function getLabel(): mixed
 	{
 		return $this->label;
-	}
-
-	public function serialize(): array
-	{
-		return [
-			static::VALUE_KEY => $this->value,
-			static::LABEL_KEY => (string) $this->label,
-		];
-	}
-	
-	public static function unserialize(array $serialized): self
-	{
-		if (!( array_key_exists(static::VALUE_KEY, $serialized))) {
-			throw new NotCompliant();
-		}
-		
-		return new static($serialized[ static::VALUE_KEY ]);
 	}
 }

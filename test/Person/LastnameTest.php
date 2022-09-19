@@ -17,15 +17,6 @@ final class LastnameTest extends \PHPUnit\Framework\TestCase
 		
 		$this->assertIsString($lastname->get());
 		$this->assertEquals('DOE', $lastname->get());
-			
-		$serialized = $lastname->serialize();
-		
-		$this->assertIsString($serialized);
-		$this->assertEquals('DOE', $serialized);
-		
-		$unserialized = Lastname::unserialize($serialized);
-		
-		$this->assertEquals($lastname, $unserialized);
 	}
 	
 	public function testNotCompliant(): void

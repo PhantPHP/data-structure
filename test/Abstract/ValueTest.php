@@ -15,14 +15,5 @@ final class ValueTest extends \PHPUnit\Framework\TestCase
 		
 		$this->assertIsString($value->get());
 		$this->assertEquals('foo bar', $value->get());
-		
-		$serialized = $value->serialize();
-		
-		$this->assertIsString($serialized);
-		$this->assertEquals('foo bar', $serialized);
-		
-		$unserialized = Value::unserialize($serialized);
-		
-		$this->assertEquals($value, $unserialized);
 	}
 }

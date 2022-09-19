@@ -20,18 +20,6 @@ final class AggregateTest extends \PHPUnit\Framework\TestCase
 		
 		$this->assertIsBool($aggregate->getBar());
 		$this->assertEquals(true, $aggregate->getBar());
-		
-		$serialized = $aggregate->serialize();
-		
-		$this->assertIsArray($serialized);
-		$this->assertEquals([
-				'foo'	=> 'foo',
-				'bar'	=> true,
-			], $serialized);
-		
-		$unserialized = Aggregate::unserialize($serialized);
-		
-		$this->assertEquals($aggregate, $unserialized);
 	}
 	
 	public function testNotCompliant(): void
@@ -39,12 +27,5 @@ final class AggregateTest extends \PHPUnit\Framework\TestCase
 		$this->expectException(NotCompliant::class);
 		
 		new Aggregate('', true);
-	}
-	
-	public function testUnserializeNotCompliant(): void
-	{
-		$this->expectException(NotCompliant::class);
-		
-		Aggregate::unserialize([ 'foo' => 'bar' ]);
 	}
 }
