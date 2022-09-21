@@ -20,6 +20,9 @@ final class DateTimeTest extends \PHPUnit\Framework\TestCase
 		
 		$this->assertIsInt($dateTime->getTime());
 		$this->assertEquals(-491311504, $dateTime->getTime());
+		
+		$this->assertIsString($dateTime->getUtc());
+		$this->assertEquals('1954-06-07T12:34:56Z', $dateTime->getUtc());
 	}
 	
 	public function testBuild(): void
