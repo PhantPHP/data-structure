@@ -17,19 +17,19 @@ class DateTimeInterval extends \Phant\DataStructure\Abstract\Aggregate
 	protected ?Duration $duration;
 	
 	public function __construct(
-		null|string|DateTime $from,
-		null|string|DateTime $to
+		null|int|string|DateTime $from,
+		null|int|string|DateTime $to
 	)
 	{
 		if (!$from && !$to) {
 			throw new NotCompliant('Date time intervals: from ' . $from . ' to' . $to);
 		}
 		
-		if (is_string($from)) {
+		if (is_string($from) || is_int($from)) {
 			$from = new DateTime($from);
 		}
 		
-		if (is_string($to)) {
+		if (is_string($to) || is_int($to)) {
 			$to = new DateTime($to);
 		}
 		
@@ -53,9 +53,9 @@ class DateTimeInterval extends \Phant\DataStructure\Abstract\Aggregate
 		return $this->duration;
 	}
 	
-	public function isDuring(string|DateTime $dateTime): bool
+	public function isDuring(int|string|DateTime $dateTime): bool
 	{
-		if (is_string($dateTime)) {
+		if (is_string($dateTime) || is_int($dateTime)) {
 			$dateTime = new DateTime($dateTime);
 		}
 		
