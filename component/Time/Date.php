@@ -32,9 +32,4 @@ class Date extends \Phant\DataStructure\Abstract\Value\Varchar
 	{
 		return $this->time;
 	}
-	
-	public function getUtc(): string
-	{
-		return gmdate('Y-m-d\TH:i:s\Z', $this->time);
-	}
 }
