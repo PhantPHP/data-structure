@@ -17,19 +17,19 @@ class DateInterval extends \Phant\DataStructure\Abstract\Aggregate
 	protected ?Duration $duration;
 	
 	public function __construct(
-		null|string|Date $from,
-		null|string|Date $to
+		null|int|string|Date $from,
+		null|int|string|Date $to
 	)
 	{
 		if (!$from && !$to) {
 			throw new NotCompliant('Date intervals: from ' . $from . ' to' . $to);
 		}
 		
-		if (is_string($from)) {
+		if (is_string($from) || is_int($from)) {
 			$from = new Date($from);
 		}
 		
-		if (is_string($to)) {
+		if (is_string($to) || is_int($to)) {
 			$to = new Date($to);
 		}
 		
@@ -53,9 +53,9 @@ class DateInterval extends \Phant\DataStructure\Abstract\Aggregate
 		return $this->duration;
 	}
 	
-	public function isDuring(string|Date $date): bool
+	public function isDuring(string|int|Date $date): bool
 	{
-		if (is_string($date)) {
+		if (is_string($date) || is_int($date)) {
 			$date = new Date($date);
 		}
 		

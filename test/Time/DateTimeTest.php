@@ -32,6 +32,16 @@ final class DateTimeTest extends \PHPUnit\Framework\TestCase
 		$this->assertIsObject($dateTime);
 	}
 	
+	public function testBuildFromTime(): void
+	{
+		$dateTime = new DateTime(-491311504);
+		
+		$this->assertIsObject($dateTime);
+		
+		$this->assertIsString($dateTime->get());
+		$this->assertEquals('1954-06-07 12:34:56', $dateTime->get());
+	}
+	
 	public function testNotCompliant(): void
 	{
 		$this->expectException(NotCompliant::class);
