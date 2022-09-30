@@ -30,6 +30,31 @@ abstract class CollectionPaginated extends Collection
 		parent::__construct();
 	}
 	
+	public function getItemByPage(): ?int
+	{
+		return $this->itemByPage;
+	}
+	
+	public function getItemTotal(): ?int
+	{
+		return $this->itemTotal;
+	}
+	
+	public function getItemPage(): ?int
+	{
+		return $this->itemPage;
+	}
+	
+	public function getPageCurrent(): ?int
+	{
+		return $this->pageCurrent;
+	}
+	
+	public function getPageTotal(): ?int
+	{
+		return $this->pageTotal;
+	}
+	
 	protected function addItem(mixed $item): self
 	{
 		parent::addItem($item);
