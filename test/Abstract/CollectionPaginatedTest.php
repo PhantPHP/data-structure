@@ -40,6 +40,21 @@ final class CollectionPaginatedTest extends \PHPUnit\Framework\TestCase
 		$this->assertEquals(false, $collection->isEmpty());
 		$this->assertEquals(2, $collection->getNbItems());
 		
+		$this->assertIsInt($collection->getItemByPage());
+		$this->assertEquals(2, $collection->getItemByPage());
+		
+		$this->assertIsInt($collection->getItemTotal());
+		$this->assertEquals(3, $collection->getItemTotal());
+		
+		$this->assertIsInt($collection->getItemPage());
+		$this->assertEquals(2, $collection->getItemPage());
+		
+		$this->assertIsInt($collection->getPageCurrent());
+		$this->assertEquals(1, $collection->getPageCurrent());
+		
+		$this->assertIsInt($collection->getPageTotal());
+		$this->assertEquals(2, $collection->getPageTotal());
+		
 		$this->assertIsObject($collection->getByKey(0));
 		
 		foreach ($collection->itemsIterator() as $item) {
