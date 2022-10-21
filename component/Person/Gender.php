@@ -1,15 +1,20 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Phant\DataStructure\Person;
 
-class Gender extends \Phant\DataStructure\Abstract\Enum
+enum Gender: string
 {
-	const FEMALE = 'female';
-	const MALE = 'male';
-	
-	const VALUES = [
-		self::FEMALE	=> 'Female',
-		self::MALE		=> 'Male',
-	];
+    case Female = 'female';
+
+    case Male = 'male';
+
+    public function getLabel(): string
+    {
+        return match ($this) {
+            self::Female => 'Female',
+            self::Male => 'Male',
+        };
+    }
 }

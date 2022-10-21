@@ -12,10 +12,8 @@ PHP >= 8.0
 
 ## Abstract
 
-- Aggregate
 - Collection
-- Entity
-- Enum
+- CollectionPaginated
 - Value
 	- Boolean
 	- Decimal
@@ -38,6 +36,12 @@ PHP >= 8.0
 
 - GpsCoordinates
 
+### Fr
+
+- CodeCommune
+- CodePostal
+- NumeroDepartement
+
 
 ## Id
 
@@ -52,16 +56,16 @@ PHP >= 8.0
 
 ## Number
 
-- Note
+- Grade
 - Rate
 
 
 ## Person
 
+- Birthday
 - Firstname
 - Gender
 - Lastname
-- Person
 
 
 ## Time

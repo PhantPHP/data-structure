@@ -10,19 +10,21 @@
         }
     ],
     "require": {
-        "php": "^8.0",
+        "php": ">=8.1",
         "phant/error": "1.*",
         "ramsey/uuid": "^4.3",
         "firebase/php-jwt": "^5.2"
     },
     "require-dev": {
+        "friendsofphp/php-cs-fixer": "^3.0",
         "phpstan/phpstan": "^1.4",
         "phpunit/phpunit": "^9.5"
     },
     "scripts": {
+        "lint": "vendor/bin/php-cs-fixer fix ./ --rules=@PSR12",
         "analyse": "vendor/bin/phpstan analyse component test -c phpstan.neon --memory-limit=4G",
         "test": "vendor/bin/phpunit test --testdox",
-        "code-coverage": "XDEBUG_MODE=coverage vendor/bin/phpunit --coverage-html public/code-coverage"
+        "coverage": "XDEBUG_MODE=coverage vendor/bin/phpunit --coverage-html .public/code-coverage"
     },
     "autoload": {
         "psr-4": {
