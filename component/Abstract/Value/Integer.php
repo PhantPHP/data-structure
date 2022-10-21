@@ -1,19 +1,13 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Phant\DataStructure\Abstract\Value;
 
-abstract class Integer extends \Phant\DataStructure\Abstract\Value
+abstract class Integer
 {
-	protected int $value;
-	
-	public function __construct(int $value)
-	{
-		parent::__construct($value);
-	}
-
-	public function get(): int
-	{
-		return parent::get();
-	}
+    public function __construct(
+        public readonly int $value
+    ) {
+    }
 }

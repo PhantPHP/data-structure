@@ -1,35 +1,26 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Phant\DataStructure\Web;
 
 use Phant\Error\NotCompliant;
 
-class EmailAddressAndName extends \Phant\DataStructure\Abstract\Aggregate
+class EmailAddressAndName
 {
-	protected EmailAddress $emailAddress;
-	protected ?string $name;
-	
-	public function __construct(
-		string|EmailAddress $emailAddress,
-		?string $name = null
-	)
-	{
-		if (is_string($emailAddress)) {
-			$emailAddress = new EmailAddress($emailAddress);
-		}
-		
-		$this->emailAddress = $emailAddress;
-		$this->name = !is_null($name) ? trim($name) : null;
-	}
-	
-	public function getEmailAddress(): EmailAddress
-	{
-		return $this->emailAddress;
-	}
-	
-	public function getName(): ?string
-	{
-		return $this->name;
-	}
+    public function __construct(
+        public readonly EmailAddress $emailAddress,
+        public readonly ?string $name
+    ) {
+    }
+
+    public static function make(
+        string $emailAddress,
+        ?string $name = null
+    ): self {
+        return new static(
+            new EmailAddress($emailAddress),
+            !is_null($name) ? trim($name) : null
+        );
+    }
 }

@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Test\Company;
@@ -9,20 +10,20 @@ use Phant\Error\NotCompliant;
 
 final class NameTest extends \PHPUnit\Framework\TestCase
 {
-	public function testInterface(): void
-	{
-		$name = new Name('Acme');
-		
-		$this->assertEquals('Acme', (string)$name);
-		
-		$this->assertIsString($name->get());
-		$this->assertEquals('Acme', $name->get());
-	}
-	
-	public function testNotCompliant(): void
-	{
-		$this->expectException(NotCompliant::class);
-		
-		new Name('');
-	}
+    public function testInterface(): void
+    {
+        $name = new Name('Acme');
+
+        $this->assertEquals('Acme', (string)$name);
+
+        $this->assertIsString($name->value);
+        $this->assertEquals('Acme', $name->value);
+    }
+
+    public function testNotCompliant(): void
+    {
+        $this->expectException(NotCompliant::class);
+
+        new Name('');
+    }
 }
