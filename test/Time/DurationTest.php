@@ -20,7 +20,7 @@ final class DurationTest extends \PHPUnit\Framework\TestCase
         $this->assertIsInt($duration->value);
         $this->assertEquals($time, $duration->value);
 
-        $this->assertIsString($duration->getLabel());
-        $this->assertEquals('1 year, 1 month, 1 day, 1 h, 1 min, 1 s', $duration->getLabel());
+        $this->assertIsString($duration->label);
+        $this->assertEquals('1 year, 1 month, 1 day, 1 h, 1 min, 1 s', $duration->label);
     }
 }

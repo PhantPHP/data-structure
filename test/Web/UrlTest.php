@@ -52,6 +52,8 @@ final class UrlTest extends \PHPUnit\Framework\TestCase
         $this->assertIsArray($url->getQuery());
         $this->assertEquals(['arg' => 'value'], $url->getQuery());
         $url = $url->removeQueryParameter('arg');
+        $url = $url->removeQueryParameter('foo');
+        $this->assertNull($url->getQuery());
         $url = $url->addQueryParameter('foo', 'bar');
         $this->assertEquals(['foo' => 'bar'], $url->getQuery());
 

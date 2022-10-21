@@ -16,8 +16,8 @@ final class DateTest extends \PHPUnit\Framework\TestCase
 
         $this->assertEquals('1954-06-07', (string)$date);
 
-        $this->assertIsString($date->value);
-        $this->assertEquals('1954-06-07', $date->value);
+        $this->assertIsString($date->date);
+        $this->assertEquals('1954-06-07', $date->date);
 
         $this->assertIsInt($date->time);
         $this->assertEquals(-491356800, $date->time);
@@ -36,8 +36,8 @@ final class DateTest extends \PHPUnit\Framework\TestCase
 
         $this->assertIsObject($date);
 
-        $this->assertIsString($date->value);
-        $this->assertEquals('1954-06-07', $date->value);
+        $this->assertIsString($date->date);
+        $this->assertEquals('1954-06-07', $date->date);
     }
 
     public function testNotCompliant(): void

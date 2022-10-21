@@ -28,7 +28,7 @@ class Duration
     public const YEAR_LABEL = 'year';
     public const YEAR_LABEL_PLURAL = 'years';
 
-    protected readonly string $label;
+    public readonly string $label;
 
     public function __construct(
         public readonly int $value

@@ -25,7 +25,7 @@ class GpsCoordinates
 
     public static function make(string $coordinates): self
     {
-        $parts = explode(';', $coordinates);
+        $parts = explode(';', str_replace(',', '.', $coordinates));
 
         return new static(
             (float) $parts[0],

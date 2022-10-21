@@ -22,8 +22,21 @@ final class GpsCoordinatesTest extends \PHPUnit\Framework\TestCase
         $this->assertIsFloat($gpsCoordinates->longitude);
         $this->assertEquals(-2.2117116, $gpsCoordinates->longitude);
     }
+    
+    public function testMake(): void
+    {
+        $gpsCoordinates = GpsCoordinates::make(' 53,3284723 ; -2,2117116 ');
+        
+        $this->assertInstanceOf(GpsCoordinates::class, $gpsCoordinates);
+        
+        $this->assertIsFloat($gpsCoordinates->latitude);
+        $this->assertEquals(53.3284723, $gpsCoordinates->latitude);
+        
+        $this->assertIsFloat($gpsCoordinates->longitude);
+        $this->assertEquals(-2.2117116, $gpsCoordinates->longitude);
+    }
 
-    public function testCreateFromLambert93(): void
+    public function testMakeFromLambert93(): void
     {
         $gpsCoordinates = GpsCoordinates::makeFromLambert93(350772.53, 7372163.87);
 
@@ -31,7 +44,7 @@ final class GpsCoordinatesTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals(-2.2117116, $gpsCoordinates->longitude);
     }
 
-    public function testCreateFromUtm(): void
+    public function testMakeFromUtm(): void
     {
         $gpsCoordinates = GpsCoordinates::makeFromUtm(153037.74, 5921483.19, 31);
 
