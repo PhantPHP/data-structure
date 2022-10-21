@@ -4,8 +4,9 @@ vendor/*
 
 # Test
 .phpunit*
-public/code-coverage
+.public
 
 # Dev
 .DS_Store
 .nova/*
+.php-cs-fixer.cache
