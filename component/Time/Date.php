@@ -30,7 +30,7 @@ class Date
         $this->format = $format;
         $this->date = date($format, $this->time);
     }
-    
+
     public function __toString()
     {
         return $this->date;

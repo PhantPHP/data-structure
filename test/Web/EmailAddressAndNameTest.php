@@ -17,26 +17,26 @@ final class EmailAddressAndNameTest extends \PHPUnit\Framework\TestCase
             new EmailAddress('john.doe@domain.ext'),
             'John DOE'
         );
-    
+
         $this->assertIsObject($emailAddressAndName->emailAddress);
         $this->assertEquals('john.doe@domain.ext', (string)$emailAddressAndName->emailAddress);
-    
+
         $this->assertIsString($emailAddressAndName->name);
         $this->assertEquals('John DOE', $emailAddressAndName->name);
     }
-    
+
     public function testMake(): void
     {
         $emailAddressAndName = EmailAddressAndName::make(
             'john.doe@domain.ext',
             'John DOE'
         );
-    
+
         $this->assertInstanceOf(EmailAddressAndName::class, $emailAddressAndName);
-        
+
         $this->assertIsObject($emailAddressAndName->emailAddress);
         $this->assertEquals('john.doe@domain.ext', (string)$emailAddressAndName->emailAddress);
-    
+
         $this->assertIsString($emailAddressAndName->name);
         $this->assertEquals('John DOE', $emailAddressAndName->name);
     }

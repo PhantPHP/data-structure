@@ -36,7 +36,7 @@ final class EmailAddressTest extends \PHPUnit\Framework\TestCase
             new UserName('username'),
             new DomainName('domain.ext')
         );
-        
+
         $this->assertInstanceOf(EmailAddress::class, $emailAddress);
 
         $this->assertIsObject($emailAddress);

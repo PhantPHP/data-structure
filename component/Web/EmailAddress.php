@@ -12,7 +12,7 @@ use Phant\DataStructure\Web\{
 class EmailAddress extends \Phant\DataStructure\Abstract\Value\Varchar
 {
     public const PATTERN = '/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/';
-    
+
     public function __construct(string $emailAddress)
     {
         $emailAddress = preg_replace('/ /', '', $emailAddress);
@@ -38,8 +38,7 @@ class EmailAddress extends \Phant\DataStructure\Abstract\Value\Varchar
     public static function make(
         UserName $userName,
         DomainName $domainName
-    ): self
-    {
+    ): self {
         return new static($userName . '@' . $domainName);
     }
 }

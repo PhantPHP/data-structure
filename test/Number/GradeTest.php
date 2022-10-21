@@ -22,16 +22,16 @@ final class GradeTest extends \PHPUnit\Framework\TestCase
         $this->assertIsInt($grade->scale);
         $this->assertEquals(10, $grade->scale);
     }
-    
+
     public function testMake(): void
     {
         $grade = Grade::make(' 8 / 10 ');
-    
+
         $this->assertInstanceOf(Grade::class, $grade);
-        
+
         $this->assertIsInt($grade->position);
         $this->assertEquals(8, $grade->position);
-        
+
         $this->assertIsInt($grade->scale);
         $this->assertEquals(10, $grade->scale);
     }

@@ -22,16 +22,16 @@ final class GpsCoordinatesTest extends \PHPUnit\Framework\TestCase
         $this->assertIsFloat($gpsCoordinates->longitude);
         $this->assertEquals(-2.2117116, $gpsCoordinates->longitude);
     }
-    
+
     public function testMake(): void
     {
         $gpsCoordinates = GpsCoordinates::make(' 53,3284723 ; -2,2117116 ');
-        
+
         $this->assertInstanceOf(GpsCoordinates::class, $gpsCoordinates);
-        
+
         $this->assertIsFloat($gpsCoordinates->latitude);
         $this->assertEquals(53.3284723, $gpsCoordinates->latitude);
-        
+
         $this->assertIsFloat($gpsCoordinates->longitude);
         $this->assertEquals(-2.2117116, $gpsCoordinates->longitude);
     }
