@@ -26,4 +26,11 @@ final class VarcharTest extends \PHPUnit\Framework\TestCase
 
         new Varchar('');
     }
+    
+    public function testAddNonBreakingSpace(): void
+    {
+        $string = (new Varchar('Hello world!'))->addNonBreakingSpace();
+        
+        $this->assertEquals('Hello' . "\xC2\xA0" . 'world!', $string);
+    }
 }
