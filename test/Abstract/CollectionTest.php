@@ -23,7 +23,7 @@ final class CollectionTest extends \PHPUnit\Framework\TestCase
 
         $this->assertEquals(false, $collection->contains($value));
 
-        $collection->addValue(
+        $collection->add(
             $value
         );
 
@@ -38,14 +38,14 @@ final class CollectionTest extends \PHPUnit\Framework\TestCase
             $this->assertIsObject($item);
         }
 
-        $collection->removeValue(
+        $collection->remove(
             $value
         );
 
         $this->assertEquals(true, $collection->isEmpty());
         $this->assertEquals(0, $collection->getNbItems());
 
-        $collection->addValue(
+        $collection->add(
             $value
         );
     }
