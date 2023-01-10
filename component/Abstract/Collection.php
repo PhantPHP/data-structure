@@ -32,6 +32,11 @@ abstract class Collection
         return $this;
     }
 
+    protected function containsItem(mixed $item): bool
+    {
+        return array_search($item, $this->items) !== false;
+    }
+
     public function itemsIterator(): \Generator
     {
         foreach ($this->items as $item) {

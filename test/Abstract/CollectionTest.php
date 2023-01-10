@@ -11,6 +11,8 @@ final class CollectionTest extends \PHPUnit\Framework\TestCase
 {
     public function testInterface(): void
     {
+        $value = new Value('Foo');
+
         $collection = new Collection();
 
         $this->assertIsBool($collection->isEmpty());
@@ -19,9 +21,13 @@ final class CollectionTest extends \PHPUnit\Framework\TestCase
         $this->assertIsInt($collection->getNbItems());
         $this->assertEquals(0, $collection->getNbItems());
 
+        $this->assertEquals(false, $collection->contains($value));
+
         $collection->addValue(
-            new Value('Foo')
+            $value
         );
+
+        $this->assertEquals(true, $collection->contains($value));
 
         $this->assertEquals(false, $collection->isEmpty());
         $this->assertEquals(1, $collection->getNbItems());
@@ -33,14 +39,14 @@ final class CollectionTest extends \PHPUnit\Framework\TestCase
         }
 
         $collection->removeValue(
-            new Value('Foo')
+            $value
         );
 
         $this->assertEquals(true, $collection->isEmpty());
         $this->assertEquals(0, $collection->getNbItems());
 
         $collection->addValue(
-            new Value('Bar')
+            $value
         );
     }
 }
