@@ -79,6 +79,7 @@ PHP >= 8.1
 
 ## Token
 
+- API key
 - Jwt (based on [Firebase PHP-JWT](https://github.com/firebase/php-jwt))
 
 
