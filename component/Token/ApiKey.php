@@ -8,9 +8,9 @@ class ApiKey extends \Phant\DataStructure\Abstract\Value\Varchar
 {
     public const PATTERN = '/^[0-9a-zA-Z]{8}\.[0-9a-zA-Z]{64}$/';
 
-    public static function generate(): ApiKey
+    final public static function generate(): static
     {
-        return new ApiKey(self::generateRandomString(8) . '.' . self::generateRandomString(64));
+        return new static(self::generateRandomString(8) . '.' . self::generateRandomString(64));
     }
 
     public function check(string|self $apiKey): bool
