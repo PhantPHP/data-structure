@@ -7,7 +7,7 @@ namespace Phant\DataStructure\Token;
 class ApiKey extends \Phant\DataStructure\Abstract\Value\Varchar
 {
     public const PATTERN = '/^[0-9a-zA-Z]{8}\.[0-9a-zA-Z]{64}$/';
-    
+
     final public static function generate(): static
     {
         return new static(self::generateRandomString(8) . '.' . self::generateRandomString(64));
