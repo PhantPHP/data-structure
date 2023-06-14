@@ -9,7 +9,7 @@ use Phant\Error\NotCompliant;
 class Duration
 {
     // Duration in secondes
-    public const MINUTE	= 60;
+    public const MINUTE	    = 60;
     public const HOUR		= 3600;
     public const DAY		= 86400;
     public const MONTH		= 2628000;
@@ -95,5 +95,30 @@ class Duration
         }
 
         return implode(', ', $labels);
+    }
+
+    public function inMinutes(): int
+    {
+        return (int)round($this->value / self::MINUTE, 0);
+    }
+
+    public function inHours(): int
+    {
+        return (int)round($this->value / self::HOUR, 0);
+    }
+
+    public function inDays(): int
+    {
+        return (int)round($this->value / self::DAY, 0);
+    }
+
+    public function inMonths(): int
+    {
+        return (int)round($this->value / self::MONTH, 0);
+    }
+
+    public function inYears(): int
+    {
+        return (int)round($this->value / self::YEAR, 0);
     }
 }
