@@ -17,9 +17,4 @@ class Collection extends \Phant\DataStructure\Abstract\Collection
     {
         return parent::removeItem($item);
     }
-
-    public function contains(Value $item): bool
-    {
-        return parent::containsItem($item);
-    }
 }

@@ -32,29 +32,29 @@ abstract class Collection
         return $this;
     }
 
-    protected function containsItem(mixed $item): bool
+    final public function contains(mixed $item): bool
     {
         return array_search($item, $this->items) !== false;
     }
 
-    public function itemsIterator(): \Generator
+    final public function itemsIterator(): \Generator
     {
         foreach ($this->items as $item) {
             yield $item;
         }
     }
 
-    public function isEmpty(): bool
+    final public function isEmpty(): bool
     {
         return empty($this->items);
     }
 
-    public function getNbItems(): int
+    final public function getNbItems(): int
     {
         return count($this->items);
     }
 
-    public function getByKey(int $key): mixed
+    final public function getByKey(int $key): mixed
     {
         return $this->items[ $key ] ?? null;
     }
