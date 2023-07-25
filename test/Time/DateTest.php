@@ -10,17 +10,22 @@ use Phant\Error\NotCompliant;
 
 final class DateTest extends \PHPUnit\Framework\TestCase
 {
+    protected Date $fixture;
+
+    public function setUp(): void
+    {
+        $this->fixture = new Date('1954-06-07');
+    }
+
     public function testInterface(): void
     {
-        $date = new Date('1954-06-07', 'Y-m-d');
+        $this->assertEquals('1954-06-07', (string)$this->fixture);
 
-        $this->assertEquals('1954-06-07', (string)$date);
+        $this->assertIsString($this->fixture->date);
+        $this->assertEquals('1954-06-07', $this->fixture->date);
 
-        $this->assertIsString($date->date);
-        $this->assertEquals('1954-06-07', $date->date);
-
-        $this->assertIsInt($date->time);
-        $this->assertEquals(-491356800, $date->time);
+        $this->assertIsInt($this->fixture->time);
+        $this->assertEquals(-491356800, $this->fixture->time);
     }
 
     public function testBuild(): void
@@ -45,5 +50,59 @@ final class DateTest extends \PHPUnit\Framework\TestCase
         $this->expectException(NotCompliant::class);
 
         new Date('wingardium leviosa');
+    }
+
+    public function testIsBefore(): void
+    {
+        // Before
+        $result = $this->fixture->isBefore('1954-06-08');
+        $this->assertIsBool($result);
+        $this->assertEquals(true, $result);
+
+        // Current
+        $result = $this->fixture->isBefore('1954-06-07');
+        $this->assertIsBool($result);
+        $this->assertEquals(false, $result);
+
+        // After
+        $result = $this->fixture->isBefore('1954-06-06');
+        $this->assertIsBool($result);
+        $this->assertEquals(false, $result);
+    }
+
+    public function testIsCurrent(): void
+    {
+        // Before
+        $result = $this->fixture->isCurrent('1954-06-08');
+        $this->assertIsBool($result);
+        $this->assertEquals(false, $result);
+
+        // Current
+        $result = $this->fixture->isCurrent('1954-06-07');
+        $this->assertIsBool($result);
+        $this->assertEquals(true, $result);
+
+        // After
+        $result = $this->fixture->isCurrent('1954-06-06');
+        $this->assertIsBool($result);
+        $this->assertEquals(false, $result);
+    }
+
+    public function testIsAfter(): void
+    {
+        // Before
+        $result = $this->fixture->isAfter('1954-06-08');
+        $this->assertIsBool($result);
+        $this->assertEquals(false, $result);
+
+        // Current
+        $result = $this->fixture->isAfter('1954-06-07');
+        $this->assertIsBool($result);
+        $this->assertEquals(false, $result);
+
+        // After
+        $result = $this->fixture->isAfter('1954-06-06');
+        $this->assertIsBool($result);
+        $this->assertEquals(true, $result);
     }
 }

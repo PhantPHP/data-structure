@@ -26,17 +26,54 @@ class DateInterval
         $this->calculateDuration();
     }
 
-    public function isDuring(string|int|Date $date): bool
-    {
+    public function isBefore(
+        string|int|Date $date
+    ): bool {
         if (is_string($date) || is_int($date)) {
             $date = new Date($date);
         }
 
-        if ($this->from && $date->time < $this->from->time) {
+        if ($this->from && !$this->from->isBefore($date)) {
             return false;
         }
 
-        if ($this->to && $date->time > $this->to->time) {
+        if ($this->to && !$this->to->isBefore($date)) {
+            return false;
+        }
+
+        return true;
+    }
+
+    public function isDuring(
+        string|int|Date $date
+    ): bool {
+        if (is_string($date) || is_int($date)) {
+            $date = new Date($date);
+        }
+
+        if (!$this->from || !$this->from->isBefore($date)) {
+            return false;
+        }
+
+        if (!$this->to || !$this->to->isAfter($date)) {
+            return false;
+        }
+
+        return true;
+    }
+
+    public function isAfter(
+        string|int|Date $date
+    ): bool {
+        if (is_string($date) || is_int($date)) {
+            $date = new Date($date);
+        }
+
+        if ($this->from && !$this->from->isAfter($date)) {
+            return false;
+        }
+
+        if ($this->to && !$this->to->isAfter($date)) {
             return false;
         }
 

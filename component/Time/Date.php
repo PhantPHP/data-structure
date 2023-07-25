@@ -31,6 +31,48 @@ class Date
         $this->date = date($format, $this->time);
     }
 
+    public function isBefore(
+        string|int|Date|DateTime $date
+    ): bool {
+        if (is_string($date) || is_int($date)) {
+            $date = new DateTime($date);
+        }
+
+        if ($date->time <= $this->time) {
+            return false;
+        }
+
+        return true;
+    }
+
+    public function isCurrent(
+        string|int|Date|DateTime $date
+    ): bool {
+        if (is_string($date) || is_int($date)) {
+            $date = new DateTime($date);
+        }
+
+        if ($date->time != $this->time) {
+            return false;
+        }
+
+        return true;
+    }
+
+    public function isAfter(
+        string|int|Date|DateTime $date
+    ): bool {
+        if (is_string($date) || is_int($date)) {
+            $date = new DateTime($date);
+        }
+
+        if ($date->time >= $this->time) {
+            return false;
+        }
+
+        return true;
+    }
+
     public function __toString()
     {
         return $this->date;

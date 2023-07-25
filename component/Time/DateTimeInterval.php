@@ -26,17 +26,54 @@ class DateTimeInterval
         $this->calculateDuration();
     }
 
-    public function isDuring(int|string|DateTime $dateTime): bool
-    {
+    public function isBefore(
+        string|int|DateTime $dateTime
+    ): bool {
         if (is_string($dateTime) || is_int($dateTime)) {
             $dateTime = new DateTime($dateTime);
         }
 
-        if ($this->from && $dateTime->time < $this->from->time) {
+        if ($this->from && !$this->from->isBefore($dateTime)) {
             return false;
         }
 
-        if ($this->to && $dateTime->time > $this->to->time) {
+        if ($this->to && !$this->to->isBefore($dateTime)) {
+            return false;
+        }
+
+        return true;
+    }
+
+    public function isDuring(
+        int|string|DateTime $dateTime
+    ): bool {
+        if (is_string($dateTime) || is_int($dateTime)) {
+            $dateTime = new DateTime($dateTime);
+        }
+
+        if (!$this->from || !$this->from->isBefore($dateTime)) {
+            return false;
+        }
+
+        if (!$this->to || !$this->to->isAfter($dateTime)) {
+            return false;
+        }
+
+        return true;
+    }
+
+    public function isAfter(
+        string|int|DateTime $dateTime
+    ): bool {
+        if (is_string($dateTime) || is_int($dateTime)) {
+            $dateTime = new DateTime($dateTime);
+        }
+
+        if ($this->from && !$this->from->isAfter($dateTime)) {
+            return false;
+        }
+
+        if ($this->to && !$this->to->isAfter($dateTime)) {
             return false;
         }
 
