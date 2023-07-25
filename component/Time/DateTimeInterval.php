@@ -51,15 +51,11 @@ class DateTimeInterval
             $dateTime = new DateTime($dateTime);
         }
 
-        if (!$this->from || !$this->to) {
+        if ($this->from && !$this->from->isBefore($dateTime) && !$this->from->isCurrent($dateTime)) {
             return false;
         }
 
-        if (!$this->from->isBefore($dateTime) && !$this->from->isCurrent($dateTime)) {
-            return false;
-        }
-
-        if (!$this->to->isAfter($dateTime) && !$this->to->isCurrent($dateTime)) {
+        if ($this->to && !$this->to->isAfter($dateTime) && !$this->to->isCurrent($dateTime)) {
             return false;
         }
 
