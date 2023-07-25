@@ -119,7 +119,7 @@ final class DateTimeIntervalTest extends \PHPUnit\Framework\TestCase
 
         $result = $this->fixtureWithoutFrom->isDuring('1954-06-07 12:34:55');
         $this->assertIsBool($result);
-        $this->assertEquals(false, $result);
+        $this->assertEquals(true, $result);
 
         $result = $this->fixtureWithoutEnd->isDuring('1954-06-07 12:34:55');
         $this->assertIsBool($result);
@@ -132,11 +132,11 @@ final class DateTimeIntervalTest extends \PHPUnit\Framework\TestCase
 
         $result = $this->fixtureWithoutFrom->isDuring('1954-06-07 12:34:56');
         $this->assertIsBool($result);
-        $this->assertEquals(false, $result);
+        $this->assertEquals(true, $result);
 
         $result = $this->fixtureWithoutEnd->isDuring('1954-06-07 12:34:56');
         $this->assertIsBool($result);
-        $this->assertEquals(false, $result);
+        $this->assertEquals(true, $result);
 
         // During
         $result = $this->fixture->isDuring('1960-02-23 12:34:55');
@@ -145,11 +145,11 @@ final class DateTimeIntervalTest extends \PHPUnit\Framework\TestCase
 
         $result = $this->fixtureWithoutFrom->isDuring('1960-02-23 12:34:55');
         $this->assertIsBool($result);
-        $this->assertEquals(false, $result);
+        $this->assertEquals(true, $result);
 
         $result = $this->fixtureWithoutEnd->isDuring('1960-02-23 12:34:55');
         $this->assertIsBool($result);
-        $this->assertEquals(false, $result);
+        $this->assertEquals(true, $result);
 
         // During end
         $result = $this->fixture->isDuring('1970-01-01 00:00:00');
@@ -158,11 +158,11 @@ final class DateTimeIntervalTest extends \PHPUnit\Framework\TestCase
 
         $result = $this->fixtureWithoutFrom->isDuring('1970-01-01 00:00:00');
         $this->assertIsBool($result);
-        $this->assertEquals(false, $result);
+        $this->assertEquals(true, $result);
 
         $result = $this->fixtureWithoutEnd->isDuring('1970-01-01 00:00:00');
         $this->assertIsBool($result);
-        $this->assertEquals(false, $result);
+        $this->assertEquals(true, $result);
 
         // After
         $result = $this->fixture->isDuring('1970-01-01 00:00:01');
@@ -175,7 +175,7 @@ final class DateTimeIntervalTest extends \PHPUnit\Framework\TestCase
 
         $result = $this->fixtureWithoutEnd->isDuring('1970-01-01 00:00:01');
         $this->assertIsBool($result);
-        $this->assertEquals(false, $result);
+        $this->assertEquals(true, $result);
     }
 
     public function testIsAfter(): void
