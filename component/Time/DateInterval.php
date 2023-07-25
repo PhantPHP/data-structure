@@ -51,11 +51,15 @@ class DateInterval
             $date = new Date($date);
         }
 
-        if (!$this->from || !$this->from->isBefore($date)) {
+        if (!$this->from || !$this->to) {
             return false;
         }
 
-        if (!$this->to || !$this->to->isAfter($date)) {
+        if (!$this->from->isBefore($date) && !$this->from->isCurrent($date)) {
+            return false;
+        }
+
+        if (!$this->to->isAfter($date) && !$this->to->isCurrent($date)) {
             return false;
         }
 

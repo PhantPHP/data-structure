@@ -57,6 +57,19 @@ final class DateIntervalTest extends \PHPUnit\Framework\TestCase
         $this->assertIsBool($result);
         $this->assertEquals(false, $result);
 
+        // During start
+        $result = $this->fixture->isBefore('1954-06-07');
+        $this->assertIsBool($result);
+        $this->assertEquals(false, $result);
+
+        $result = $this->fixtureWithoutFrom->isBefore('1954-06-07');
+        $this->assertIsBool($result);
+        $this->assertEquals(false, $result);
+
+        $result = $this->fixtureWithoutEnd->isBefore('1954-06-07');
+        $this->assertIsBool($result);
+        $this->assertEquals(false, $result);
+
         // During
         $result = $this->fixture->isBefore('1960-02-23');
         $this->assertIsBool($result);
@@ -67,6 +80,19 @@ final class DateIntervalTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals(false, $result);
 
         $result = $this->fixtureWithoutEnd->isBefore('1960-02-23');
+        $this->assertIsBool($result);
+        $this->assertEquals(true, $result);
+
+        // During end
+        $result = $this->fixture->isBefore('1970-01-01');
+        $this->assertIsBool($result);
+        $this->assertEquals(false, $result);
+
+        $result = $this->fixtureWithoutFrom->isBefore('1970-01-01');
+        $this->assertIsBool($result);
+        $this->assertEquals(false, $result);
+
+        $result = $this->fixtureWithoutEnd->isBefore('1970-01-01');
         $this->assertIsBool($result);
         $this->assertEquals(true, $result);
 
@@ -99,6 +125,19 @@ final class DateIntervalTest extends \PHPUnit\Framework\TestCase
         $this->assertIsBool($result);
         $this->assertEquals(false, $result);
 
+        // During start
+        $result = $this->fixture->isDuring('1954-06-07');
+        $this->assertIsBool($result);
+        $this->assertEquals(true, $result);
+
+        $result = $this->fixtureWithoutFrom->isDuring('1954-06-07');
+        $this->assertIsBool($result);
+        $this->assertEquals(false, $result);
+
+        $result = $this->fixtureWithoutEnd->isDuring('1954-06-07');
+        $this->assertIsBool($result);
+        $this->assertEquals(false, $result);
+
         // During
         $result = $this->fixture->isDuring('1960-02-23');
         $this->assertIsBool($result);
@@ -109,6 +148,19 @@ final class DateIntervalTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals(false, $result);
 
         $result = $this->fixtureWithoutEnd->isDuring('1960-02-23');
+        $this->assertIsBool($result);
+        $this->assertEquals(false, $result);
+
+        // During end
+        $result = $this->fixture->isDuring('1970-01-01');
+        $this->assertIsBool($result);
+        $this->assertEquals(true, $result);
+
+        $result = $this->fixtureWithoutFrom->isDuring('1970-01-01');
+        $this->assertIsBool($result);
+        $this->assertEquals(false, $result);
+
+        $result = $this->fixtureWithoutEnd->isDuring('1970-01-01');
         $this->assertIsBool($result);
         $this->assertEquals(false, $result);
 
@@ -141,6 +193,19 @@ final class DateIntervalTest extends \PHPUnit\Framework\TestCase
         $this->assertIsBool($result);
         $this->assertEquals(true, $result);
 
+        // During start
+        $result = $this->fixture->isAfter('1954-06-07');
+        $this->assertIsBool($result);
+        $this->assertEquals(false, $result);
+
+        $result = $this->fixtureWithoutFrom->isAfter('1954-06-07');
+        $this->assertIsBool($result);
+        $this->assertEquals(true, $result);
+
+        $result = $this->fixtureWithoutEnd->isAfter('1954-06-07');
+        $this->assertIsBool($result);
+        $this->assertEquals(false, $result);
+
         // During
         $result = $this->fixture->isAfter('1960-02-23');
         $this->assertIsBool($result);
@@ -151,6 +216,19 @@ final class DateIntervalTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals(true, $result);
 
         $result = $this->fixtureWithoutEnd->isAfter('1960-02-23');
+        $this->assertIsBool($result);
+        $this->assertEquals(false, $result);
+
+        // During end
+        $result = $this->fixture->isAfter('1970-01-01');
+        $this->assertIsBool($result);
+        $this->assertEquals(false, $result);
+
+        $result = $this->fixtureWithoutFrom->isAfter('1970-01-01');
+        $this->assertIsBool($result);
+        $this->assertEquals(false, $result);
+
+        $result = $this->fixtureWithoutEnd->isAfter('1970-01-01');
         $this->assertIsBool($result);
         $this->assertEquals(false, $result);
 
