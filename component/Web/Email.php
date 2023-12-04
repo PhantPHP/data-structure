@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Phant\DataStructure\Web;
 
 use Phant\DataStructure\Web\EmailAddressAndName;
+use Phant\DataStructure\Web\EmailAttachmentList;
 
 class Email
 {
@@ -14,7 +15,8 @@ class Email
         public string $messageHtml,
         public EmailAddressAndName $from,
         public EmailAddressAndName $to,
-        public ?EmailAddressAndName $replyTo
+        public ?EmailAddressAndName $replyTo = null,
+        public ?EmailAttachmentList $attachmentList = null
     ) {
     }
 
@@ -27,7 +29,8 @@ class Email
         string $toEmailAddress,
         string $toName,
         ?string $replyToEmailAddress = null,
-        ?string $replyToName = null
+        ?string $replyToName = null,
+        ?EmailAttachmentList $attachmentList = null
     ): self {
         return new static(
             $subject,
@@ -44,7 +47,8 @@ class Email
             $replyToEmailAddress ? EmailAddressAndName::make(
                 $replyToEmailAddress,
                 $replyToName
-            ) : null
+            ) : null,
+            $attachmentList
         );
     }
 }

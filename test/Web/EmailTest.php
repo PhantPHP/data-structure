@@ -8,12 +8,27 @@ use Phant\DataStructure\Web\{
     Email,
     EmailAddress,
     EmailAddressAndName,
+    EmailAttachment,
+    EmailAttachmentList,
 };
-
-use Phant\Error\NotCompliant;
+use Test\Web\EmailAttachmentTest;
 
 final class EmailTest extends \PHPUnit\Framework\TestCase
 {
+    protected EmailAttachmentList $attachmentList;
+
+    public function setUp(): void
+    {
+        $this->attachmentList = (new EmailAttachmentList())
+            ->add(
+                new EmailAttachment(
+                    'file.pdf',
+                    EmailAttachmentTest::Content,
+                    'application/pdf'
+                )
+            );
+    }
+
     public function testInterface(): void
     {
         $email = new Email(
@@ -31,7 +46,8 @@ final class EmailTest extends \PHPUnit\Framework\TestCase
             new EmailAddressAndName(
                 new EmailAddress('no-reply@acme.ext'),
                 'No reply'
-            )
+            ),
+            $this->attachmentList
         );
 
         $this->assertIsString($email->subject);
@@ -44,16 +60,22 @@ final class EmailTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals('<p>Message</p>', $email->messageHtml);
 
         $this->assertIsObject($email->from);
+        $this->assertInstanceOf(EmailAddressAndName::class, $email->from);
         $this->assertEquals('contact@acme.ext', (string)$email->from->emailAddress);
         $this->assertEquals('Acme', $email->from->name);
 
         $this->assertIsObject($email->to);
+        $this->assertInstanceOf(EmailAddressAndName::class, $email->to);
         $this->assertEquals('john.doe@domain.ext', (string)$email->to->emailAddress);
         $this->assertEquals('John DOE', $email->to->name);
 
         $this->assertIsObject($email->replyTo);
+        $this->assertInstanceOf(EmailAddressAndName::class, $email->replyTo);
         $this->assertEquals('no-reply@acme.ext', (string)$email->replyTo->emailAddress);
         $this->assertEquals('No reply', $email->replyTo->name);
+
+        $this->assertIsObject($email->attachmentList);
+        $this->assertInstanceOf(EmailAttachmentList::class, $email->attachmentList);
     }
 
     public function testMake(): void
@@ -67,7 +89,8 @@ final class EmailTest extends \PHPUnit\Framework\TestCase
             'john.doe@domain.ext',
             'John DOE',
             'no-reply@acme.ext',
-            'No reply'
+            'No reply',
+            $this->attachmentList
         );
 
         $this->assertInstanceOf(Email::class, $email);
@@ -82,15 +105,21 @@ final class EmailTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals('<p>Message</p>', $email->messageHtml);
 
         $this->assertIsObject($email->from);
+        $this->assertInstanceOf(EmailAddressAndName::class, $email->from);
         $this->assertEquals('contact@acme.ext', (string)$email->from->emailAddress);
         $this->assertEquals('Acme', $email->from->name);
 
         $this->assertIsObject($email->to);
+        $this->assertInstanceOf(EmailAddressAndName::class, $email->to);
         $this->assertEquals('john.doe@domain.ext', (string)$email->to->emailAddress);
         $this->assertEquals('John DOE', $email->to->name);
 
         $this->assertIsObject($email->replyTo);
+        $this->assertInstanceOf(EmailAddressAndName::class, $email->replyTo);
         $this->assertEquals('no-reply@acme.ext', (string)$email->replyTo->emailAddress);
         $this->assertEquals('No reply', $email->replyTo->name);
+
+        $this->assertIsObject($email->attachmentList);
+        $this->assertInstanceOf(EmailAttachmentList::class, $email->attachmentList);
     }
 }
