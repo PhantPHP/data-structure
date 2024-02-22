@@ -21,6 +21,7 @@ class Date
         }
 
         $time = is_string($date) ? strtotime($date) : $date;
+        $time = (new \DateTime())->setTimestamp($time)->setTime(0, 0)->getTimestamp();
 
         if ($time === false) {
             throw new NotCompliant('Date: ' . $date);
