@@ -22,7 +22,7 @@ class Date
 
         $time = is_string($date) ? strtotime($date) : $date;
 
-        if (get_class($this) == self::class) {
+        if (!is_a($this, DateTime::class)) {
             $time = (new \DateTime())->setTimestamp($time)->setTime(0, 0)->getTimestamp();
         }
 
