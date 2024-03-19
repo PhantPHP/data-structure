@@ -122,4 +122,42 @@ final class EmailTest extends \PHPUnit\Framework\TestCase
         $this->assertIsObject($email->attachmentList);
         $this->assertInstanceOf(EmailAttachmentList::class, $email->attachmentList);
     }
+
+    public function testMakeBasic(): void
+    {
+        $email = Email::make(
+            'Subject',
+            'Message',
+            '<p>Message</p>',
+            'contact@acme.ext',
+            null,
+            'john.doe@domain.ext',
+            null
+        );
+
+        $this->assertInstanceOf(Email::class, $email);
+
+        $this->assertIsString($email->subject);
+        $this->assertEquals('Subject', $email->subject);
+
+        $this->assertIsString($email->messageTxt);
+        $this->assertEquals('Message', $email->messageTxt);
+
+        $this->assertIsString($email->messageHtml);
+        $this->assertEquals('<p>Message</p>', $email->messageHtml);
+
+        $this->assertIsObject($email->from);
+        $this->assertInstanceOf(EmailAddressAndName::class, $email->from);
+        $this->assertEquals('contact@acme.ext', (string)$email->from->emailAddress);
+        $this->assertNull($email->from->name);
+
+        $this->assertIsObject($email->to);
+        $this->assertInstanceOf(EmailAddressAndName::class, $email->to);
+        $this->assertEquals('john.doe@domain.ext', (string)$email->to->emailAddress);
+        $this->assertNull($email->to->name);
+
+        $this->assertNull($email->replyTo);
+
+        $this->assertNull($email->attachmentList);
+    }
 }

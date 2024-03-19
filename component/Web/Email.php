@@ -25,9 +25,9 @@ class Email
         string $messageTxt,
         string $messageHtml,
         string $fromEmailAddress,
-        string $fromName,
+        ?string $fromName,
         string $toEmailAddress,
-        string $toName,
+        ?string $toName,
         ?string $replyToEmailAddress = null,
         ?string $replyToName = null,
         ?EmailAttachmentList $attachmentList = null
