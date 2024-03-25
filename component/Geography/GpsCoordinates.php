@@ -86,11 +86,11 @@ class GpsCoordinates
             $UTMScaleFactor = 0.9996;
             $sm_EccSquared = .00669437999013;
             $n = ($sm_a - $sm_b) / ($sm_a + $sm_b);
-            $alpha_ = (($sm_a + $sm_b) / 2.0)* (1 + (pow($n, 2.0) / 4) + (pow($n, 4.0) / 64));
+            $alpha_ = (($sm_a + $sm_b) / 2.0) * (1 + (pow($n, 2.0) / 4) + (pow($n, 4.0) / 64));
             $y_ = $y / $alpha_;
-            $beta_ = (3.0 * $n / 2.0) + (-27.0 * pow($n, 3.0) / 32.0)+ (269.0 * pow($n, 5.0) / 512.0);
-            $gamma_ = (21.0 * pow($n, 2.0) / 16.0)+ (-55.0 * pow($n, 4.0) / 32.0);
-            $delta_ = (151.0 * pow($n, 3.0) / 96.0)+ (-417.0 * pow($n, 5.0) / 128.0);
+            $beta_ = (3.0 * $n / 2.0) + (-27.0 * pow($n, 3.0) / 32.0) + (269.0 * pow($n, 5.0) / 512.0);
+            $gamma_ = (21.0 * pow($n, 2.0) / 16.0) + (-55.0 * pow($n, 4.0) / 32.0);
+            $delta_ = (151.0 * pow($n, 3.0) / 96.0) + (-417.0 * pow($n, 5.0) / 128.0);
             $epsilon_ = (1097.0 * pow($n, 4.0) / 512.0);
             $result = $y_ + ($beta_ * sin(2.0 * $y_))
                 + ($gamma_ * sin(4.0 * $y_))
@@ -145,7 +145,7 @@ class GpsCoordinates
         $x8frac = $tf / (40320.0 * $Nfpow);
         $x2poly = -1.0 - $nuf2;
         $x3poly = -1.0 - 2 * $tf2 - $nuf2;
-        $x4poly = 5.0 + 3.0 * $tf2 + 6.0 * $nuf2 - 6.0 * $tf2 * $nuf2- 3.0 * ($nuf2 *$nuf2) - 9.0 * $tf2 * ($nuf2 * $nuf2);
+        $x4poly = 5.0 + 3.0 * $tf2 + 6.0 * $nuf2 - 6.0 * $tf2 * $nuf2 - 3.0 * ($nuf2 * $nuf2) - 9.0 * $tf2 * ($nuf2 * $nuf2);
         $x5poly = 5.0 + 28.0 * $tf2 + 24.0 * $tf4 + 6.0 * $nuf2 + 8.0 * $tf2 * $nuf2;
         $x6poly = -61.0 - 90.0 * $tf2 - 45.0 * $tf4 - 107.0 * $nuf2	+ 162.0 * $tf2 * $nuf2;
         $x7poly = -61.0 - 662.0 * $tf2 - 1320.0 * $tf4 - 720.0 * ($tf4 * $tf2);

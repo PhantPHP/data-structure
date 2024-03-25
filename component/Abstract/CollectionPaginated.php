@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace Phant\DataStructure\Abstract;
 
-use Phant\Error\NotCompliant;
-
 abstract class CollectionPaginated extends Collection
 {
     private ?int $itemPage;
