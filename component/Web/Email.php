@@ -14,7 +14,7 @@ class Email
         public string $messageTxt,
         public string $messageHtml,
         public EmailAddressAndName $from,
-        public EmailAddressAndName $to,
+        public EmailAddressAndNameList $to,
         public ?EmailAddressAndName $replyTo = null,
         public ?EmailAttachmentList $attachmentList = null
     ) {
@@ -40,9 +40,11 @@ class Email
                 $fromEmailAddress,
                 $fromName
             ),
-            EmailAddressAndName::make(
-                $toEmailAddress,
-                $toName
+            (new EmailAddressAndNameList())->add(
+                EmailAddressAndName::make(
+                    $toEmailAddress,
+                    $toName
+                )
             ),
             $replyToEmailAddress ? EmailAddressAndName::make(
                 $replyToEmailAddress,

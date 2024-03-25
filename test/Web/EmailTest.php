@@ -8,6 +8,7 @@ use Phant\DataStructure\Web\{
     Email,
     EmailAddress,
     EmailAddressAndName,
+    EmailAddressAndNameList,
     EmailAttachment,
     EmailAttachmentList,
 };
@@ -39,9 +40,11 @@ final class EmailTest extends \PHPUnit\Framework\TestCase
                 new EmailAddress('contact@acme.ext'),
                 'Acme'
             ),
-            new EmailAddressAndName(
-                new EmailAddress('john.doe@domain.ext'),
-                'John DOE'
+            (new EmailAddressAndNameList())->add(
+                new EmailAddressAndName(
+                    new EmailAddress('john.doe@domain.ext'),
+                    'John DOE'
+                )
             ),
             new EmailAddressAndName(
                 new EmailAddress('no-reply@acme.ext'),
@@ -65,9 +68,10 @@ final class EmailTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals('Acme', $email->from->name);
 
         $this->assertIsObject($email->to);
-        $this->assertInstanceOf(EmailAddressAndName::class, $email->to);
-        $this->assertEquals('john.doe@domain.ext', (string)$email->to->emailAddress);
-        $this->assertEquals('John DOE', $email->to->name);
+        $this->assertInstanceOf(EmailAddressAndNameList::class, $email->to);
+        $to = $email->to->itemsIterator()->current();
+        $this->assertEquals('john.doe@domain.ext', (string)$to->emailAddress);
+        $this->assertEquals('John DOE', $to->name);
 
         $this->assertIsObject($email->replyTo);
         $this->assertInstanceOf(EmailAddressAndName::class, $email->replyTo);
@@ -110,9 +114,10 @@ final class EmailTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals('Acme', $email->from->name);
 
         $this->assertIsObject($email->to);
-        $this->assertInstanceOf(EmailAddressAndName::class, $email->to);
-        $this->assertEquals('john.doe@domain.ext', (string)$email->to->emailAddress);
-        $this->assertEquals('John DOE', $email->to->name);
+        $this->assertInstanceOf(EmailAddressAndNameList::class, $email->to);
+        $to = $email->to->itemsIterator()->current();
+        $this->assertEquals('john.doe@domain.ext', (string)$to->emailAddress);
+        $this->assertEquals('John DOE', $to->name);
 
         $this->assertIsObject($email->replyTo);
         $this->assertInstanceOf(EmailAddressAndName::class, $email->replyTo);
@@ -152,9 +157,10 @@ final class EmailTest extends \PHPUnit\Framework\TestCase
         $this->assertNull($email->from->name);
 
         $this->assertIsObject($email->to);
-        $this->assertInstanceOf(EmailAddressAndName::class, $email->to);
-        $this->assertEquals('john.doe@domain.ext', (string)$email->to->emailAddress);
-        $this->assertNull($email->to->name);
+        $this->assertInstanceOf(EmailAddressAndNameList::class, $email->to);
+        $to = $email->to->itemsIterator()->current();
+        $this->assertEquals('john.doe@domain.ext', (string)$to->emailAddress);
+        $this->assertNull($to->name);
 
         $this->assertNull($email->replyTo);
 
