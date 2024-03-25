@@ -25,11 +25,11 @@ class Price
         $price = number_format($this->amount, 2, ',', ' ');
 
         if ($this->currency) {
-            $price.= ' ' . $this->currency->getLabel();
+            $price .= ' ' . $this->currency->getLabel();
         }
 
         if ($this->unit) {
-            $price.= '/' . $this->unit;
+            $price .= '/' . $this->unit;
         }
 
         if ($espaceInsecable) {

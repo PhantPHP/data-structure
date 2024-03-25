@@ -15,7 +15,7 @@ abstract class Collection
 
     protected function addItem(mixed $item): self
     {
-        if (array_search($item, $this->items) == false) {
+        if (array_search($item, $this->items) === false) {
             $this->items[] = $item;
         }
 

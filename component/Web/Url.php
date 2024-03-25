@@ -197,35 +197,35 @@ class Url extends \Phant\DataStructure\Abstract\Value\Varchar
     {
         $urlString = '';
 
-        $urlString.= $url->getScheme();
+        $urlString .= $url->getScheme();
 
-        $urlString.= '://';
+        $urlString .= '://';
 
         if ($url->getUser()) {
-            $urlString.= $url->getUser();
+            $urlString .= $url->getUser();
             if ($url->getPass()) {
-                $urlString.= ':';
-                $urlString.= $url->getPass();
+                $urlString .= ':';
+                $urlString .= $url->getPass();
             }
-            $urlString.= '@';
+            $urlString .= '@';
         }
 
-        $urlString.= $url->getHost();
+        $urlString .= $url->getHost();
 
         if ($url->getPort()) {
-            $urlString.= ':' . $url->getPort();
+            $urlString .= ':' . $url->getPort();
         }
 
         if ($url->getPath()) {
-            $urlString.= $url->getPath();
+            $urlString .= $url->getPath();
         }
 
         if ($url->getQuery()) {
-            $urlString.= '?' . http_build_query($url->getQuery());
+            $urlString .= '?' . http_build_query($url->getQuery());
         }
 
         if ($url->getFragment()) {
-            $urlString.= '#' . $url->getFragment();
+            $urlString .= '#' . $url->getFragment();
         }
 
         return new self($urlString);
