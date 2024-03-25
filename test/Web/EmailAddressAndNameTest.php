@@ -7,8 +7,6 @@ namespace Test\Web;
 use Phant\DataStructure\Web\EmailAddressAndName;
 use Phant\DataStructure\Web\EmailAddress;
 
-use Phant\Error\NotCompliant;
-
 final class EmailAddressAndNameTest extends \PHPUnit\Framework\TestCase
 {
     public function testInterface(): void
