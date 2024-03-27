@@ -46,6 +46,18 @@ final class EmailTest extends \PHPUnit\Framework\TestCase
                     'John DOE'
                 )
             ),
+            (new EmailAddressAndNameList())->add(
+                new EmailAddressAndName(
+                    new EmailAddress('john.doe@domain.ext'),
+                    'John DOE'
+                )
+            ),
+            (new EmailAddressAndNameList())->add(
+                new EmailAddressAndName(
+                    new EmailAddress('john.doe@domain.ext'),
+                    'John DOE'
+                )
+            ),
             new EmailAddressAndName(
                 new EmailAddress('no-reply@acme.ext'),
                 'No reply'
@@ -72,6 +84,18 @@ final class EmailTest extends \PHPUnit\Framework\TestCase
         $to = $email->to->itemsIterator()->current();
         $this->assertEquals('john.doe@domain.ext', (string)$to->emailAddress);
         $this->assertEquals('John DOE', $to->name);
+
+        $this->assertIsObject($email->cc);
+        $this->assertInstanceOf(EmailAddressAndNameList::class, $email->cc);
+        $cc = $email->cc->itemsIterator()->current();
+        $this->assertEquals('john.doe@domain.ext', (string)$cc->emailAddress);
+        $this->assertEquals('John DOE', $cc->name);
+
+        $this->assertIsObject($email->bcc);
+        $this->assertInstanceOf(EmailAddressAndNameList::class, $email->bcc);
+        $bcc = $email->bcc->itemsIterator()->current();
+        $this->assertEquals('john.doe@domain.ext', (string)$bcc->emailAddress);
+        $this->assertEquals('John DOE', $bcc->name);
 
         $this->assertIsObject($email->replyTo);
         $this->assertInstanceOf(EmailAddressAndName::class, $email->replyTo);
