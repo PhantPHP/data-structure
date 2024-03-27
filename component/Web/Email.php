@@ -15,6 +15,8 @@ class Email
         public string $messageHtml,
         public EmailAddressAndName $from,
         public EmailAddressAndNameList $to,
+        public ?EmailAddressAndNameList $cc,
+        public ?EmailAddressAndNameList $bcc,
         public ?EmailAddressAndName $replyTo = null,
         public ?EmailAttachmentList $attachmentList = null
     ) {
@@ -46,6 +48,8 @@ class Email
                     $toName
                 )
             ),
+            null,
+            null,
             $replyToEmailAddress ? EmailAddressAndName::make(
                 $replyToEmailAddress,
                 $replyToName
