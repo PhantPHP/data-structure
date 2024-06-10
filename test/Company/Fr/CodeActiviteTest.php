@@ -12,7 +12,7 @@ final class CodeActiviteTest extends \PHPUnit\Framework\TestCase
 {
     public function testInterface(): void
     {
-        $codeActivite = new CodeActivite('62.01Z');
+        $codeActivite = new CodeActivite('6201Z');
 
         $this->assertEquals('62.01Z', (string)$codeActivite);
 
