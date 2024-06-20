@@ -22,6 +22,9 @@ class DateTimeInterval
         if (!$from && !$to) {
             throw new NotCompliant('Date time intervals: from ' . $from . ' to' . $to);
         }
+        if ($from && $to && $from->time > $to->time) {
+            throw new NotCompliant('From can be after To : ' . $from . '/' . $to);
+        }
 
         $this->calculateDuration();
     }
