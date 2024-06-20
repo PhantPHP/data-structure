@@ -252,4 +252,14 @@ final class DateTimeIntervalTest extends \PHPUnit\Framework\TestCase
 
         new DateTimeInterval(null, null);
     }
+
+    public function testNotCompliantDateInvert(): void
+    {
+        $this->expectException(NotCompliant::class);
+
+        DateTimeInterval::make(
+            '1970-01-01 00:00:00',
+            '1954-06-07 12:34:56'
+        );
+    }
 }
