@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Test\Time;
 
 use Phant\DataStructure\Time\DateInterval;
+use Phant\DataStructure\Time\Duration;
 
 use Phant\Error\NotCompliant;
 
@@ -39,7 +40,10 @@ final class DateIntervalTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals('1970-01-01', (string)$this->fixture->to);
 
         $this->assertIsObject($this->fixture->duration);
-        $this->assertEquals('15 years, 6 months, 29 days, 12 h', (string)$this->fixture->duration);
+        $this->assertInstanceOf(Duration::class, $this->fixture->duration);
+        $this->assertEquals(new Duration(
+            strtotime('1970-01-01 23:59:59') - strtotime('1954-06-07 00:00:00')
+        ), $this->fixture->duration);
     }
 
     public function testIsBefore(): void

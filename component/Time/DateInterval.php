@@ -85,7 +85,7 @@ class DateInterval
 
     private function calculateDuration(): void
     {
-        $this->duration = ($this->from && $this->to) ? new Duration($this->to->time - $this->from->time) : null;
+        $this->duration = ($this->from && $this->to) ? new Duration(($this->to->time + Duration::DAY - 1) - $this->from->time) : null;
     }
 
     public static function make(
