@@ -18,9 +18,6 @@ final class CodeCommuneTest extends \PHPUnit\Framework\TestCase
 
         $this->assertIsString($codeCommune->value);
         $this->assertEquals('97421', $codeCommune->value);
-
-        $this->assertIsObject($codeCommune->getNumeroDepartement());
-        $this->assertEquals('974', (string)$codeCommune->getNumeroDepartement());
     }
 
     public function testNotCompliant(): void
@@ -28,5 +25,16 @@ final class CodeCommuneTest extends \PHPUnit\Framework\TestCase
         $this->expectException(NotCompliant::class);
 
         new CodeCommune('690I');
+    }
+
+    public function testGetNumeroDepartement(): void
+    {
+        $codeCommune = new CodeCommune('69001');
+        $this->assertIsObject($codeCommune->getNumeroDepartement());
+        $this->assertEquals('69', (string)$codeCommune->getNumeroDepartement());
+
+        $codeCommune = new CodeCommune('97421');
+        $this->assertIsObject($codeCommune->getNumeroDepartement());
+        $this->assertEquals('974', (string)$codeCommune->getNumeroDepartement());
     }
 }
