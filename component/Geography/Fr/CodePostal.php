@@ -17,4 +17,20 @@ class CodePostal extends \Phant\DataStructure\Abstract\Value\Varchar
 
         parent::__construct($code);
     }
+
+    public function getNumeroDepartement(): NumeroDepartement
+    {
+        $numeroDepartement = substr($this->value, 0, 2);
+        $numeroDepartement = match($numeroDepartement) {
+            '20' => match (substr($this->value, 0, 3)) {
+                '201' => '2A',
+                '202' => '2B',
+            },
+            '97' => substr($this->value, 0, 3),
+            '98' => substr($this->value, 0, 3),
+            default => $numeroDepartement,
+        };
+
+        return new NumeroDepartement($numeroDepartement);
+    }
 }
