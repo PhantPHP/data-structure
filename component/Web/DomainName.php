@@ -6,7 +6,7 @@ namespace Phant\DataStructure\Web;
 
 class DomainName extends \Phant\DataStructure\Abstract\Value\Varchar
 {
-    public const PATTERN = '/^([a-zA-Z0-9][a-zA-Z0-9-\.]{1,61}[a-zA-Z0-9]\.[a-zA-Z]{2,}|localhost)$/';
+    public const PATTERN = '/^[a-zA-Z0-9][a-zA-Z0-9-\.]{1,61}[a-zA-Z0-9]\.[a-zA-Z]{2,}|localhost$/';
 
     public function __construct(string $domainName)
     {

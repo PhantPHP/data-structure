@@ -6,7 +6,7 @@ namespace Phant\DataStructure\Geography\Fr;
 
 class CodePostal extends \Phant\DataStructure\Abstract\Value\Varchar
 {
-    public const PATTERN = '/^(\d{5})$/';
+    public const PATTERN = '/^\d{5}$/';
 
     public function __construct(string $code)
     {

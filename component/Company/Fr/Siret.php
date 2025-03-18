@@ -9,7 +9,7 @@ use Phant\Error\NotCompliant;
 
 class Siret extends \Phant\DataStructure\Abstract\Value\Varchar
 {
-    public const PATTERN = '/^(\d{14})$/';
+    public const PATTERN = '/^\d{14}$/';
     public const SIREN_LA_POSTE = '356000000';
 
     public function __construct(string $siret, bool $check = true)

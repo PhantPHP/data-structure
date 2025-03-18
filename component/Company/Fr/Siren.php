@@ -8,7 +8,7 @@ use Phant\Error\NotCompliant;
 
 class Siren extends \Phant\DataStructure\Abstract\Value\Varchar
 {
-    public const PATTERN = '/^(\d{9})$/';
+    public const PATTERN = '/^\d{9}$/';
 
     public function __construct(string $siren, bool $check = true)
     {
