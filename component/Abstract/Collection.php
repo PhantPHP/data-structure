@@ -37,7 +37,7 @@ abstract class Collection
         return array_search($item, $this->items) !== false;
     }
 
-    final public function itemsIterator(): \Generator
+    final public function iterate(): \Generator
     {
         foreach ($this->items as $item) {
             yield $item;

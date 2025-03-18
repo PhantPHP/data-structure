@@ -56,7 +56,7 @@ final class CollectionPaginatedTest extends \PHPUnit\Framework\TestCase
 
         $this->assertIsObject($collection->getByKey(0));
 
-        foreach ($collection->itemsIterator() as $item) {
+        foreach ($collection->iterate() as $item) {
             $this->assertIsObject($item);
         }
 
