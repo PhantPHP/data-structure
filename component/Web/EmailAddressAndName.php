@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace Phant\DataStructure\Web;
 
-use Phant\Error\NotCompliant;
-
 class EmailAddressAndName
 {
     public function __construct(

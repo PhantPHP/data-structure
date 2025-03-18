@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace Phant\DataStructure\Time;
 
-use Phant\Error\NotCompliant;
-
 class Duration
 {
     // Duration in secondes

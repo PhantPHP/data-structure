@@ -4,10 +4,8 @@ declare(strict_types=1);
 
 namespace Phant\DataStructure\Time;
 
-use Phant\DataStructure\Time\{
-    DateTime,
-    Duration,
-};
+use Phant\DataStructure\Time\DateTime;
+use Phant\DataStructure\Time\Duration;
 use Phant\Error\NotCompliant;
 
 class DateTimeInterval

@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace Phant\DataStructure\Web;
 
-use Phant\Error\NotCompliant;
-
 class Url extends \Phant\DataStructure\Abstract\Value\Varchar
 {
     public const PATTERN = '%\b(([\w-]+://?|www[.])[^\s()<>]+(?:\([\w\d]+\)|([^[:punct:]\s]|/)))%s';

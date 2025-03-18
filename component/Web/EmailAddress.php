@@ -4,10 +4,8 @@ declare(strict_types=1);
 
 namespace Phant\DataStructure\Web;
 
-use Phant\DataStructure\Web\{
-    DomainName,
-    UserName,
-};
+use Phant\DataStructure\Web\DomainName;
+use Phant\DataStructure\Web\UserName;
 
 class EmailAddress extends \Phant\DataStructure\Abstract\Value\Varchar
 {

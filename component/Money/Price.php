@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace Phant\DataStructure\Money;
 
-use Phant\Error\NotCompliant;
-
 class Price
 {
     public function __construct(

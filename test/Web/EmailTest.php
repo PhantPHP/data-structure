@@ -4,14 +4,12 @@ declare(strict_types=1);
 
 namespace Test\Web;
 
-use Phant\DataStructure\Web\{
-    Email,
-    EmailAddress,
-    EmailAddressAndName,
-    EmailAddressAndNameList,
-    EmailAttachment,
-    EmailAttachmentList,
-};
+use Phant\DataStructure\Web\Email;
+use Phant\DataStructure\Web\EmailAddress;
+use Phant\DataStructure\Web\EmailAddressAndName;
+use Phant\DataStructure\Web\EmailAddressAndNameList;
+use Phant\DataStructure\Web\EmailAttachment;
+use Phant\DataStructure\Web\EmailAttachmentList;
 use Test\Web\EmailAttachmentTest;
 
 final class EmailTest extends \PHPUnit\Framework\TestCase
