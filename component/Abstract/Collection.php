@@ -6,11 +6,10 @@ namespace Phant\DataStructure\Abstract;
 
 abstract class Collection
 {
-    protected array $items;
+    protected array $items = [];
 
     public function __construct(
     ) {
-        $this->items = [];
     }
 
     protected function addItem(

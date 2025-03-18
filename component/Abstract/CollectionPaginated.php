@@ -7,22 +7,14 @@ namespace Phant\DataStructure\Abstract;
 abstract class CollectionPaginated extends Collection
 {
     private ?int $itemPage;
-    private ?int $itemByPage;
-    private ?int $itemTotal;
-
-    private ?int $pageCurrent;
     private ?int $pageTotal;
 
     public function __construct(
-        ?int $pageCurrent = null,
-        ?int $itemByPage = null,
-        ?int $itemTotal = null
+        protected readonly ?int $pageCurrent = null,
+        protected readonly ?int $itemByPage = null,
+        protected readonly ?int $itemTotal = null
     ) {
-        $this->itemByPage = $itemByPage;
-        $this->itemTotal = $itemTotal;
         $this->itemPage = null;
-
-        $this->pageCurrent = $pageCurrent;
         $this->pageTotal = null;
 
         parent::__construct();
