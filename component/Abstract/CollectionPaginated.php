@@ -53,7 +53,7 @@ abstract class CollectionPaginated extends Collection
         return $this->pageTotal;
     }
 
-    protected function addItem(mixed $item): self
+    protected function addItem(mixed $item): static
     {
         parent::addItem($item);
 
@@ -62,7 +62,7 @@ abstract class CollectionPaginated extends Collection
         return $this;
     }
 
-    protected function removeItem(mixed $item): self
+    protected function removeItem(mixed $item): static
     {
         parent::removeItem($item);
 

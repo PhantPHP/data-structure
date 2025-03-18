@@ -27,7 +27,8 @@ class Siren extends \Phant\DataStructure\Abstract\Value\Varchar
         $flag = 0;
 
         for ($i = strlen($value) - 1; $i >= 0; $i--) {
-            $add = $flag++ & 1 ? $value[$i] * 2 : $value[$i];
+            $number = (int) $value[$i];
+            $add = $flag++ & 1 ? $number * 2 : $number;
             $sum += $add > 9 ? $add - 9 : $add;
         }
 
