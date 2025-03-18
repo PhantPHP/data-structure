@@ -8,7 +8,6 @@ use Phant\DataStructure\Money\{
     Currency,
     Price,
 };
-
 use Phant\Error\NotCompliant;
 
 final class PriceTest extends \PHPUnit\Framework\TestCase

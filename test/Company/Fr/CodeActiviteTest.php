@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Test\Company\Fr;
 
 use Phant\DataStructure\Company\Fr\CodeActivite;
-
 use Phant\Error\NotCompliant;
 
 final class CodeActiviteTest extends \PHPUnit\Framework\TestCase

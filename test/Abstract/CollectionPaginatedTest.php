@@ -6,7 +6,6 @@ namespace Test\Abstract;
 
 use Test\Abstract\Fixture\CollectionPaginated;
 use Test\Abstract\Fixture\Value\Varchar as Value;
-
 use Phant\Error\NotCompliant;
 
 final class CollectionPaginatedTest extends \PHPUnit\Framework\TestCase

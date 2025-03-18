@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Test\Company\Fr;
 
 use Phant\DataStructure\Company\Fr\Siret;
-
 use Phant\Error\NotCompliant;
 
 final class SiretTest extends \PHPUnit\Framework\TestCase

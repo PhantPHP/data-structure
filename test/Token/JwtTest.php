@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Test\Token;
 
 use Phant\DataStructure\Token\Jwt;
-
 use Phant\Error\NotCompliant;
 
 final class JwtTest extends \PHPUnit\Framework\TestCase

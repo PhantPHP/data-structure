@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Phant\DataStructure\Id;
 
 use Phant\Error\NotCompliant;
-
 use Ramsey\Uuid\Uuid as UuidBuilder;
 use Ramsey\Uuid\Exception\InvalidUuidStringException;
 

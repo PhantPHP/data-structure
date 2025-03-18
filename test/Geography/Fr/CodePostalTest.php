@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Test\Geography\Fr;
 
 use Phant\DataStructure\Geography\Fr\CodePostal;
-
 use Phant\Error\NotCompliant;
 
 final class CodePostalTest extends \PHPUnit\Framework\TestCase

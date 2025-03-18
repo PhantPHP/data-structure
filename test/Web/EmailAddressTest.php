@@ -9,7 +9,6 @@ use Phant\DataStructure\Web\{
     EmailAddress,
     UserName,
 };
-
 use Phant\Error\NotCompliant;
 
 final class EmailAddressTest extends \PHPUnit\Framework\TestCase

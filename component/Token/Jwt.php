@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Phant\DataStructure\Token;
 
 use Phant\Error\NotCompliant;
-
 use Firebase\JWT\JWT as FirebaseJwt;
 use Firebase\JWT\Key as FirebaseKey;
 use Firebase\JWT\ExpiredException;

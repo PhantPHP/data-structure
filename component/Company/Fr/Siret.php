@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Phant\DataStructure\Company\Fr;
 
 use Phant\DataStructure\Company\Fr\Siren;
-
 use Phant\Error\NotCompliant;
 
 class Siret extends \Phant\DataStructure\Abstract\Value\Varchar

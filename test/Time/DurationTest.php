@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Test\Time;
 
 use Phant\DataStructure\Time\Duration;
-
 use Phant\Error\NotCompliant;
 
 final class DurationTest extends \PHPUnit\Framework\TestCase

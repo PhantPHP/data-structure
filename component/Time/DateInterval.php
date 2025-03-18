@@ -8,7 +8,6 @@ use Phant\DataStructure\Time\{
     Date,
     Duration,
 };
-
 use Phant\Error\NotCompliant;
 
 class DateInterval

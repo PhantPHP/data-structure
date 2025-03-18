@@ -6,7 +6,6 @@ namespace Test\Time;
 
 use Phant\DataStructure\Time\DateInterval;
 use Phant\DataStructure\Time\Duration;
-
 use Phant\Error\NotCompliant;
 
 final class DateIntervalTest extends \PHPUnit\Framework\TestCase

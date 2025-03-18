@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Test\Id;
 
 use Phant\DataStructure\Id\Uuid;
-
 use Phant\Error\NotCompliant;
 
 final class UuidTest extends \PHPUnit\Framework\TestCase

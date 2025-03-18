@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Test\Abstract\Value;
 
 use Test\Abstract\Fixture\Value\Varchar;
-
 use Phant\Error\NotCompliant;
 
 final class VarcharTest extends \PHPUnit\Framework\TestCase

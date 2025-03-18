@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Test\Web;
 
 use Phant\DataStructure\Web\DomainName;
-
 use Phant\Error\NotCompliant;
 
 final class DomainNameTest extends \PHPUnit\Framework\TestCase
