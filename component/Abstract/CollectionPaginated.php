@@ -28,33 +28,34 @@ abstract class CollectionPaginated extends Collection
         parent::__construct();
     }
 
-    public function getItemByPage(): ?int
-    {
+    public function getItemByPage(
+    ): ?int {
         return $this->itemByPage;
     }
 
-    public function getItemTotal(): ?int
-    {
+    public function getItemTotal(
+    ): ?int {
         return $this->itemTotal;
     }
 
-    public function getItemPage(): ?int
-    {
+    public function getItemPage(
+    ): ?int {
         return $this->itemPage;
     }
 
-    public function getPageCurrent(): ?int
-    {
+    public function getPageCurrent(
+    ): ?int {
         return $this->pageCurrent;
     }
 
-    public function getPageTotal(): ?int
-    {
+    public function getPageTotal(
+    ): ?int {
         return $this->pageTotal;
     }
 
-    protected function addItem(mixed $item): static
-    {
+    protected function addItem(
+        mixed $item
+    ): static {
         parent::addItem($item);
 
         $this->paginationCalculation();
@@ -62,8 +63,9 @@ abstract class CollectionPaginated extends Collection
         return $this;
     }
 
-    protected function removeItem(mixed $item): static
-    {
+    protected function removeItem(
+        mixed $item
+    ): static {
         parent::removeItem($item);
 
         $this->paginationCalculation();
@@ -71,19 +73,19 @@ abstract class CollectionPaginated extends Collection
         return $this;
     }
 
-    protected function paginationCalculation(): void
-    {
+    protected function paginationCalculation(
+    ): void {
         $this->itemPageCalculation();
         $this->pageTotalCalculation();
     }
 
-    private function itemPageCalculation(): void
-    {
+    private function itemPageCalculation(
+    ): void {
         $this->itemPage = $this->getNbItems();
     }
 
-    private function pageTotalCalculation(): void
-    {
+    private function pageTotalCalculation(
+    ): void {
         $this->pageTotal = 0;
 
         if ($this->itemTotal && $this->itemByPage) {

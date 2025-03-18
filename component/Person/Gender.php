@@ -10,8 +10,8 @@ enum Gender: string
 
     case Male = 'male';
 
-    public function getLabel(): string
-    {
+    public function getLabel(
+    ): string {
         return match ($this) {
             self::Female => 'Female',
             self::Male => 'Male',

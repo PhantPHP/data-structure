@@ -21,13 +21,14 @@ class Grade
         }
     }
 
-    public function __toString(): string
-    {
+    public function __toString(
+    ): string {
         return $this->position . '/' . $this->scale;
     }
 
-    public static function make(string $grade): self
-    {
+    public static function make(
+        string $grade
+    ): self {
         $parts = explode('/', $grade);
 
         return new static(

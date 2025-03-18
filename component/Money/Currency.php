@@ -16,8 +16,8 @@ enum Currency: string
     case USD = 'USD';
     case ZSD = 'ZSD';
 
-    public function getLabel(): string
-    {
+    public function getLabel(
+    ): string {
         return match ($this) {
             self::AUD => 'AUD',
             self::CAD => 'CAD',

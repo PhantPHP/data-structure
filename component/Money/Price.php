@@ -15,13 +15,9 @@ class Price
     ) {
     }
 
-    public function __toString(): string
-    {
-        return $this->getFormatted();
-    }
-
-    public function getFormatted(bool $espaceInsecable = true): string
-    {
+    public function getFormatted(
+        bool $espaceInsecable = true
+    ): string {
         $price = number_format($this->amount, 2, ',', ' ');
 
         if ($this->currency) {
@@ -37,5 +33,10 @@ class Price
         }
 
         return $price;
+    }
+
+    public function __toString(
+    ): string {
+        return $this->getFormatted();
     }
 }

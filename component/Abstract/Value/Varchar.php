@@ -18,13 +18,13 @@ abstract class Varchar
         }
     }
 
-    public function __toString(): string
-    {
+    public function __toString(
+    ): string {
         return $this->value;
     }
 
-    public function addNonBreakingSpace(): string
-    {
+    public function addNonBreakingSpace(
+    ): string {
         return str_replace(' ', "\xC2\xA0", $this->value);
     }
 }

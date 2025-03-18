@@ -12,8 +12,9 @@ class Uuid extends \Phant\DataStructure\Abstract\Value\Varchar
 {
     public const PATTERN = '/[0-9A-Fa-f]{8}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{12}/';
 
-    final public function __construct(string $uuid)
-    {
+    final public function __construct(
+        string $uuid
+    ) {
         try {
             $uuid = UuidBuilder::fromString($uuid)->ToString();
         } catch (InvalidUuidStringException $e) {
@@ -23,8 +24,8 @@ class Uuid extends \Phant\DataStructure\Abstract\Value\Varchar
         parent::__construct($uuid);
     }
 
-    public static function generate(): self
-    {
+    public static function generate(
+    ): self {
         return new static(UuidBuilder::Uuid4()->ToString());
     }
 }
