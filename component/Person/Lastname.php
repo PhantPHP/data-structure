@@ -8,8 +8,9 @@ use Phant\Error\NotCompliant;
 
 class Lastname extends \Phant\DataStructure\Abstract\Value\Varchar
 {
-    public function __construct(string $lastname)
-    {
+    public function __construct(
+        string $lastname
+    ) {
         $lastname = trim($lastname);
         $lastname = preg_replace('/\s+/', ' ', $lastname);
 

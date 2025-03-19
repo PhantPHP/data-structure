@@ -4,12 +4,8 @@ declare(strict_types=1);
 
 namespace Test\Money;
 
-use Phant\DataStructure\Money\{
-    Currency,
-    Price,
-};
-
-use Phant\Error\NotCompliant;
+use Phant\DataStructure\Money\Currency;
+use Phant\DataStructure\Money\Price;
 
 final class PriceTest extends \PHPUnit\Framework\TestCase
 {

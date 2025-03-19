@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Test\Number;
 
 use Phant\DataStructure\Number\Grade;
-
 use Phant\Error\NotCompliant;
 
 final class GradeTest extends \PHPUnit\Framework\TestCase

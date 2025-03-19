@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Test\Web;
 
 use Phant\DataStructure\Web\UserName;
-
 use Phant\Error\NotCompliant;
 
 final class UserNameTest extends \PHPUnit\Framework\TestCase

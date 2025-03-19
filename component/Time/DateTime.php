@@ -19,8 +19,8 @@ class DateTime extends \Phant\DataStructure\Time\Date
         parent::__construct($date, $format);
     }
 
-    public function getUtc(): string
-    {
+    public function getUtc(
+    ): string {
         return gmdate('Y-m-d\TH:i:s\Z', $this->time + date('Z', $this->time));
     }
 }

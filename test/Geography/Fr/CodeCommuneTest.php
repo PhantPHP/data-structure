@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Test\Geography\Fr;
 
 use Phant\DataStructure\Geography\Fr\CodeCommune;
-
 use Phant\Error\NotCompliant;
 
 final class CodeCommuneTest extends \PHPUnit\Framework\TestCase

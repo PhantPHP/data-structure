@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace Phant\DataStructure\Time;
 
-use Phant\Error\NotCompliant;
-
 class Duration
 {
     // Duration in secondes
@@ -36,13 +34,13 @@ class Duration
         $this->label = $this->buildLabel();
     }
 
-    public function __toString()
-    {
+    public function __toString(
+    ) {
         return $this->label;
     }
 
-    protected function buildLabel(): string
-    {
+    protected function buildLabel(
+    ): string {
         $remainingTime = $this->value;
 
         $labels = [];
@@ -97,28 +95,28 @@ class Duration
         return implode(', ', $labels);
     }
 
-    public function inMinutes(): int
-    {
+    public function inMinutes(
+    ): int {
         return (int)round($this->value / self::MINUTE, 0);
     }
 
-    public function inHours(): int
-    {
+    public function inHours(
+    ): int {
         return (int)round($this->value / self::HOUR, 0);
     }
 
-    public function inDays(): int
-    {
+    public function inDays(
+    ): int {
         return (int)round($this->value / self::DAY, 0);
     }
 
-    public function inMonths(): int
-    {
+    public function inMonths(
+    ): int {
         return (int)round($this->value / self::MONTH, 0);
     }
 
-    public function inYears(): int
-    {
+    public function inYears(
+    ): int {
         return (int)round($this->value / self::YEAR, 0);
     }
 }

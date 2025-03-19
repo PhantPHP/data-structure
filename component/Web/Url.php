@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace Phant\DataStructure\Web;
 
-use Phant\Error\NotCompliant;
-
 class Url extends \Phant\DataStructure\Abstract\Value\Varchar
 {
     public const PATTERN = '%\b(([\w-]+://?|www[.])[^\s()<>]+(?:\([\w\d]+\)|([^[:punct:]\s]|/)))%s';
@@ -19,20 +17,22 @@ class Url extends \Phant\DataStructure\Abstract\Value\Varchar
     protected ?array $query;
     protected ?string $fragment;
 
-    public function __construct($url)
-    {
+    public function __construct(
+        string $url
+    ) {
         parent::__construct($url);
 
         $this->decompose();
     }
 
-    public function getScheme(): ?string
-    {
+    public function getScheme(
+    ): ?string {
         return $this->scheme;
     }
 
-    public function setScheme(?string $scheme): self
-    {
+    public function setScheme(
+        ?string $scheme
+    ): self {
         $url = clone $this;
 
         $scheme = trim($scheme);
@@ -42,13 +42,14 @@ class Url extends \Phant\DataStructure\Abstract\Value\Varchar
         return self::compose($url);
     }
 
-    public function getUser(): ?string
-    {
+    public function getUser(
+    ): ?string {
         return $this->user;
     }
 
-    public function setUser(?string $user): self
-    {
+    public function setUser(
+        ?string $user
+    ): self {
         $url = clone $this;
 
         $user = trim($user);
@@ -58,13 +59,14 @@ class Url extends \Phant\DataStructure\Abstract\Value\Varchar
         return self::compose($url);
     }
 
-    public function getPass(): ?string
-    {
+    public function getPass(
+    ): ?string {
         return $this->pass;
     }
 
-    public function setPass(?string $pass): self
-    {
+    public function setPass(
+        ?string $pass
+    ): self {
         $url = clone $this;
 
         $pass = trim($pass);
@@ -74,13 +76,14 @@ class Url extends \Phant\DataStructure\Abstract\Value\Varchar
         return self::compose($url);
     }
 
-    public function getHost(): ?string
-    {
+    public function getHost(
+    ): ?string {
         return $this->host;
     }
 
-    public function setHost(?string $host): self
-    {
+    public function setHost(
+        ?string $host
+    ): self {
         $url = clone $this;
 
         $host = trim($host);
@@ -90,13 +93,14 @@ class Url extends \Phant\DataStructure\Abstract\Value\Varchar
         return self::compose($url);
     }
 
-    public function getPort(): ?int
-    {
+    public function getPort(
+    ): ?int {
         return $this->port;
     }
 
-    public function setPort(?int $port): self
-    {
+    public function setPort(
+        ?int $port
+    ): self {
         $url = clone $this;
 
         $url->port = $port;
@@ -104,13 +108,14 @@ class Url extends \Phant\DataStructure\Abstract\Value\Varchar
         return self::compose($url);
     }
 
-    public function getPath(): ?string
-    {
+    public function getPath(
+    ): ?string {
         return $this->path;
     }
 
-    public function setPath(?string $path): self
-    {
+    public function setPath(
+        ?string $path
+    ): self {
         $url = clone $this;
 
         $path = trim($path);
@@ -124,13 +129,15 @@ class Url extends \Phant\DataStructure\Abstract\Value\Varchar
         return self::compose($url);
     }
 
-    public function getQuery(): ?array
-    {
+    public function getQuery(
+    ): ?array {
         return $this->query;
     }
 
-    public function addQueryParameter(string $key, string $value): self
-    {
+    public function addQueryParameter(
+        string $key,
+        string $value
+    ): self {
         $url = clone $this;
 
         $key = trim($key);
@@ -144,8 +151,9 @@ class Url extends \Phant\DataStructure\Abstract\Value\Varchar
         return self::compose($url);
     }
 
-    public function removeQueryParameter(string $key): self
-    {
+    public function removeQueryParameter(
+        string $key
+    ): self {
         $url = clone $this;
 
         $key = trim($key);
@@ -159,13 +167,14 @@ class Url extends \Phant\DataStructure\Abstract\Value\Varchar
         return self::compose($url);
     }
 
-    public function getFragment(): ?string
-    {
+    public function getFragment(
+    ): ?string {
         return $this->fragment;
     }
 
-    public function setFragment(?string $fragment): self
-    {
+    public function setFragment(
+        ?string $fragment
+    ): self {
         $url = clone $this;
 
         $fragment = trim($fragment);
@@ -175,8 +184,8 @@ class Url extends \Phant\DataStructure\Abstract\Value\Varchar
         return self::compose($url);
     }
 
-    protected function decompose(): void
-    {
+    protected function decompose(
+    ): void {
         $urlParts = parse_url($this->value);
 
         $this->scheme	= $urlParts[ 'scheme' ] ?? null;
@@ -193,8 +202,9 @@ class Url extends \Phant\DataStructure\Abstract\Value\Varchar
         $this->fragment	= $urlParts[ 'fragment' ] ?? null;
     }
 
-    public static function compose(self $url): self
-    {
+    public static function compose(
+        self $url
+    ): self {
         $urlString = '';
 
         $urlString .= $url->getScheme();

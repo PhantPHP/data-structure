@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Test\Time;
 
 use Phant\DataStructure\Time\DateTime;
-
 use Phant\Error\NotCompliant;
 
 final class DateTimeTest extends \PHPUnit\Framework\TestCase

@@ -4,12 +4,9 @@ declare(strict_types=1);
 
 namespace Test\Web;
 
-use Phant\DataStructure\Web\{
-    DomainName,
-    EmailAddress,
-    UserName,
-};
-
+use Phant\DataStructure\Web\DomainName;
+use Phant\DataStructure\Web\EmailAddress;
+use Phant\DataStructure\Web\UserName;
 use Phant\Error\NotCompliant;
 
 final class EmailAddressTest extends \PHPUnit\Framework\TestCase

@@ -18,13 +18,14 @@ class GpsCoordinates
         }
     }
 
-    public function __toString(): string
-    {
+    public function __toString(
+    ): string {
         return (string) $this->latitude . ';' . $this->longitude;
     }
 
-    public static function make(string $coordinates): self
-    {
+    public static function make(
+        string $coordinates
+    ): self {
         $parts = explode(';', str_replace(',', '.', $coordinates));
 
         return new static(
@@ -33,8 +34,10 @@ class GpsCoordinates
         );
     }
 
-    public static function makeFromLambert93(float $x, float $y): static
-    {
+    public static function makeFromLambert93(
+        float $x,
+        float $y
+    ): static {
         $x = number_format($x, 10, '.', '');
         $y = number_format($y, 10, '.', '');
         $b6  = 6378137.0000;
@@ -70,8 +73,12 @@ class GpsCoordinates
         return new static($latitude, $longitude);
     }
 
-    public static function makeFromUtm(float $x, float $y, int $zone, bool $southernHemisphere = false): static
-    {
+    public static function makeFromUtm(
+        float $x,
+        float $y,
+        int $zone,
+        bool $southernHemisphere = false
+    ): static {
         $UTMCentralMeridian = function (int $zone): float {
             $degree2radian = function (float $deg): float {
                 return $deg / 180.0 * pi();

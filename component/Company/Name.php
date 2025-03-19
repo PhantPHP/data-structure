@@ -8,8 +8,9 @@ class Name extends \Phant\DataStructure\Abstract\Value\Varchar
 {
     public const PATTERN = '/^.{1,}$/';
 
-    public function __construct(string $name)
-    {
+    public function __construct(
+        string $name
+    ) {
         $name = trim($name);
 
         parent::__construct($name);

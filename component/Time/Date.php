@@ -77,8 +77,8 @@ class Date
         return true;
     }
 
-    public function __toString()
-    {
+    public function __toString(
+    ) {
         return $this->date;
     }
 }

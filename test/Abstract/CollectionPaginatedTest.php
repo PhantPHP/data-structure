@@ -7,8 +7,6 @@ namespace Test\Abstract;
 use Test\Abstract\Fixture\CollectionPaginated;
 use Test\Abstract\Fixture\Value\Varchar as Value;
 
-use Phant\Error\NotCompliant;
-
 final class CollectionPaginatedTest extends \PHPUnit\Framework\TestCase
 {
     public function testInterface(): void
@@ -56,7 +54,7 @@ final class CollectionPaginatedTest extends \PHPUnit\Framework\TestCase
 
         $this->assertIsObject($collection->getByKey(0));
 
-        foreach ($collection->itemsIterator() as $item) {
+        foreach ($collection->iterate() as $item) {
             $this->assertIsObject($item);
         }
 

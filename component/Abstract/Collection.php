@@ -6,15 +6,15 @@ namespace Phant\DataStructure\Abstract;
 
 abstract class Collection
 {
-    protected array $items;
+    protected array $items = [];
 
-    public function __construct()
-    {
-        $this->items = [];
+    public function __construct(
+    ) {
     }
 
-    protected function addItem(mixed $item): self
-    {
+    protected function addItem(
+        mixed $item
+    ): static {
         if (array_search($item, $this->items) === false) {
             $this->items[] = $item;
         }
@@ -22,8 +22,9 @@ abstract class Collection
         return $this;
     }
 
-    protected function removeItem(mixed $item): self
-    {
+    protected function removeItem(
+        mixed $item
+    ): static {
         if (($key = array_search($item, $this->items)) !== false) {
             unset($this->items[ $key ]);
             $this->items = array_values($this->items);
@@ -32,30 +33,32 @@ abstract class Collection
         return $this;
     }
 
-    final public function contains(mixed $item): bool
-    {
+    final public function contains(
+        mixed $item
+    ): bool {
         return array_search($item, $this->items) !== false;
     }
 
-    final public function itemsIterator(): \Generator
-    {
+    final public function iterate(
+    ): \Generator {
         foreach ($this->items as $item) {
             yield $item;
         }
     }
 
-    final public function isEmpty(): bool
-    {
+    final public function isEmpty(
+    ): bool {
         return empty($this->items);
     }
 
-    final public function getNbItems(): int
-    {
+    final public function getNbItems(
+    ): int {
         return count($this->items);
     }
 
-    final public function getByKey(int $key): mixed
-    {
+    final public function getByKey(
+        int $key
+    ): mixed {
         return $this->items[ $key ] ?? null;
     }
 }

@@ -4,11 +4,8 @@ declare(strict_types=1);
 
 namespace Phant\DataStructure\Time;
 
-use Phant\DataStructure\Time\{
-    Date,
-    Duration,
-};
-
+use Phant\DataStructure\Time\Date;
+use Phant\DataStructure\Time\Duration;
 use Phant\Error\NotCompliant;
 
 class DateInterval
@@ -26,7 +23,7 @@ class DateInterval
             throw new NotCompliant('From can be after To : ' . $from . '/' . $to);
         }
 
-        $this->calculateDuration();
+        $this->duration = ($this->from && $this->to) ? new Duration(($this->to->time + Duration::DAY - 1) - $this->from->time) : null;
     }
 
     public function isBefore(
@@ -81,11 +78,6 @@ class DateInterval
         }
 
         return true;
-    }
-
-    private function calculateDuration(): void
-    {
-        $this->duration = ($this->from && $this->to) ? new Duration(($this->to->time + Duration::DAY - 1) - $this->from->time) : null;
     }
 
     public static function make(

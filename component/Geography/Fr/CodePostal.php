@@ -6,10 +6,11 @@ namespace Phant\DataStructure\Geography\Fr;
 
 class CodePostal extends \Phant\DataStructure\Abstract\Value\Varchar
 {
-    public const PATTERN = '/^(\d{5})$/';
+    public const PATTERN = '/^\d{5}$/';
 
-    public function __construct(string $code)
-    {
+    public function __construct(
+        string $code
+    ) {
         $code = trim($code);
         if (strlen($code) == 4) {
             $code = str_pad($code, 5, '0', STR_PAD_LEFT);
@@ -18,8 +19,8 @@ class CodePostal extends \Phant\DataStructure\Abstract\Value\Varchar
         parent::__construct($code);
     }
 
-    public function getNumeroDepartement(): NumeroDepartement
-    {
+    public function getNumeroDepartement(
+    ): NumeroDepartement {
         $numeroDepartement = substr($this->value, 0, 2);
         $numeroDepartement = match($numeroDepartement) {
             '20' => match (substr($this->value, 0, 3)) {

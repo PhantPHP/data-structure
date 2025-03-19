@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Test\Web;
 
 use Phant\DataStructure\Web\Url;
-
 use Phant\Error\NotCompliant;
 
 final class UrlTest extends \PHPUnit\Framework\TestCase

@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Test\Geography;
 
 use Phant\DataStructure\Geography\GpsCoordinates;
-
 use Phant\Error\NotCompliant;
 
 final class GpsCoordinatesTest extends \PHPUnit\Framework\TestCase

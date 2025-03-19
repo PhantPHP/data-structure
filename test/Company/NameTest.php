@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Test\Company;
 
 use Phant\DataStructure\Company\Name;
-
 use Phant\Error\NotCompliant;
 
 final class NameTest extends \PHPUnit\Framework\TestCase

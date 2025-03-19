@@ -4,11 +4,9 @@ declare(strict_types=1);
 
 namespace Test\Web;
 
-use Phant\DataStructure\Web\{
-    EmailAddress,
-    EmailAddressAndName,
-    EmailAddressAndNameList,
-};
+use Phant\DataStructure\Web\EmailAddress;
+use Phant\DataStructure\Web\EmailAddressAndName;
+use Phant\DataStructure\Web\EmailAddressAndNameList;
 
 final class EmailAddressAndNameListTest extends \PHPUnit\Framework\TestCase
 {

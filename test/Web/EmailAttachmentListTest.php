@@ -4,10 +4,8 @@ declare(strict_types=1);
 
 namespace Test\Web;
 
-use Phant\DataStructure\Web\{
-    EmailAttachment,
-    EmailAttachmentList,
-};
+use Phant\DataStructure\Web\EmailAttachment;
+use Phant\DataStructure\Web\EmailAttachmentList;
 use Test\Web\EmailAttachmentTest;
 
 final class EmailAttachmentListTest extends \PHPUnit\Framework\TestCase
