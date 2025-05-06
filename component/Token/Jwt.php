@@ -28,7 +28,7 @@ class Jwt extends \Phant\DataStructure\Abstract\Value\Varchar
     ): array {
         try {
             return (array) FirebaseJwt::decode($this->value, new FirebaseKey($publicKey, self::ALGORITHM));
-        } catch (ExpiredException | SignatureInvalidException $e) {
+        } catch (ExpiredException | SignatureInvalidException | \Exception) {
             throw new NotCompliant();
         }
     }
