@@ -61,4 +61,20 @@ abstract class Collection
     ): mixed {
         return $this->items[ $key ] ?? null;
     }
+
+    final public function merge(
+        self $collection
+    ): static {
+        foreach ($collection->items as $item) {
+            $this->addItem($item);
+        }
+
+        return $this;
+    }
+
+    final public function map(
+        callable $callback
+    ): array {
+        return array_map($callback, $this->items);
+    }
 }

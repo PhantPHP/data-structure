@@ -49,4 +49,38 @@ final class CollectionTest extends \PHPUnit\Framework\TestCase
             $value
         );
     }
+
+    public function testMerge(): void
+    {
+        $value1 = new Value('Foo');
+        $value2 = new Value('Bar');
+
+        $collection1 = new Collection();
+        $collection1->add($value1);
+
+        $collection2 = new Collection();
+        $collection2->add($value2);
+
+        $collection1->merge($collection2);
+
+        $this->assertEquals(true, $collection1->contains($value1));
+        $this->assertEquals(true, $collection1->contains($value2));
+    }
+
+    public function testMap(): void
+    {
+        $value1 = new Value('Foo');
+        $value2 = new Value('Bar');
+
+        $collection = new Collection();
+        $collection->add($value1);
+        $collection->add($value2);
+
+        $result = $collection->map(fn(Value $item) => (string)$item . '!');
+
+        $this->assertIsArray($result);
+        $this->assertCount(2, $result);
+        $this->assertEquals('Foo!', $result[0]);
+        $this->assertEquals('Bar!', $result[1]);
+    }
 }
