@@ -83,7 +83,7 @@ class DateTimeInterval
     public static function make(
         null|int|string $from,
         null|int|string $to
-    ): self {
+    ): static {
         if (is_string($from) || is_int($from)) {
             $from = new DateTime($from);
         }
