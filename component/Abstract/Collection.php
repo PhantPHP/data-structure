@@ -4,14 +4,24 @@ declare(strict_types=1);
 
 namespace Phant\DataStructure\Abstract;
 
+/**
+ * @template T
+ */
 abstract class Collection
 {
+    /**
+     * @var array<T>
+     */
     protected array $items = [];
 
     public function __construct(
     ) {
     }
 
+    /**
+     * @param T $item
+     * @return static
+     */
     protected function addItem(
         mixed $item
     ): static {
@@ -22,6 +32,10 @@ abstract class Collection
         return $this;
     }
 
+    /**
+     * @param T $item
+     * @return static
+     */
     protected function removeItem(
         mixed $item
     ): static {
@@ -33,12 +47,18 @@ abstract class Collection
         return $this;
     }
 
+    /**
+     * @param T $item
+     */
     final public function contains(
         mixed $item
     ): bool {
         return array_search($item, $this->items) !== false;
     }
 
+    /**
+     * @return \Generator<T>
+     */
     final public function iterate(
     ): \Generator {
         foreach ($this->items as $item) {
@@ -56,12 +76,19 @@ abstract class Collection
         return count($this->items);
     }
 
+    /**
+     * @return T|null
+     */
     final public function getByKey(
         int $key
     ): mixed {
         return $this->items[ $key ] ?? null;
     }
 
+    /**
+     * @param Collection<T> $collection
+     * @return static
+     */
     final public function merge(
         self $collection
     ): static {
@@ -72,6 +99,11 @@ abstract class Collection
         return $this;
     }
 
+    /**
+     * @template U
+     * @param callable(T): U $callback
+     * @return array<U>
+     */
     final public function map(
         callable $callback
     ): array {
