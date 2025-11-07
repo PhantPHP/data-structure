@@ -76,7 +76,7 @@ final class CollectionTest extends \PHPUnit\Framework\TestCase
         $collection->add($value1);
         $collection->add($value2);
 
-        $result = $collection->map(fn(Value $item) => (string)$item . '!');
+        $result = $collection->map(fn (Value $item) => (string)$item . '!');
 
         $this->assertIsArray($result);
         $this->assertCount(2, $result);
