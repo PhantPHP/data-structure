@@ -11,5 +11,4 @@ vendor/*
 .nova/*
 .php-cs-fixer.cache
 docker/
-
-
+.vscode
