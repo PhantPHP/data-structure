@@ -22,55 +22,55 @@ class UserAgentTest extends TestCase
 
     public function testGetOperatingSystemFromString()
     {
-        $this->assertSame(OperatingSystemFamily::Windows, UserAgent::getOperatingSystemFromString('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36')->familiy);
+        $this->assertSame(OperatingSystemFamily::Windows, UserAgent::getOperatingSystemFromString('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36')->family);
         $this->assertSame('10/11', UserAgent::getOperatingSystemFromString('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36')->version->value);
 
-        $this->assertSame(OperatingSystemFamily::MacOS, UserAgent::getOperatingSystemFromString('Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.0.3 Safari/605.1.15')->familiy);
+        $this->assertSame(OperatingSystemFamily::MacOS, UserAgent::getOperatingSystemFromString('Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.0.3 Safari/605.1.15')->family);
         $this->assertSame('10.15.7', UserAgent::getOperatingSystemFromString('Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.0.3 Safari/605.1.15')->version->value);
 
-        $this->assertSame(OperatingSystemFamily::iOS, UserAgent::getOperatingSystemFromString('Mozilla/5.0 (iPhone; CPU iPhone OS 14_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.0 Mobile/15A372 Safari/604.1')->familiy);
+        $this->assertSame(OperatingSystemFamily::iOS, UserAgent::getOperatingSystemFromString('Mozilla/5.0 (iPhone; CPU iPhone OS 14_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.0 Mobile/15A372 Safari/604.1')->family);
         $this->assertSame('14.0', UserAgent::getOperatingSystemFromString('Mozilla/5.0 (iPhone; CPU iPhone OS 14_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.0 Mobile/15A372 Safari/604.1')->version->value);
 
-        $this->assertSame(OperatingSystemFamily::iPadOS, UserAgent::getOperatingSystemFromString('Mozilla/5.0 (iPad; CPU OS 14_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.0 Mobile/15A372 Safari/604.1')->familiy);
+        $this->assertSame(OperatingSystemFamily::iPadOS, UserAgent::getOperatingSystemFromString('Mozilla/5.0 (iPad; CPU OS 14_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.0 Mobile/15A372 Safari/604.1')->family);
         $this->assertSame('14.0', UserAgent::getOperatingSystemFromString('Mozilla/5.0 (iPad; CPU OS 14_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.0 Mobile/15A372 Safari/604.1')->version->value);
 
-        $this->assertSame(OperatingSystemFamily::Android, UserAgent::getOperatingSystemFromString('Mozilla/5.0 (Linux; Android 10; SM-G975F) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Mobile Safari/537.36')->familiy);
+        $this->assertSame(OperatingSystemFamily::Android, UserAgent::getOperatingSystemFromString('Mozilla/5.0 (Linux; Android 10; SM-G975F) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Mobile Safari/537.36')->family);
         $this->assertSame('10', UserAgent::getOperatingSystemFromString('Mozilla/5.0 (Linux; Android 10; SM-G975F) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Mobile Safari/537.36')->version->value);
 
-        $this->assertSame(OperatingSystemFamily::Linux, UserAgent::getOperatingSystemFromString('Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/37.0.2062.94 Chrome/37.0.2062.94 Safari/537.36')->familiy);
+        $this->assertSame(OperatingSystemFamily::Linux, UserAgent::getOperatingSystemFromString('Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/37.0.2062.94 Chrome/37.0.2062.94 Safari/537.36')->family);
         $this->assertSame('', UserAgent::getOperatingSystemFromString('Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/37.0.2062.94 Chrome/37.0.2062.94 Safari/537.36')->version->value);
 
-        $this->assertSame(OperatingSystemFamily::Other, UserAgent::getOperatingSystemFromString('Unknown OS String')->familiy);
+        $this->assertSame(OperatingSystemFamily::Other, UserAgent::getOperatingSystemFromString('Unknown OS String')->family);
         $this->assertSame('', UserAgent::getOperatingSystemFromString('Unknown OS String')->version->value);
     }
 
     public function testGetBrowserFromString()
     {
-        $this->assertSame(BrowserFamily::Chrome, UserAgent::getBrowserFromString('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36')->familiy);
+        $this->assertSame(BrowserFamily::Chrome, UserAgent::getBrowserFromString('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36')->family);
         $this->assertSame('91.0.4472.124', UserAgent::getBrowserFromString('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36')->version->value);
 
-        $this->assertSame(BrowserFamily::Firefox, UserAgent::getBrowserFromString('Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:89.0) Gecko/20100101 Firefox/89.0')->familiy);
+        $this->assertSame(BrowserFamily::Firefox, UserAgent::getBrowserFromString('Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:89.0) Gecko/20100101 Firefox/89.0')->family);
         $this->assertSame('89.0', UserAgent::getBrowserFromString('Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:89.0) Gecko/20100101 Firefox/89.0')->version->value);
 
-        $this->assertSame(BrowserFamily::Safari, UserAgent::getBrowserFromString('Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.0.3 Safari/605.1.15')->familiy);
+        $this->assertSame(BrowserFamily::Safari, UserAgent::getBrowserFromString('Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.0.3 Safari/605.1.15')->family);
         $this->assertSame('14.0.3', UserAgent::getBrowserFromString('Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.0.3 Safari/605.1.15')->version->value);
 
-        $this->assertSame(BrowserFamily::Edge, UserAgent::getBrowserFromString('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36 Edg/91.0.864.59')->familiy);
+        $this->assertSame(BrowserFamily::Edge, UserAgent::getBrowserFromString('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36 Edg/91.0.864.59')->family);
         $this->assertSame('91.0.864.59', UserAgent::getBrowserFromString('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36 Edg/91.0.864.59')->version->value);
 
-        $this->assertSame(BrowserFamily::Opera, UserAgent::getBrowserFromString('Mozilla/5.0 (Macintosh; Intel Mac OS X 15_7_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36 OPR/123.0.0.0')->familiy);
+        $this->assertSame(BrowserFamily::Opera, UserAgent::getBrowserFromString('Mozilla/5.0 (Macintosh; Intel Mac OS X 15_7_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36 OPR/123.0.0.0')->family);
         $this->assertSame('123.0.0.0', UserAgent::getBrowserFromString('Mozilla/5.0 (Macintosh; Intel Mac OS X 15_7_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36 OPR/123.0.0.0')->version->value);
 
-        $this->assertSame(BrowserFamily::Brave, UserAgent::getBrowserFromString('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36 Brave/1.24.86')->familiy);
+        $this->assertSame(BrowserFamily::Brave, UserAgent::getBrowserFromString('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36 Brave/1.24.86')->family);
         $this->assertSame('1.24.86', UserAgent::getBrowserFromString('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36 Brave/1.24.86')->version->value);
 
-        $this->assertSame(BrowserFamily::SamsungInternet, UserAgent::getBrowserFromString('Mozilla/5.0 (Linux; Android 10; SAMSUNG SM-G975F) AppleWebKit/537.36 (KHTML, like Gecko) SamsungBrowser/13.0 Chrome/91.0.4472.124 Mobile Safari/537.36')->familiy);
+        $this->assertSame(BrowserFamily::SamsungInternet, UserAgent::getBrowserFromString('Mozilla/5.0 (Linux; Android 10; SAMSUNG SM-G975F) AppleWebKit/537.36 (KHTML, like Gecko) SamsungBrowser/13.0 Chrome/91.0.4472.124 Mobile Safari/537.36')->family);
         $this->assertSame('13.0', UserAgent::getBrowserFromString('Mozilla/5.0 (Linux; Android 10; SAMSUNG SM-G975F) AppleWebKit/537.36 (KHTML, like Gecko) SamsungBrowser/13.0 Chrome/91.0.4472.124 Mobile Safari/537.36')->version->value);
 
-        $this->assertSame(BrowserFamily::UcBrowser, UserAgent::getBrowserFromString('Mozilla/5.0 (Linux; U; Android 10; en-US; SM-G975F Build/QP1A.190711.020) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 UCBrowser/13.4.0.1306 U3/0.8.0 Mobile Safari/537.36')->familiy);
+        $this->assertSame(BrowserFamily::UcBrowser, UserAgent::getBrowserFromString('Mozilla/5.0 (Linux; U; Android 10; en-US; SM-G975F Build/QP1A.190711.020) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 UCBrowser/13.4.0.1306 U3/0.8.0 Mobile Safari/537.36')->family);
         $this->assertSame('13.4.0.1306', UserAgent::getBrowserFromString('Mozilla/5.0 (Linux; U; Android 10; en-US; SM-G975F Build/QP1A.190711.020) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 UCBrowser/13.4.0.1306 U3/0.8.0 Mobile Safari/537.36')->version->value);
 
-        $this->assertSame(BrowserFamily::Other, UserAgent::getBrowserFromString('Unknown Browser String')->familiy);
+        $this->assertSame(BrowserFamily::Other, UserAgent::getBrowserFromString('Unknown Browser String')->family);
         $this->assertSame('', UserAgent::getBrowserFromString('Unknown Browser String')->version->value);
     }
 
@@ -79,9 +79,9 @@ class UserAgentTest extends TestCase
         $userAgent = UserAgent::fromString('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36');
 
         $this->assertSame(Device::Desktop, $userAgent->device);
-        $this->assertSame(OperatingSystemFamily::Windows, $userAgent->operatingSystem->familiy);
+        $this->assertSame(OperatingSystemFamily::Windows, $userAgent->operatingSystem->family);
         $this->assertSame('10/11', $userAgent->operatingSystem->version->value);
-        $this->assertSame(BrowserFamily::Chrome, $userAgent->browser->familiy);
+        $this->assertSame(BrowserFamily::Chrome, $userAgent->browser->family);
         $this->assertSame('91.0.4472.124', $userAgent->browser->version->value);
     }
 
@@ -91,9 +91,9 @@ class UserAgentTest extends TestCase
         $userAgent = UserAgent::fromString($invalidAgentString);
 
         $this->assertSame(Device::Desktop, $userAgent->device);
-        $this->assertSame(OperatingSystemFamily::Other, $userAgent->operatingSystem->familiy);
+        $this->assertSame(OperatingSystemFamily::Other, $userAgent->operatingSystem->family);
         $this->assertSame('', $userAgent->operatingSystem->version->value);
-        $this->assertSame(BrowserFamily::Other, $userAgent->browser->familiy);
+        $this->assertSame(BrowserFamily::Other, $userAgent->browser->family);
         $this->assertSame('', $userAgent->browser->version->value);
     }
 
