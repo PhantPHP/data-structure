@@ -7,7 +7,7 @@ namespace Phant\DataStructure\Web\UserAgent;
 class Browser
 {
     public function __construct(
-        public readonly BrowserFamily $familiy,
+        public readonly BrowserFamily $family,
         public readonly Version $version
     ) {
     }

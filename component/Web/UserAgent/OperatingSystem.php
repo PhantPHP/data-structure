@@ -7,7 +7,7 @@ namespace Phant\DataStructure\Web\UserAgent;
 class OperatingSystem
 {
     public function __construct(
-        public readonly OperatingSystemFamily $familiy,
+        public readonly OperatingSystemFamily $family,
         public readonly Version $version
     ) {
     }
