@@ -95,7 +95,7 @@ class UserAgent
 
     public static function fromString(string $userAgent): self
     {
-        return new self(
+        return new static(
             device: self::getDeviceFromString($userAgent),
             operatingSystem: self::getOperatingSystemFromString($userAgent),
             browser: self::getBrowserFromString($userAgent)
