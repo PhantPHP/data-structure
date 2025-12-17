@@ -20,7 +20,7 @@ class Url
     protected ?string $fragment;
 
     public function __construct(
-        readonly public string $value
+        public readonly string $value
     ) {
         if (defined(get_class($this) . '::PATTERN') && static::PATTERN && !preg_match(static::PATTERN, $value)) {
             throw new NotCompliant('Value : ' . $value);
