@@ -10,7 +10,7 @@
         }
     ],
     "require": {
-        "php": ">=8.1",
+        "php": ">=8.2",
         "phant/error": "1.*",
         "ramsey/uuid": "4.*",
         "firebase/php-jwt": "6.*"
