@@ -17,10 +17,10 @@ readonly class DateInterval
         public ?Date $to
     ) {
         if (!$from && !$to) {
-            throw new NotCompliant('Date intervals: from ' . $from . ' to' . $to);
+            throw new NotCompliant('A date interval must contain at least one date');
         }
         if ($from && $to && $from->time > $to->time) {
-            throw new NotCompliant('From can be after To : ' . $from . '/' . $to);
+            throw new NotCompliant('Invalid date interval: from date (' . $from . ') cannot be after to date (' . $to . ')');
         }
 
         $this->duration = ($this->from && $this->to) ? new Duration(($this->to->time + Duration::DAY - 1) - $this->from->time) : null;
