@@ -104,13 +104,13 @@ EOD;
         $this->expectException(NotCompliant::class);
 
         // Set error handler to suppress expected openssl warnings
-        set_error_handler(function($severity, $message, $filename, $lineno) {
+        set_error_handler(function ($severity, $message, $filename, $lineno) {
             if (strpos($message, 'openssl_private_encrypt') !== false) {
                 return true; // Suppress this warning
             }
             return false; // Let other errors/warnings through
         });
-        
+
         try {
             $result = $this->fixtureInvalid->encrypt('Foo bar');
         } finally {
@@ -123,13 +123,13 @@ EOD;
         $this->expectException(NotCompliant::class);
 
         // Set error handler to suppress expected openssl warnings
-        set_error_handler(function($severity, $message, $filename, $lineno) {
+        set_error_handler(function ($severity, $message, $filename, $lineno) {
             if (strpos($message, 'openssl_private_encrypt') !== false) {
                 return true; // Suppress this warning
             }
             return false; // Let other errors/warnings through
         });
-        
+
         try {
             $result = $this->fixtureInvalid->encrypt('');
         } finally {
@@ -151,13 +151,13 @@ EOD;
         $this->expectException(NotCompliant::class);
 
         // Set error handler to suppress expected openssl warnings
-        set_error_handler(function($severity, $message, $filename, $lineno) {
+        set_error_handler(function ($severity, $message, $filename, $lineno) {
             if (strpos($message, 'openssl_public_decrypt') !== false) {
                 return true; // Suppress this warning
             }
             return false; // Let other errors/warnings through
         });
-        
+
         try {
             $result = $this->fixtureInvalid->decrypt(
                 $this->fixture->encrypt('Foo bar')
