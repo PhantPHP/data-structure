@@ -4,9 +4,7 @@ declare(strict_types=1);
 
 namespace Phant\DataStructure\Time;
 
-use Phant\Error\NotCompliant;
-
-class DateTime extends \Phant\DataStructure\Time\Date
+readonly class DateTime extends \Phant\DataStructure\Time\Date
 {
     public function __construct(
         int|string $date,

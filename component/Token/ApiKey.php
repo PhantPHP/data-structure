@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Phant\DataStructure\Token;
 
-class ApiKey extends \Phant\DataStructure\Abstract\Value\Varchar
+readonly class ApiKey extends \Phant\DataStructure\Abstract\Value\Varchar
 {
     public const PATTERN = '/^[0-9a-zA-Z]{8}\.[0-9a-zA-Z]{64}$/';
 

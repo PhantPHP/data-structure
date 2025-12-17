@@ -6,7 +6,7 @@ namespace Phant\DataStructure\Company\Fr;
 
 use Phant\Error\NotCompliant;
 
-class Siren extends \Phant\DataStructure\Abstract\Value\Varchar
+readonly class Siren extends \Phant\DataStructure\Abstract\Value\Varchar
 {
     public const PATTERN = '/^\d{9}$/';
 

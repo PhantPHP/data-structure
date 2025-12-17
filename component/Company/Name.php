@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Phant\DataStructure\Company;
 
-class Name extends \Phant\DataStructure\Abstract\Value\Varchar
+readonly class Name extends \Phant\DataStructure\Abstract\Value\Varchar
 {
     public const PATTERN = '/^.{1,}$/';
 

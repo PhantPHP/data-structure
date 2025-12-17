@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Phant\DataStructure\Web;
 
-class UserName extends \Phant\DataStructure\Abstract\Value\Varchar
+readonly class UserName extends \Phant\DataStructure\Abstract\Value\Varchar
 {
     public const PATTERN = '/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))$/i';
 

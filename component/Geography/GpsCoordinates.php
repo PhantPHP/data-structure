@@ -6,12 +6,12 @@ namespace Phant\DataStructure\Geography;
 
 use Phant\Error\NotCompliant;
 
-class GpsCoordinates
+readonly class GpsCoordinates
 {
     // Format : WGS84 (https://en.wikipedia.org/wiki/World_Geodetic_System)
     final public function __construct(
-        public readonly float $latitude,
-        public readonly float $longitude
+        public float $latitude,
+        public float $longitude
     ) {
         if ($latitude > 90 || $latitude < -90 || $longitude > 180 || $longitude < -180) {
             throw new NotCompliant('GPS coordinates: ' . $latitude . ';' . $longitude);

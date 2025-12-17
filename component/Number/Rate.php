@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Phant\DataStructure\Number;
 
-class Rate extends \Phant\DataStructure\Abstract\Value\Decimal
+readonly class Rate extends \Phant\DataStructure\Abstract\Value\Decimal
 {
     public function __toString(
     ) {

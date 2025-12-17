@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace Phant\DataStructure\Web;
 
-class Url extends \Phant\DataStructure\Abstract\Value\Varchar
+use Phant\Error\NotCompliant;
+
+class Url
 {
     public const PATTERN = '%\b(([\w-]+://?|www[.])[^\s()<>]+(?:\([\w\d]+\)|([^[:punct:]\s]|/)))%s';
 
@@ -18,11 +20,18 @@ class Url extends \Phant\DataStructure\Abstract\Value\Varchar
     protected ?string $fragment;
 
     public function __construct(
-        string $url
+        readonly public string $value
     ) {
-        parent::__construct($url);
+        if (defined(get_class($this) . '::PATTERN') && static::PATTERN && !preg_match(static::PATTERN, $value)) {
+            throw new NotCompliant('Value : ' . $value);
+        }
 
         $this->decompose();
+    }
+
+    public function __toString(
+    ): string {
+        return $this->value;
     }
 
     public function getScheme(

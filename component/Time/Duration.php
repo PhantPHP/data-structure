@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Phant\DataStructure\Time;
 
-class Duration
+readonly class Duration
 {
     // Duration in secondes
     public const MINUTE	    = 60;
@@ -26,10 +26,10 @@ class Duration
     public const YEAR_LABEL = 'year';
     public const YEAR_LABEL_PLURAL = 'years';
 
-    public readonly string $label;
+    public string $label;
 
     public function __construct(
-        public readonly int $value
+        public int $value
     ) {
         $this->label = $this->buildLabel();
     }

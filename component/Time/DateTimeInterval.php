@@ -8,13 +8,13 @@ use Phant\DataStructure\Time\DateTime;
 use Phant\DataStructure\Time\Duration;
 use Phant\Error\NotCompliant;
 
-class DateTimeInterval
+readonly class DateTimeInterval
 {
-    public readonly ?Duration $duration;
+    public ?Duration $duration;
 
     public function __construct(
-        public readonly ?DateTime $from,
-        public readonly ?DateTime $to
+        public ?DateTime $from,
+        public ?DateTime $to
     ) {
         if (!$from && !$to) {
             throw new NotCompliant('Date time intervals: from ' . $from . ' to' . $to);

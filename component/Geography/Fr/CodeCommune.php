@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Phant\DataStructure\Geography\Fr;
 
-class CodeCommune extends \Phant\DataStructure\Abstract\Value\Varchar
+readonly class CodeCommune extends \Phant\DataStructure\Abstract\Value\Varchar
 {
     public const PATTERN = '/^[0-9][0-9AB][0-9]{3}$/';
 

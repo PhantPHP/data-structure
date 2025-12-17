@@ -7,7 +7,7 @@ namespace Phant\DataStructure\Company\Fr;
 use Phant\DataStructure\Company\Fr\Siren;
 use Phant\Error\NotCompliant;
 
-class Siret extends \Phant\DataStructure\Abstract\Value\Varchar
+readonly class Siret extends \Phant\DataStructure\Abstract\Value\Varchar
 {
     public const PATTERN = '/^\d{14}$/';
     public const SIREN_LA_POSTE = '356000000';
