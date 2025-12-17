@@ -6,6 +6,6 @@ namespace Phant\DataStructure\Web\UserAgent;
 
 use Phant\DataStructure\Abstract\Value\Varchar;
 
-class Version extends Varchar
+readonly class Version extends Varchar
 {
 }
