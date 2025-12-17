@@ -14,7 +14,7 @@ readonly class Price
     }
 
     public function getFormatted(
-        bool $espaceInsecable = true
+        bool $nonBreakingSpace = true
     ): string {
         $price = number_format($this->amount, 2, ',', ' ');
 
@@ -26,8 +26,8 @@ readonly class Price
             $price .= '/' . $this->unit;
         }
 
-        if ($espaceInsecable) {
-            $price = str_replace(' ', "\xC2\xA0", $price); // Espace insécable
+        if ($nonBreakingSpace) {
+            $price = str_replace(' ', "\xC2\xA0", $price); // non breaking space
         }
 
         return $price;
