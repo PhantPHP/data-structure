@@ -8,7 +8,7 @@ use Phant\Error\NotCompliant;
 use Ramsey\Uuid\Uuid as UuidBuilder;
 use Ramsey\Uuid\Exception\InvalidUuidStringException;
 
-class Uuid extends \Phant\DataStructure\Abstract\Value\Varchar
+readonly class Uuid extends \Phant\DataStructure\Abstract\Value\Varchar
 {
     public const PATTERN = '/[0-9A-Fa-f]{8}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{12}/';
 

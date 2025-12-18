@@ -6,11 +6,11 @@ namespace Phant\DataStructure\Key;
 
 use Phant\Error\NotCompliant;
 
-final class Ssl
+final readonly class Ssl
 {
     public function __construct(
-        public readonly string $private,
-        public readonly string $public
+        public string $private,
+        public string $public
     ) {
     }
 

@@ -6,11 +6,11 @@ namespace Phant\DataStructure\Time;
 
 use Phant\Error\NotCompliant;
 
-class Date
+readonly class Date
 {
-    public readonly int $time;
-    public readonly string $date;
-    public readonly string $format;
+    public int $time;
+    public string $date;
+    public string $format;
 
     public function __construct(
         int|string $date,

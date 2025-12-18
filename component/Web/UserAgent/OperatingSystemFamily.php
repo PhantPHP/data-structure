@@ -12,6 +12,5 @@ enum OperatingSystemFamily: string
     case Android = 'Android';
     case iOS = 'iOS';
     case iPadOS = 'iPadOS';
-
     case Other = 'Other';
 }

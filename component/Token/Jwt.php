@@ -10,7 +10,7 @@ use Firebase\JWT\Key as FirebaseKey;
 use Firebase\JWT\ExpiredException;
 use Firebase\JWT\SignatureInvalidException;
 
-class Jwt extends \Phant\DataStructure\Abstract\Value\Varchar
+readonly class Jwt extends \Phant\DataStructure\Abstract\Value\Varchar
 {
     public const PAYLOAD_CREATION_TIME = 'iat';
     public const PAYLOAD_LIFE_TIME = 'exp';

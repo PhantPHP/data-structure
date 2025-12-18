@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Phant\DataStructure\Geography\Fr;
 
-class NumeroDepartement extends \Phant\DataStructure\Abstract\Value\Varchar
+readonly class NumeroDepartement extends \Phant\DataStructure\Abstract\Value\Varchar
 {
     public const PATTERN = '/^(9[7-8][0-9])|([0-9]{2})|(2[AB])$/';
 

@@ -1,12 +1,13 @@
-<phpunit bootstrap="vendor/autoload.php">
-	<testsuites>
-		<testsuite name="component">
-			<directory>test</directory>
-		</testsuite>
-	</testsuites>
-	<coverage processUncoveredFiles="true">
-		<include>
-			<directory suffix=".php">component</directory>
-		</include>
-	</coverage>
+<?xml version="1.0"?>
+<phpunit bootstrap="vendor/autoload.php" cacheDirectory=".phpunit.cache">
+  <testsuites>
+    <testsuite name="component">
+      <directory>test</directory>
+    </testsuite>
+  </testsuites>
+  <source>
+    <include>
+      <directory suffix=".php">component</directory>
+    </include>
+  </source>
 </phpunit>

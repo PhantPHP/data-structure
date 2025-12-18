@@ -6,12 +6,12 @@ namespace Phant\DataStructure\Abstract\Value;
 
 use Phant\Error\NotCompliant;
 
-abstract class Varchar
+abstract readonly class Varchar
 {
     public const PATTERN = null;
 
     public function __construct(
-        public readonly string $value
+        public string $value
     ) {
         if (defined(get_class($this) . '::PATTERN') && static::PATTERN && !preg_match(static::PATTERN, $value)) {
             throw new NotCompliant('Value : ' . $value);

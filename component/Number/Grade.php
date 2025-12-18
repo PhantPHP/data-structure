@@ -6,11 +6,11 @@ namespace Phant\DataStructure\Number;
 
 use Phant\Error\NotCompliant;
 
-class Grade
+readonly class Grade
 {
     public function __construct(
-        public readonly int $position,
-        public readonly int $scale
+        public int $position,
+        public int $scale
     ) {
         if ($position < 0) {
             throw new NotCompliant('Note : ' . $position);

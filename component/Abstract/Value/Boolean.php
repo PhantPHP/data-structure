@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Phant\DataStructure\Abstract\Value;
 
-abstract class Boolean
+abstract readonly class Boolean
 {
     public function __construct(
-        public readonly bool $value
+        public bool $value
     ) {
     }
 }

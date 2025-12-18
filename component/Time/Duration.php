@@ -4,32 +4,19 @@ declare(strict_types=1);
 
 namespace Phant\DataStructure\Time;
 
-class Duration
+readonly class Duration
 {
-    // Duration in secondes
-    public const MINUTE	    = 60;
-    public const HOUR		= 3600;
-    public const DAY		= 86400;
-    public const MONTH		= 2628000;
-    public const YEAR		= 31536000;
+    // Duration in seconds
+    public const MINUTE	= 60;
+    public const HOUR	= 3600;
+    public const DAY	= 86400;
+    public const MONTH	= 2628000;
+    public const YEAR	= 31536000;
 
-    public const SECOND_LABEL = 's';
-    public const SECOND_LABEL_PLURAL = 's';
-    public const MINUTE_LABEL = 'min';
-    public const MINUTE_LABEL_PLURAL = 'min';
-    public const HOUR_LABEL = 'h';
-    public const HOUR_LABEL_PLURAL = 'h';
-    public const DAY_LABEL = 'day';
-    public const DAY_LABEL_PLURAL = 'days';
-    public const MONTH_LABEL = 'month';
-    public const MONTH_LABEL_PLURAL = 'months';
-    public const YEAR_LABEL = 'year';
-    public const YEAR_LABEL_PLURAL = 'years';
-
-    public readonly string $label;
+    public string $label;
 
     public function __construct(
-        public readonly int $value
+        public int $value
     ) {
         $this->label = $this->buildLabel();
     }
@@ -48,7 +35,7 @@ class Duration
         if ($remainingTime >= self::YEAR) {
             $years = intval($remainingTime / self::YEAR);
             if ($years) {
-                $labels[] =  $years . ' ' . ($years > 1 ? self::YEAR_LABEL_PLURAL : self::YEAR_LABEL);
+                $labels[] =  $years . ' ' . ($years > 1 ? Unit::Year->getLabelPlural() : Unit::Year->getLabel());
                 $remainingTime = $remainingTime % self::YEAR;
             }
         }
@@ -56,7 +43,7 @@ class Duration
         if ($remainingTime >= self::MONTH) {
             $months = intval($remainingTime / self::MONTH);
             if ($months) {
-                $labels[] =  $months . ' ' . ($months > 1 ? self::MONTH_LABEL_PLURAL : self::MONTH_LABEL);
+                $labels[] =  $months . ' ' . ($months > 1 ? Unit::Month->getLabelPlural() : Unit::Month->getLabel());
                 $remainingTime = $remainingTime % self::MONTH;
             }
         }
@@ -64,7 +51,7 @@ class Duration
         if ($remainingTime >= self::DAY) {
             $days = intval($remainingTime / self::DAY);
             if ($days) {
-                $labels[] =  $days . ' ' . ($days > 1 ? self::DAY_LABEL_PLURAL : self::DAY_LABEL);
+                $labels[] =  $days . ' ' . ($days > 1 ? Unit::Day->getLabelPlural() : Unit::Day->getLabel());
                 $remainingTime = $remainingTime % self::DAY;
             }
         }
@@ -72,7 +59,7 @@ class Duration
         if ($remainingTime >= self::HOUR) {
             $hours = intval($remainingTime / self::HOUR);
             if ($hours) {
-                $labels[] =  $hours . ' ' . ($hours > 1 ? self::HOUR_LABEL_PLURAL : self::HOUR_LABEL);
+                $labels[] =  $hours . ' ' . ($hours > 1 ? Unit::Hour->getLabelPlural() : Unit::Hour->getLabel());
                 $remainingTime = $remainingTime % self::HOUR;
             }
         }
@@ -80,7 +67,7 @@ class Duration
         if ($remainingTime >= self::MINUTE) {
             $minutes = intval($remainingTime / self::MINUTE);
             if ($minutes) {
-                $labels[] =  $minutes . ' ' . ($minutes > 1 ? self::MINUTE_LABEL_PLURAL : self::MINUTE_LABEL);
+                $labels[] =  $minutes . ' ' . ($minutes > 1 ? Unit::Minute->getLabelPlural() : Unit::Minute->getLabel());
                 $remainingTime = $remainingTime % self::MINUTE;
             }
         }
@@ -88,7 +75,7 @@ class Duration
         if ($remainingTime > 0) {
             $secondes = intval($remainingTime);
             if ($secondes) {
-                $labels[] =  $secondes . ' ' . ($secondes > 1 ? self::SECOND_LABEL_PLURAL : self::SECOND_LABEL);
+                $labels[] =  $secondes . ' ' . ($secondes > 1 ? Unit::Second->getLabelPlural() : Unit::Second->getLabel());
             }
         }
 

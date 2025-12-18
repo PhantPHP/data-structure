@@ -6,7 +6,7 @@ namespace Phant\DataStructure\Person;
 
 use Phant\Error\NotCompliant;
 
-class Firstname extends \Phant\DataStructure\Abstract\Value\Varchar
+readonly class Firstname extends \Phant\DataStructure\Abstract\Value\Varchar
 {
     public function __construct(
         string $firstname

@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Phant\DataStructure\Web\UserAgent;
 
-class Browser
+readonly class Browser
 {
     public function __construct(
-        public readonly BrowserFamily $family,
-        public readonly Version $version
+        public BrowserFamily $family,
+        public Version $version
     ) {
     }
 }

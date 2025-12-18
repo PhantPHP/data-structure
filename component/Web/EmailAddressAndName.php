@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Phant\DataStructure\Web;
 
-class EmailAddressAndName
+readonly class EmailAddressAndName
 {
     public function __construct(
-        public readonly EmailAddress $emailAddress,
-        public readonly ?string $name
+        public EmailAddress $emailAddress,
+        public ?string $name
     ) {
     }
 

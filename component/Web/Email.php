@@ -7,7 +7,7 @@ namespace Phant\DataStructure\Web;
 use Phant\DataStructure\Web\EmailAddressAndName;
 use Phant\DataStructure\Web\EmailAttachmentList;
 
-class Email
+readonly class Email
 {
     final public function __construct(
         public string $subject,

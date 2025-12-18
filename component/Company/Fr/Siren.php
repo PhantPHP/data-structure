@@ -6,7 +6,7 @@ namespace Phant\DataStructure\Company\Fr;
 
 use Phant\Error\NotCompliant;
 
-class Siren extends \Phant\DataStructure\Abstract\Value\Varchar
+readonly class Siren extends \Phant\DataStructure\Abstract\Value\Varchar
 {
     public const PATTERN = '/^\d{9}$/';
 
@@ -39,12 +39,12 @@ class Siren extends \Phant\DataStructure\Abstract\Value\Varchar
     }
 
     public function getFormatted(
-        bool $espaceInsecable = true
+        bool $nonBreakingSpace = true
     ): string {
         $siren = $this->value;
         $siren = preg_replace('/^(\d{3})(\d{3})(\d{3})$/', '$1 $2 $3', $siren);
-        if ($espaceInsecable) {
-            $siren = str_replace(' ', "\xC2\xA0", $siren); // Espace insécable
+        if ($nonBreakingSpace) {
+            $siren = str_replace(' ', "\xC2\xA0", $siren); // non breaking space
         }
 
         return $siren;

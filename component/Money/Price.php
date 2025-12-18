@@ -4,17 +4,17 @@ declare(strict_types=1);
 
 namespace Phant\DataStructure\Money;
 
-class Price
+readonly class Price
 {
     public function __construct(
-        public readonly float $amount,
-        public readonly ?Currency $currency,
-        public readonly ?string $unit
+        public float $amount,
+        public ?Currency $currency,
+        public ?string $unit
     ) {
     }
 
     public function getFormatted(
-        bool $espaceInsecable = true
+        bool $nonBreakingSpace = true
     ): string {
         $price = number_format($this->amount, 2, ',', ' ');
 
@@ -26,8 +26,8 @@ class Price
             $price .= '/' . $this->unit;
         }
 
-        if ($espaceInsecable) {
-            $price = str_replace(' ', "\xC2\xA0", $price); // Espace insécable
+        if ($nonBreakingSpace) {
+            $price = str_replace(' ', "\xC2\xA0", $price); // non breaking space
         }
 
         return $price;
