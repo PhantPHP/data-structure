@@ -6,7 +6,7 @@ namespace Phant\DataStructure\Time;
 
 readonly class Duration
 {
-    // Duration in secondes
+    // Duration in seconds
     public const MINUTE	= 60;
     public const HOUR	= 3600;
     public const DAY	= 86400;
