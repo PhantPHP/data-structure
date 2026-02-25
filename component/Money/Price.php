@@ -13,6 +13,49 @@ class Price
     ) {
     }
 
+    public function add(self $price): self
+    {
+        if ($this->currency !== $price->currency) {
+            throw new \InvalidArgumentException('Cannot add prices with different currencies.');
+        }
+
+        if ($this->unit !== $price->unit) {
+            throw new \InvalidArgumentException('Cannot add prices with different units.');
+        }
+
+        return new self(
+            amount: $this->amount + $price->amount,
+            currency: $this->currency,
+            unit: $this->unit
+        );
+    }
+
+    public function substract(self $price): self
+    {
+        if ($this->currency !== $price->currency) {
+            throw new \InvalidArgumentException('Cannot substract prices with different currencies.');
+        }
+
+        if ($this->unit !== $price->unit) {
+            throw new \InvalidArgumentException('Cannot substract prices with different units.');
+        }
+
+        return new self(
+            amount: $this->amount - $price->amount,
+            currency: $this->currency,
+            unit: $this->unit
+        );
+    }
+
+    public function multiply(float $factor): self
+    {
+        return new self(
+            amount: $this->amount * $factor,
+            currency: $this->currency,
+            unit: $this->unit
+        );
+    }
+
     public function getFormatted(
         bool $espaceInsecable = true
     ): string {
