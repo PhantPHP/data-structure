@@ -24,7 +24,7 @@ class Price
         }
 
         return new self(
-            amount: $this->amount + $price->amount,
+            amount: round($this->amount + $price->amount, 2),
             currency: $this->currency,
             unit: $this->unit
         );
@@ -41,7 +41,7 @@ class Price
         }
 
         return new self(
-            amount: $this->amount - $price->amount,
+            amount: round($this->amount - $price->amount, 2),
             currency: $this->currency,
             unit: $this->unit
         );
@@ -50,7 +50,7 @@ class Price
     public function multiply(float $factor): self
     {
         return new self(
-            amount: $this->amount * $factor,
+            amount: round($this->amount * $factor, 2),
             currency: $this->currency,
             unit: $this->unit
         );
