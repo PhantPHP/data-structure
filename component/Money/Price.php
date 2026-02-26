@@ -56,6 +56,28 @@ class Price
         );
     }
 
+    public function addPercentage(float $percentage): self
+    {
+        if ($percentage < 0) {
+            throw new \InvalidArgumentException('Percentage must be a positive value.');
+        }
+
+        $factor = 1 + ($percentage / 100);
+
+        return $this->multiply($factor);
+    }
+
+    public function substractPercentage(float $percentage): self
+    {
+        if ($percentage < 0 || $percentage >= 100) {
+            throw new \InvalidArgumentException('Percentage must be between 0 and 100.');
+        }
+
+        $factor = 1 - ($percentage / 100);
+
+        return $this->multiply($factor);
+    }
+
     public function getFormatted(
         bool $espaceInsecable = true
     ): string {

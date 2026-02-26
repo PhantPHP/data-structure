@@ -59,4 +59,45 @@ final class PriceTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals(Currency::EUR, $result->currency);
         $this->assertEquals('Mwh', $result->unit);
     }
+
+    public function testAddInvalidPercentage(): void
+    {
+        $price = new Price(100, Currency::EUR, 'Mwh');
+
+        $this->expectException(\InvalidArgumentException::class);
+        $price->addPercentage(-1);
+    }
+
+    public function testAddPercentage(): void
+    {
+        $price = new Price(100, Currency::EUR, 'Mwh');
+
+        $result = $price->addPercentage(10);
+
+        $this->assertEquals(110.00, $result->amount);
+        $this->assertEquals(Currency::EUR, $result->currency);
+        $this->assertEquals('Mwh', $result->unit);
+    }
+
+    public function testSubstractInvalidPercentage(): void
+    {
+        $price = new Price(100, Currency::EUR, 'Mwh');
+
+        $this->expectException(\InvalidArgumentException::class);
+        $price->substractPercentage(-1);
+
+        $this->expectException(\InvalidArgumentException::class);
+        $price->substractPercentage(100);
+    }
+
+    public function testSubstractPercentage(): void
+    {
+        $price = new Price(100, Currency::EUR, 'Mwh');
+
+        $result = $price->substractPercentage(10);
+
+        $this->assertEquals(90, $result->amount);
+        $this->assertEquals(Currency::EUR, $result->currency);
+        $this->assertEquals('Mwh', $result->unit);
+    }
 }
