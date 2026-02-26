@@ -13,7 +13,7 @@ final class PriceTest extends \PHPUnit\Framework\TestCase
     {
         $price = new Price(1234.56, Currency::EUR, 'kg');
 
-        $this->assertEquals('1 234,56 €/kg', (string)$price);
+        $this->assertEquals('1 234,56 €/kg', (string) $price);
 
         $this->assertIsFloat($price->amount);
         $this->assertEquals(1234.56, $price->amount);
@@ -22,7 +22,7 @@ final class PriceTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals(Currency::EUR, $price->currency);
 
         $this->assertIsString($price->unit);
-        $this->assertEquals('kg', (string)$price->unit);
+        $this->assertEquals('kg', (string) $price->unit);
     }
 
     public function testAdd(): void
@@ -37,12 +37,12 @@ final class PriceTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals('Mwh', $result->unit);
     }
 
-    public function testSubstract(): void
+    public function testsubtract(): void
     {
         $price1 = new Price(100, Currency::EUR, 'Mwh');
         $price2 = new Price(50, Currency::EUR, 'Mwh');
 
-        $result = $price1->substract($price2);
+        $result = $price1->subtract($price2);
 
         $this->assertEquals(50, $result->amount);
         $this->assertEquals(Currency::EUR, $result->currency);
@@ -60,43 +60,17 @@ final class PriceTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals('Mwh', $result->unit);
     }
 
-    public function testAddInvalidPercentage(): void
+    public function testApplyPercentage(): void
     {
         $price = new Price(100, Currency::EUR, 'Mwh');
 
-        $this->expectException(\InvalidArgumentException::class);
-        $price->addPercentage(-1);
-    }
-
-    public function testAddPercentage(): void
-    {
-        $price = new Price(100, Currency::EUR, 'Mwh');
-
-        $result = $price->addPercentage(10);
-
+        $result = $price->applyPercentage(10);
         $this->assertEquals(110.00, $result->amount);
         $this->assertEquals(Currency::EUR, $result->currency);
         $this->assertEquals('Mwh', $result->unit);
-    }
 
-    public function testSubstractInvalidPercentage(): void
-    {
-        $price = new Price(100, Currency::EUR, 'Mwh');
-
-        $this->expectException(\InvalidArgumentException::class);
-        $price->substractPercentage(-1);
-
-        $this->expectException(\InvalidArgumentException::class);
-        $price->substractPercentage(100);
-    }
-
-    public function testSubstractPercentage(): void
-    {
-        $price = new Price(100, Currency::EUR, 'Mwh');
-
-        $result = $price->substractPercentage(10);
-
-        $this->assertEquals(90, $result->amount);
+        $result = $price->applyPercentage(-10);
+        $this->assertEquals(90.00, $result->amount);
         $this->assertEquals(Currency::EUR, $result->currency);
         $this->assertEquals('Mwh', $result->unit);
     }
