@@ -9,14 +9,66 @@ class Price
     public function __construct(
         public readonly float $amount,
         public readonly ?Currency $currency,
-        public readonly ?string $unit
+        public readonly ?string $unit,
+        public readonly ?int $precision = 2
     ) {
+    }
+
+    public function add(self $price): self
+    {
+        if ($this->currency !== $price->currency) {
+            throw new \InvalidArgumentException('Cannot add prices with different currencies.');
+        }
+
+        if ($this->unit !== $price->unit) {
+            throw new \InvalidArgumentException('Cannot add prices with different units.');
+        }
+
+        return new self(
+            amount: round($this->amount + $price->amount, $this->precision),
+            currency: $this->currency,
+            unit: $this->unit,
+            precision: $this->precision
+        );
+    }
+
+    public function subtract(self $price): self
+    {
+        if ($this->currency !== $price->currency) {
+            throw new \InvalidArgumentException('Cannot subtract prices with different currencies.');
+        }
+
+        if ($this->unit !== $price->unit) {
+            throw new \InvalidArgumentException('Cannot subtract prices with different units.');
+        }
+
+        return new self(
+            amount: round($this->amount - $price->amount, $this->precision),
+            currency: $this->currency,
+            unit: $this->unit,
+            precision: $this->precision
+        );
+    }
+
+    public function multiply(float $factor): self
+    {
+        return new self(
+            amount: round($this->amount * $factor, $this->precision),
+            currency: $this->currency,
+            unit: $this->unit,
+            precision: $this->precision
+        );
+    }
+
+    public function applyPercentage(float $percentage): self
+    {
+        return $this->multiply(1 + $percentage / 100);
     }
 
     public function getFormatted(
         bool $espaceInsecable = true
     ): string {
-        $price = number_format($this->amount, 2, ',', ' ');
+        $price = number_format($this->amount, $this->precision, ',', ' ');
 
         if ($this->currency) {
             $price .= ' ' . $this->currency->getLabel();
