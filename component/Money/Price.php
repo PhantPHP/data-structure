@@ -14,7 +14,7 @@ class Price
     ) {
     }
 
-    public function add(self $price): self
+    public function add(self $price): static
     {
         if ($this->currency !== $price->currency) {
             throw new \InvalidArgumentException('Cannot add prices with different currencies.');
@@ -24,7 +24,7 @@ class Price
             throw new \InvalidArgumentException('Cannot add prices with different units.');
         }
 
-        return new self(
+        return new static(
             amount: round($this->amount + $price->amount, $this->precision),
             currency: $this->currency,
             unit: $this->unit,
@@ -32,7 +32,7 @@ class Price
         );
     }
 
-    public function subtract(self $price): self
+    public function subtract(self $price): static
     {
         if ($this->currency !== $price->currency) {
             throw new \InvalidArgumentException('Cannot subtract prices with different currencies.');
@@ -42,7 +42,7 @@ class Price
             throw new \InvalidArgumentException('Cannot subtract prices with different units.');
         }
 
-        return new self(
+        return new static(
             amount: round($this->amount - $price->amount, $this->precision),
             currency: $this->currency,
             unit: $this->unit,
@@ -50,9 +50,9 @@ class Price
         );
     }
 
-    public function multiply(float $factor): self
+    public function multiply(float $factor): static
     {
-        return new self(
+        return new static(
             amount: round($this->amount * $factor, $this->precision),
             currency: $this->currency,
             unit: $this->unit,
@@ -60,7 +60,7 @@ class Price
         );
     }
 
-    public function applyPercentage(float $percentage): self
+    public function applyPercentage(float $percentage): static
     {
         return $this->multiply(1 + $percentage / 100);
     }
