@@ -22,4 +22,19 @@ class Hour
     ) {
         return $this->hour;
     }
+
+    public function isBefore(self $other): bool
+    {
+        return strtotime($this->hour) < strtotime($other->hour);
+    }
+
+    public function isAfter(self $other): bool
+    {
+        return strtotime($this->hour) > strtotime($other->hour);
+    }
+
+    public function isBetween(self $start, self $end): bool
+    {
+        return $this->isAfter($start) && $this->isBefore($end);
+    }
 }

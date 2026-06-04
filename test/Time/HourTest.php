@@ -34,4 +34,28 @@ final class HourTest extends \PHPUnit\Framework\TestCase
 
         new Hour('00:60');
     }
+
+    public function testIsBefore(): void
+    {
+        $this->assertTrue((new Hour('12:00'))->isBefore(new Hour('13:00')));
+        $this->assertFalse((new Hour('13:00'))->isBefore(new Hour('13:00')));
+        $this->assertFalse((new Hour('14:00'))->isBefore(new Hour('13:00')));
+    }
+
+    public function testIsAfter(): void
+    {
+        $this->assertFalse((new Hour('12:00'))->isAfter(new Hour('13:00')));
+        $this->assertFalse((new Hour('13:00'))->isAfter(new Hour('13:00')));
+        $this->assertTrue((new Hour('14:00'))->isAfter(new Hour('13:00')));
+    }
+
+    public function testIsBetween(): void
+    {
+        $this->assertTrue((new Hour('12:00'))->isBetween(new Hour('11:00'), new Hour('13:00')));
+
+        $this->assertFalse((new Hour('11:00'))->isBetween(new Hour('11:00'), new Hour('13:00')));
+        $this->assertFalse((new Hour('13:00'))->isBetween(new Hour('11:00'), new Hour('13:00')));
+        $this->assertFalse((new Hour('10:00'))->isBetween(new Hour('11:00'), new Hour('13:00')));
+        $this->assertFalse((new Hour('14:00'))->isBetween(new Hour('11:00'), new Hour('13:00')));
+    }
 }
