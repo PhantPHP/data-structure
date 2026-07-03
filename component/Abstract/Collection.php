@@ -66,6 +66,16 @@ abstract class Collection
         }
     }
 
+    /**
+     * @return \Generator<T>
+     */
+    final public function iterateReverse(
+    ): \Generator {
+        foreach (array_reverse($this->items) as $item) {
+            yield $item;
+        }
+    }
+
     final public function isEmpty(
     ): bool {
         return empty($this->items);

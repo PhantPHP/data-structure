@@ -38,6 +38,10 @@ final class CollectionTest extends \PHPUnit\Framework\TestCase
             $this->assertIsObject($item);
         }
 
+        foreach ($collection->iterateReverse() as $item) {
+            $this->assertIsObject($item);
+        }
+
         $collection->remove(
             $value
         );
