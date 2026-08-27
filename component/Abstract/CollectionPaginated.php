@@ -4,6 +4,10 @@ declare(strict_types=1);
 
 namespace Phant\DataStructure\Abstract;
 
+/**
+ * @template T
+ * @extends Collection<T>
+ */
 abstract class CollectionPaginated extends Collection
 {
     private ?int $itemPage;
