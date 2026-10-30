@@ -15,6 +15,7 @@ abstract class Collection
     protected array $items = [];
 
     public function __construct(
+        public readonly bool $allowDuplicateItems = false
     ) {
     }
 
@@ -25,7 +26,7 @@ abstract class Collection
     protected function addItem(
         mixed $item
     ): static {
-        if (array_search($item, $this->items) === false) {
+        if ($this->allowDuplicateItems || array_search($item, $this->items) === false) {
             $this->items[] = $item;
         }
 

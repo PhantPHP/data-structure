@@ -71,6 +71,18 @@ final class CollectionTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals(true, $collection1->contains($value2));
     }
 
+    public function testAddItemAllowsDuplicatesWhenConfigured(): void
+    {
+        $value = new Value('Foo');
+        $collection = new Collection(true);
+
+        $collection->add($value);
+        $collection->add($value);
+
+        $this->assertEquals(2, $collection->getNbItems());
+        $this->assertEquals([$value, $value], $collection->map(fn (Value $item) => $item));
+    }
+
     public function testMap(): void
     {
         $value1 = new Value('Foo');
