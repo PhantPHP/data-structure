@@ -120,4 +120,17 @@ abstract class Collection
     ): array {
         return array_map($callback, $this->items);
     }
+
+    /**
+     * @param callable(T): bool $callback
+     * @return static
+     */
+    final public function filter(
+        callable $callback
+    ): static {
+        $collection = clone $this;
+        $collection->items = array_values(array_filter($this->items, $callback));
+
+        return $collection;
+    }
 }
