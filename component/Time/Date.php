@@ -6,7 +6,7 @@ namespace Phant\DataStructure\Time;
 
 use Phant\Error\NotCompliant;
 
-class Date
+class Date extends \DateTimeImmutable
 {
     public readonly int $time;
     public readonly string $date;
@@ -33,6 +33,7 @@ class Date
         $this->time = $time;
         $this->format = $format;
         $this->date = date($format, $this->time);
+        parent::__construct($this->date);
     }
 
     public function isBefore(

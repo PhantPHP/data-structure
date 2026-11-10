@@ -25,6 +25,8 @@ final class DateTest extends \PHPUnit\Framework\TestCase
 
         $this->assertIsInt($this->fixture->time);
         $this->assertEquals(-491356800, $this->fixture->time);
+
+        $this->assertInstanceOf(\DateTimeImmutable::class, $this->fixture);
     }
 
     public function testBuild(): void
