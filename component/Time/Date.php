@@ -4,46 +4,29 @@ declare(strict_types=1);
 
 namespace Phant\DataStructure\Time;
 
-use Phant\Error\NotCompliant;
-
-class Date extends \DateTimeImmutable
+class Date extends DateTime
 {
-    public readonly int $time;
-    public readonly string $date;
-    public readonly string $format;
-
     public function __construct(
         int|string $date,
         string $format = 'Y-m-d'
     ) {
-        if (is_string($date) && strtolower($date) == 'now') {
-            $date = strtotime('today midnight');
-        }
+        parent::__construct($date, $format);
+    }
 
-        $time = is_string($date) ? strtotime($date) : $date;
-
-        if (!is_a($this, DateTime::class) && $time) {
-            $time = (new \DateTime())->setTimestamp($time)->setTime(0, 0)->getTimestamp();
-        }
-
-        if ($time === false) {
-            throw new NotCompliant('Date: ' . $date);
-        }
-
-        $this->time = $time;
-        $this->format = $format;
-        $this->date = date($format, $this->time);
-        parent::__construct($this->date);
+    protected static function normalize(
+        \DateTimeImmutable $dateTime
+    ): \DateTimeImmutable {
+        return $dateTime->setTime(0, 0, 0);
     }
 
     public function isBefore(
-        string|int|Date|DateTime $date
+        string|int|DateTime $date
     ): bool {
         if (is_string($date) || is_int($date)) {
-            $date = new DateTime($date);
+            $date = new static($date);
         }
 
-        if ($date->time <= $this->time) {
+        if ($date <= $this) {
             return false;
         }
 
@@ -51,13 +34,13 @@ class Date extends \DateTimeImmutable
     }
 
     public function isCurrent(
-        string|int|Date|DateTime $date
+        string|int|DateTime $date
     ): bool {
         if (is_string($date) || is_int($date)) {
-            $date = new DateTime($date);
+            $date = new static($date);
         }
 
-        if ($date->time != $this->time) {
+        if ($date != $this) {
             return false;
         }
 
@@ -65,13 +48,13 @@ class Date extends \DateTimeImmutable
     }
 
     public function isAfter(
-        string|int|Date|DateTime $date
+        string|int|DateTime $date
     ): bool {
         if (is_string($date) || is_int($date)) {
-            $date = new DateTime($date);
+            $date = new static($date);
         }
 
-        if ($date->time >= $this->time) {
+        if ($date >= $this) {
             return false;
         }
 
@@ -80,6 +63,6 @@ class Date extends \DateTimeImmutable
 
     public function __toString(
     ) {
-        return $this->date;
+        return $this->format('Y-m-d');
     }
 }
