@@ -36,7 +36,7 @@ class DateTime extends \DateTimeImmutable
             throw new NotCompliant('Date: ' . $date);
         }
 
-        $dateTime = static::resetToPrecision($dateTime);
+        $dateTime = static::resetPrecision($dateTime);
         $this->date = $format ? $dateTime->format($format) : $dateTime->format('c');
         $this->time = $dateTime->getTimestamp();
         $this->format = $format;
@@ -44,7 +44,7 @@ class DateTime extends \DateTimeImmutable
         parent::__construct($dateTime->format('c'));
     }
 
-    protected static function resetToPrecision(
+    protected static function resetPrecision(
         \DateTimeImmutable $dateTime
     ): \DateTimeImmutable {
         return $dateTime;
@@ -57,7 +57,7 @@ class DateTime extends \DateTimeImmutable
             $date = new static($date);
         }
 
-        if ($date <= static::resetToPrecision($this)) {
+        if ($date <= static::resetPrecision($this)) {
             return false;
         }
 
@@ -71,7 +71,7 @@ class DateTime extends \DateTimeImmutable
             $date = new static($date);
         }
 
-        if ($date != static::resetToPrecision($this)) {
+        if ($date != static::resetPrecision($this)) {
             return false;
         }
 
@@ -85,7 +85,7 @@ class DateTime extends \DateTimeImmutable
             $date = new static($date);
         }
 
-        if ($date >= static::resetToPrecision($this)) {
+        if ($date >= static::resetPrecision($this)) {
             return false;
         }
 

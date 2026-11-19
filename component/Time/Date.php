@@ -13,7 +13,7 @@ class Date extends DateTime
         parent::__construct($date, $format);
     }
 
-    protected static function resetToPrecision(
+    protected static function resetPrecision(
         \DateTimeImmutable $dateTime
     ): \DateTimeImmutable {
         return $dateTime->setTime(0, 0, 0);
