@@ -14,7 +14,7 @@ class DateTime extends \DateTimeImmutable
 
     public function __construct(
         int|string $date,
-        ?string $format = 'Y-m-d H:i:s'
+        string $format = 'Y-m-d H:i:s'
     ) {
         $dateTime = null;
         if (is_int($date)) {
@@ -37,7 +37,7 @@ class DateTime extends \DateTimeImmutable
         }
 
         $dateTime = static::resetPrecision($dateTime);
-        $this->date = $format ? $dateTime->format($format) : $dateTime->format('c');
+        $this->date = $dateTime->format($format);
         $this->time = $dateTime->getTimestamp();
         $this->format = $format;
 
@@ -99,7 +99,7 @@ class DateTime extends \DateTimeImmutable
 
     public function __toString(
     ) {
-        return $this->format('Y-m-d H:i:s');
+        return $this->format($this->format);
     }
 
     public static function getTimeFromString(
