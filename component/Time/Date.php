@@ -8,7 +8,7 @@ class Date extends DateTime
 {
     public function __construct(
         int|string $date,
-        string $format = 'Y-m-d'
+        ?string $format = 'Y-m-d'
     ) {
         parent::__construct($date, $format);
     }
@@ -63,6 +63,6 @@ class Date extends DateTime
 
     public function __toString(
     ) {
-        return $this->format('Y-m-d');
+        return $this->format ? $this->format($this->format) : $this->format('Y-m-d');
     }
 }

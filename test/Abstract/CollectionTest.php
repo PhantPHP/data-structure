@@ -99,4 +99,27 @@ final class CollectionTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals('Foo!', $result[0]);
         $this->assertEquals('Bar!', $result[1]);
     }
+
+    public function testFilter(): void
+    {
+        $value1 = new Value('Foo');
+        $value2 = new Value('Bar');
+        $value3 = new Value('Baz');
+
+        $collection = new Collection();
+        $collection->add($value1);
+        $collection->add($value2);
+        $collection->add($value3);
+
+        $result = $collection->filter(fn (Value $item) => str_starts_with((string)$item, 'B'));
+
+        $this->assertInstanceOf(Collection::class, $result);
+        $this->assertNotSame($collection, $result);
+        $this->assertEquals(2, $result->getNbItems());
+        $this->assertSame($value2, $result->getByKey(0));
+        $this->assertSame($value3, $result->getByKey(1));
+        $this->assertEquals(false, $result->contains($value1));
+
+        $this->assertEquals(3, $collection->getNbItems());
+    }
 }
