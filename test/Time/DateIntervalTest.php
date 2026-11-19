@@ -41,8 +41,11 @@ final class DateIntervalTest extends \PHPUnit\Framework\TestCase
         $this->assertIsObject($this->fixture->duration);
         $this->assertInstanceOf(Duration::class, $this->fixture->duration);
         $this->assertEquals(new Duration(
-            strtotime('1970-01-01 23:59:59') - strtotime('1954-06-07 00:00:00')
-        ), $this->fixture->duration);
+            strtotime('1970-01-01 00:00:00') - strtotime('1954-06-07 00:00:00')
+        ), DateInterval::make(
+            '1954-06-07',
+            '1970-01-01 23:59:59'
+        )->duration);
     }
 
     public function testIsBefore(): void

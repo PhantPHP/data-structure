@@ -25,6 +25,8 @@ final class DateTest extends \PHPUnit\Framework\TestCase
 
         $this->assertIsInt($this->fixture->time);
         $this->assertEquals(-491356800, $this->fixture->time);
+
+        $this->assertInstanceOf(\DateTimeImmutable::class, $this->fixture);
     }
 
     public function testBuild(): void
@@ -108,6 +110,11 @@ final class DateTest extends \PHPUnit\Framework\TestCase
 
         // Current
         $result = $this->fixture->isCurrent('1954-06-07');
+        $this->assertIsBool($result);
+        $this->assertEquals(true, $result);
+
+        // Current
+        $result = $this->fixture->isCurrent('1954-06-07 10:00:00');
         $this->assertIsBool($result);
         $this->assertEquals(true, $result);
 

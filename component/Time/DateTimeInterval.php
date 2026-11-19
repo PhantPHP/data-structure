@@ -8,7 +8,7 @@ use Phant\DataStructure\Time\DateTime;
 use Phant\DataStructure\Time\Duration;
 use Phant\Error\NotCompliant;
 
-class DateTimeInterval
+class DateTimeInterval extends \DateInterval
 {
     public readonly ?Duration $duration;
 
@@ -19,11 +19,11 @@ class DateTimeInterval
         if (!$from && !$to) {
             throw new NotCompliant('Date time intervals: from ' . $from . ' to' . $to);
         }
-        if ($from && $to && $from->time > $to->time) {
+        if ($from && $to && $from > $to) {
             throw new NotCompliant('From can be after To : ' . $from . '/' . $to);
         }
 
-        $this->duration = ($this->from && $this->to) ? new Duration($this->to->time - $this->from->time) : null;
+        $this->duration = ($this->from && $this->to) ? new Duration($this->to->getTimestamp() - $this->from->getTimestamp()) : null;
     }
 
     public function isBefore(
