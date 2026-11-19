@@ -36,7 +36,7 @@ class DateTime extends \DateTimeImmutable
             throw new NotCompliant('Date: ' . $date);
         }
 
-        $dateTime = static::normalize($dateTime);
+        $dateTime = static::resetToPrecision($dateTime);
         $this->date = $format ? $dateTime->format($format) : $dateTime->format('c');
         $this->time = $dateTime->getTimestamp();
         $this->format = $format;
@@ -44,7 +44,7 @@ class DateTime extends \DateTimeImmutable
         parent::__construct($dateTime->format('c'));
     }
 
-    protected static function normalize(
+    protected static function resetToPrecision(
         \DateTimeImmutable $dateTime
     ): \DateTimeImmutable {
         return $dateTime;
@@ -54,10 +54,10 @@ class DateTime extends \DateTimeImmutable
         string|int|self $date
     ): bool {
         if (is_string($date) || is_int($date)) {
-            $date = new self($date);
+            $date = new static($date);
         }
 
-        if ($date <= $this) {
+        if ($date <= static::resetToPrecision($this)) {
             return false;
         }
 
@@ -68,10 +68,10 @@ class DateTime extends \DateTimeImmutable
         string|int|self $date
     ): bool {
         if (is_string($date) || is_int($date)) {
-            $date = new self($date);
+            $date = new static($date);
         }
 
-        if ($date != $this) {
+        if ($date != static::resetToPrecision($this)) {
             return false;
         }
 
@@ -82,10 +82,10 @@ class DateTime extends \DateTimeImmutable
         string|int|self $date
     ): bool {
         if (is_string($date) || is_int($date)) {
-            $date = new self($date);
+            $date = new static($date);
         }
 
-        if ($date >= $this) {
+        if ($date >= static::resetToPrecision($this)) {
             return false;
         }
 

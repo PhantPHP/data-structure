@@ -113,6 +113,11 @@ final class DateTest extends \PHPUnit\Framework\TestCase
         $this->assertIsBool($result);
         $this->assertEquals(true, $result);
 
+        // Current
+        $result = $this->fixture->isCurrent('1954-06-07 10:00:00');
+        $this->assertIsBool($result);
+        $this->assertEquals(true, $result);
+
         // After
         $result = $this->fixture->isCurrent('1954-06-06');
         $this->assertIsBool($result);

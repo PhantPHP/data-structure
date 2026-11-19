@@ -39,6 +39,8 @@ final class DateTimeIntervalTest extends \PHPUnit\Framework\TestCase
 
         $this->assertIsObject($this->fixture->duration);
         $this->assertEquals('15 years, 6 months, 28 days, 23 h, 25 min, 4 s', (string)$this->fixture->duration);
+
+        $this->assertInstanceOf(\DateInterval::class, $this->fixture);
     }
 
     public function testIsBefore(): void

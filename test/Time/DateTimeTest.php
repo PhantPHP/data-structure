@@ -28,6 +28,8 @@ final class DateTimeTest extends \PHPUnit\Framework\TestCase
 
         $this->assertIsString($this->fixture->getUtc());
         $this->assertEquals('1954-06-07T12:34:56Z', $this->fixture->getUtc());
+
+        $this->assertInstanceOf(\DateTimeImmutable::class, $this->fixture);
     }
 
     public function testBuild(): void
