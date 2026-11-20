@@ -50,18 +50,21 @@ class DateTime extends \DateTimeImmutable
         return $dateTime;
     }
 
+    /**
+     * @param string|int|DateTime $date
+     * @param bool $strict If set to false the same time will return true
+     */
     public function isBefore(
-        string|int|self $date
+        string|int|self $date,
+        bool $strict = true
     ): bool {
         if (is_string($date) || is_int($date)) {
             $date = new static($date);
         }
 
-        if ($date <= static::resetPrecision($this)) {
-            return false;
-        }
+        $current = static::resetPrecision($this);
 
-        return true;
+        return $strict ? $current < $date : $current <= $date;
     }
 
     public function isCurrent(
@@ -78,18 +81,21 @@ class DateTime extends \DateTimeImmutable
         return true;
     }
 
+    /**
+     * @param string|int|DateTime $date
+     * @param bool $strict If set to false the same time will return true
+     */
     public function isAfter(
-        string|int|self $date
+        string|int|self $date,
+        bool $strict = true
     ): bool {
         if (is_string($date) || is_int($date)) {
             $date = new static($date);
         }
 
-        if ($date >= static::resetPrecision($this)) {
-            return false;
-        }
+        $current = static::resetPrecision($this);
 
-        return true;
+        return $strict ? $current > $date : $current >= $date;
     }
 
     public function getUtc(

@@ -141,4 +141,50 @@ final class DateTest extends \PHPUnit\Framework\TestCase
         $this->assertIsBool($result);
         $this->assertEquals(true, $result);
     }
+
+    public function testIsBeforeNotStrict(): void
+    {
+        // Before
+        $result = $this->fixture->isBefore('1954-06-08', strict: false);
+        $this->assertIsBool($result);
+        $this->assertEquals(true, $result);
+
+        // Current
+        $result = $this->fixture->isBefore('1954-06-07', strict: false);
+        $this->assertIsBool($result);
+        $this->assertEquals(true, $result);
+
+        // Current
+        $result = $this->fixture->isBefore('1954-06-07 10:00:00', strict: false);
+        $this->assertIsBool($result);
+        $this->assertEquals(true, $result);
+
+        // After
+        $result = $this->fixture->isBefore('1954-06-06', strict: false);
+        $this->assertIsBool($result);
+        $this->assertEquals(false, $result);
+    }
+
+    public function testIsAfterNotStrict(): void
+    {
+        // Before
+        $result = $this->fixture->isAfter('1954-06-08', strict: false);
+        $this->assertIsBool($result);
+        $this->assertEquals(false, $result);
+
+        // Current
+        $result = $this->fixture->isAfter('1954-06-07', strict: false);
+        $this->assertIsBool($result);
+        $this->assertEquals(true, $result);
+
+        // Current
+        $result = $this->fixture->isAfter('1954-06-07 10:00:00', strict: false);
+        $this->assertIsBool($result);
+        $this->assertEquals(true, $result);
+
+        // After
+        $result = $this->fixture->isAfter('1954-06-06', strict: false);
+        $this->assertIsBool($result);
+        $this->assertEquals(true, $result);
+    }
 }
