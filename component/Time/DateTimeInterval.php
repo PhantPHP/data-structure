@@ -25,7 +25,7 @@ class DateTimeInterval extends \DateInterval
 
         $this->duration = ($this->from && $this->to) ? new Duration($this->to->getTimestamp() - $this->from->getTimestamp()) : null;
 
-        parent::__construct('PT' . $this->duration . 'S');
+        parent::__construct('PT' . ($this->duration->value ?? 0) . 'S');
     }
 
     public function isBefore(
