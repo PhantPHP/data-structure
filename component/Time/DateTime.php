@@ -15,16 +15,16 @@ class DateTime extends \DateTimeImmutable
     public function __construct(
         int|string $date,
         string $format = 'Y-m-d H:i:s',
-        ?\DateTimeZone $timeZone = null
+        ?\DateTimeZone $timezone = null
     ) {
         $dateTime = null;
         if (is_int($date)) {
-            $dateTime = (new \DateTimeImmutable('now', $timeZone))->setTimestamp($date);
+            $dateTime = (new \DateTimeImmutable('now', $timezone))->setTimestamp($date);
         }
 
         if (is_string($date)) {
             try {
-                $dateTime = new \DateTimeImmutable($date, $timeZone);
+                $dateTime = new \DateTimeImmutable($date, $timezone);
             } catch (\DateMalformedStringException) {
             }
         }
