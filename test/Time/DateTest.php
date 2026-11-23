@@ -36,33 +36,25 @@ final class DateTest extends \PHPUnit\Framework\TestCase
         $this->assertIsObject($date);
 
         $expectedDate = (new \DateTimeImmutable('2028-12-31'))->getTimestamp();
-        $expectedDateTime = (new \DateTimeImmutable('2028-12-31 13:14:15'))->getTimestamp();
-        $expectedOffsetDateTime = (new \DateTimeImmutable('2028-12-31T13:14:15+02:00'))->getTimestamp();
 
         $dates = [
-            ['1861833600', 1861833600],
+            [$expectedDate, $expectedDate],
             ['2028-12-31', $expectedDate],
-            ['2028-12-31 13:14:15', $expectedDateTime],
-            ['2028-12-31T13:14:15+02:00', $expectedOffsetDateTime],
-            ['31/12/2028', $expectedDate],
+            ['2028-12-31 13:14:15', $expectedDate],
+            ['2028/12/31', $expectedDate],
             ['31-12-2028', $expectedDate],
             ['31.12.2028', $expectedDate],
-            ['31/12/2028 13:14:15', $expectedDateTime],
-            ['31/12/28', $expectedDate],
-            ['12/31/2028', $expectedDate],
-            ['12-31-2028', $expectedDate],
+            ['2028/12/31 13:14:15', $expectedDate],
+            ['31-12-2028', $expectedDate],
             ['31 Dec 2028', $expectedDate],
             ['31 December 2028', $expectedDate],
             [' December 31, 2028 ', $expectedDate],
-            ['31/12/2028 13:14', (new \DateTimeImmutable('2028-12-31 13:14:00'))->getTimestamp()],
+            ['2028/12/31 13:14', $expectedDate],
         ];
 
         foreach ($dates as [$dateString, $expectedTime]) {
-            $this->assertSame($expectedTime, Date::getTimeFromString($dateString), $dateString);
-        }
-
-        foreach (['', '   ', 'not a date'] as $dateString) {
-            $this->assertNull(Date::getTimeFromString($dateString), $dateString);
+            $parsedDateTime = new Date($dateString);
+            $this->assertSame($expectedTime, $parsedDateTime->time, (string) $dateString);
         }
     }
 

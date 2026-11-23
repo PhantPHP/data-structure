@@ -8,9 +8,10 @@ class Date extends DateTime
 {
     public function __construct(
         int|string $date,
-        string $format = 'Y-m-d'
+        string $format = 'Y-m-d',
+        ?\DateTimeZone $timezone = null
     ) {
-        parent::__construct($date, $format);
+        parent::__construct($date, $format, $timezone);
     }
 
     protected static function resetPrecision(
